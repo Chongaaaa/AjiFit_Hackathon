@@ -1,0 +1,147 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#carouselIndicators {
+    height: 35vw;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide-img {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-content {
+    background-color: rgba(25, 41, 57, 0.3);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2vw 10vw 2vw;
+    color: #192939;
+    display: none;
+    text-align: center;
+    height: 100%;
+    opacity: 0;
+    transition: 0.5s ease-out;
+}
+
+/* content display only when hover */
+.carousel-item:hover > .carousel-content {
+    opacity: 1;
+}
+
+.carousel-content > p {
+    height: 45%;
+}
+
+.btn_lm {
+    border-width: .2vw;
+    font-size: 1vw;
+    font-weight: bold;
+    color: #e5e9ea;
+    background-color: #192939;
+}
+
+.btn_lm:hover {
+    color: #192939;
+    background-color: #e5e9ea;
+    transition: 0.3s ease-in;
+}
+
+.btn_ql {
+    width: 15%;
+    height: 6.5vw;
+    font-size: 1.5vw;
+    background-color: #8DB4B9;
+    border-radius: 30px;
+    margin-left: 8%;
+}
+
+.btn_ql > a {
+    text-decoration: none;
+    color: #192939;
+}
+
+.btn_ql:hover {
+    background-color: #29515D;
+    transition: 0.3s ease-in;
+}
+
+.btn_ql:hover > a {
+    color: #e5e9ea;
+    transition: 0.3s ease-in;
+}
+
+#whats_new, #our_story {
+    padding: 2vw 3vw;
+}
+
+#whats_new {
+    background-color: #C3D6DC;
+}
+
+#whats_new > h5, #our_story > h5 {
+    border-bottom: solid #192939;
+    margin-bottom: 3%;
+}
+
+#whats_new > h6, #whats_new > p{
+    width: 60%;
+}
+
+#whats_new > img {
+    width: 30%;
+    height: 70%;
+    border-radius: 10px;
+    display: flex;
+    float: right;
+}
+ 
+#whats_new > button > a {
+    text-decoration: none;
+    color: #192939;
+}
+
+#our_story > img {
+    width: 90%;
+    margin: 0% 5%;
+}
+
+#our_story > h6 {
+    text-align: center;
+    background-color: #C3D6DC;
+}
+
+/* Show carousel-content for medium screens and larger */
+@media (min-width: 768px) {
+    .carousel-content {
+        display: block;
+    }
+}
+
+/* unshow indicator in small screen */
+@media (max-width: 481px) {
+    .carousel-indicators {
+        display: none;
+    }
+}
+
+/* just show in large screen */
+@media (max-width: 768px) {
+    .btn_ql {
+        display: none;
+    }
+}
