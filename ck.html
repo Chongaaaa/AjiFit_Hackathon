@@ -4,58 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <title>Document</title>
+  <title>Community</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-light">
-    <div class="container-xxl">
-      <a href="#intro" class="navbar-brand">
-        <span class="fw-bold h1 fs-1 text-secondary">AjiFit</span>
-      </a>
-      
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid" style="display: block;">
+      <div class="row">
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
-      aria-label="Toggle navigation"><span class="navbar-toggler-icon navbar-light"></span></button>
-
-      <div class="d-flex flex-column" id="main-nav">
-        <div class="justify-content-start  align-items-center pt-4">
-          <span class="fs-5 text-warning">Where Flavor Meets Fitness, Naturally.</span>
-        </div>
-        <div class="collapse navbar-collapse justify-content- align-items-center ms-1" id="main-nav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a href="#" class="nav-link text-dark">Water reminder</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link text-dark">Calories Tracker</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link text-dark">adawdawdw</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link text-dark">adawdawdw</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link text-dark">adawdawdw</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link text-dark">adawdawdw</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link text-dark">adawdawdw</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
-        <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
+        <!-- Name of website -->
+        <div class="col-sm-3 col-md-3 col-lg-2">
+          
           <div>
-            <span class="fs-5 text-warning mt-3">User_name</span>
-            <a href=""><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
+            <a href="#intro" class="navbar-brand">
+              <span class="fw-bold h1 fs-1 text-secondary">AjiFit</span>
+            </a>   
+
+            <!-- button exist if screen are too small -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
           </div>
-        </li>
+        </div>
+
+        <!-- Slogan and link -->
+        <div class="col-sm-6 col-md-6 col-lg-8" >
+
+          <!-- slogan -->
+          <div class="short-div">
+            <div class="justify-content-start pt-4">
+              <span class="fs-5 text-warning">Where Flavor Meets Fitness, Naturally.</span>
+            </div>
+          </div>
+
+          <!-- nav link -->
+          <div class="short-div">
+            <div class="d-flex flex-column" id="main-nav">
+              <div class="collapse navbar-collapse ms-1" id="main-nav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link text-dark">Healthy Menu</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link text-dark">Exercise</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link text-dark">Track Your Life</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link text-dark">Water Reminder</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link text-dark">Community</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link text-dark">Q & A</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- profile -->
+        <div class="col-sm-3 col-md-3 col-lg-2">
+          <div class="collapse navbar-collapse" id="main-nav">
+            <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
+              <div>
+                <span class="fs-5 text-warning mt-3">User_name</span>
+                <a href=""><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
+              </div>
+            </li>
+          </div>
+    
+        </div>
+
       </div>
     </div>
   </nav>
