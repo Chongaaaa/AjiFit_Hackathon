@@ -119,6 +119,49 @@
     background-color: #C3D6DC;
 }
 
+#subscribe {
+    background-color: #C3D6DC;
+    padding-bottom: 3%;
+}
+
+.card {
+    margin-top: 10%;
+    transition: all 1s ease-out;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    border: solid 2px #8DB4B9;
+}
+
+.card h5 {
+    border-bottom: solid 5px #192939;
+}
+
+.card h6 {
+    color: #192939;
+}
+
+.card-header {
+    background-color: #e5e9ea;
+    color: #29515D;
+}
+
+.primary-card {
+    border: solid 5px #29515D;
+}
+
+.subscribe-btn {
+    background-color: #29515D;
+    color: #e5e9ea;
+}
+
+.subscribe-btn:hover {
+    background-color: #8DB4B9;
+    color: #29515D;
+    transition: 10ms ease-out;
+}
+
 /* Show carousel-content for medium screens and larger */
 @media (min-width: 768px) {
     .carousel-content {
