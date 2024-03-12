@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #E5E9EA;
+}
+
+footer {
+    background-color: #B2C5D3;
+    color: #E5E9EA;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer li {
+    list-style-type: none;
+    text-align: left;
+}
+
+footer a {
+    color: #29515D;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .footer-padding {
+        padding-left: 4%;
+    }
+}
+
+/* color pallete
+#E5E9EA
+#C3D6DC
+#B2C5D3
+#8DB4B9
+#29515D
+#192939
+#ffffff */

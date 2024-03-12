@@ -1,9 +1,3 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 #carouselIndicators {
     height: 35vw;
 }
@@ -62,12 +56,12 @@
 }
 
 .btn_ql {
-    width: 15%;
+    width: 20%;
     height: 6.5vw;
     font-size: 1.5vw;
     background-color: #8DB4B9;
     border-radius: 30px;
-    margin-left: 8%;
+    margin-left: 10%;
 }
 
 .btn_ql > a {
