@@ -1,0 +1,21 @@
+#water-reminder {
+    background-color: #C3D6DC;
+    padding: 2%;
+    margin: 0% 3%;
+    width: 94%;
+}
+
+.water-btn button {
+    background-color: #8DB4B9;
+    width: 100%;
+}
+
+#water-calc {
+    background-color: #E5E9EA;
+}
+
+#btn-calc-water {
+    background-color: #B2C5D3;
+    color: #192939;
+    border: none;
+}
