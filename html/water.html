@@ -22,10 +22,64 @@
     <link rel="stylesheet" href="../css/water.css">
     <link rel="stylesheet" href="../css/common.css">
     
-    <title>Profile</title>
+    <title>Water Reminder</title>
 </head>
 <body>
-    <div class="container-fluid" id="water-reminder">
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-xxl">
+          <a href="#intro" class="navbar-brand">
+            <span class="fw-bold h1 fs-1 text-secondary">AjiFit</span>
+          </a>
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+          aria-label="Toggle navigation"><span class="navbar-toggler-icon navbar-light"></span></button>
+    
+          <div class="d-flex flex-column" id="main-nav">
+            <div class="justify-content-start  align-items-center pt-4">
+              <span class="fs-5 text-warning">Where Flavor Meets Fitness, Naturally.</span>
+            </div>
+            <div class="collapse navbar-collapse justify-content- align-items-center ms-1" id="main-nav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="../html/index.html" class="nav-link text-dark">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-dark">Receipe</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-dark">Exercise</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../html/ck.html" class="nav-link text-dark">Calories Tracker</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../html/water.html" class="nav-link text-dark">Water Reminder</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-dark">Community</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-dark">Q & A</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
+            <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
+              <div>
+                <span class="fs-5 text-warning mt-3">User_name</span>
+                <a href="../html/profile.html"><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
+              </div>
+            </li>
+          </div>
+        </div>
+    </nav>
+
+    <!-- water reminder -->
+    <div class="container-fluid my-5" id="water-reminder">
         <div class="row">
 
             <!-- left side -->
@@ -83,13 +137,13 @@
                         </form>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-6 text-center">
                         <h3 class="fw-normal">Water Needed: </h3>
 
                         <!-- water-circle -->
-                        <div class="text-center justify-content-center px-3 py-2" id="water-amt">
+                        <div class="px-3 py-2">
                             <div id="water-circle">
-                                <h6 class="display-6">1000<span class="lead text-mute">ml</span></h6>
+                                <h6 class="display-6">1000<span class="lead">ml</span></h6>
                             </div>
                         </div>
 
@@ -99,10 +153,103 @@
             </div>
     
             <!-- right side -->
-            <div class="col-5">
-                jchiu
+            <div class="col-6 text-center mt-3" id="water-reminder-right">
+                <img src="../image/drink_water.webp" alt="" style="width: 50%;">
+
+                <h4 class="fw-normal mt-3">YOU HAD DRINK: <span style="font-weight:bold; color: #192939;">500ml</span></h4>
             </div>
 
+        </div>
+    </div>
+
+    <!-- water information -->
+    <div class="container-fluid mb-5">
+        <h5 class="display-5 fw-bold text-center">
+            Water Blog 
+        </h5>
+        <p class="lead text-center">Come and explore more about "water".</p>
+
+        <!-- text -->
+        <div class="accordion container-lg" id="water-text">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        What is water
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                    <p class="lead">
+                        Water, a substance composed of the chemical elements hydrogen and oxygen and existing in gaseous, liquid, and solid states. It is one of the most plentiful and essential of compounds. A tasteless and odourless liquid at room temperature, it has the important ability to dissolve many other substances. Indeed, the versatility of water as a solvent is essential to living organisms. Life is believed to have originated in the aqueous solutions of the world’s oceans, and living organisms depend on aqueous solutions, such as blood and digestive juices, for biological processes. Water also exists on other planets and moons both within and beyond the solar system. In small quantities water appears colourless, but water actually has an intrinsic blue colour caused by slight absorption of light at red wavelengths.
+                    </p>
+                </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    Benefit of drinking water
+                </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                    <p class="lead">
+                        Getting enough water every day is important for your health. Drinking water can prevent dehydration, a condition that can cause unclear thinking, result in mood change, cause your body to overheat, and lead to constipation and kidney stones. Water has no calories, so it can also help with managing body weight and reducing calorie intake when substituted for drinks with calories, such as sweet tea or regular soda.
+                    </p>
+
+                    <br>
+
+                    <p class="lead fw-bold">Water helps body to : </p>
+                    <ul>
+                        <li>Keep a normal temperature.</li>
+                        <li>Lubricate and cushion joints.</li>
+                        <li>Protect your spinal cord and other sensitive tissues.</li>
+                        <li>Get rid of wastes through urination, perspiration, and bowel movements.</li>
+                    </ul>
+
+                    <br>
+
+                    <p class="lead fw-bold">Water is important especially people are: </p>
+                    <ul>
+                        <li>In hot climates.</li>
+                        <li>More physically active.</li>
+                        <li>Running a fever.</li>
+                        <li>Having diarrhea or vomiting.</li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    How much water do we need? 
+                </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+                    <p class="lead">
+                        Every day you lose water through your breath, perspiration, urine and bowel movements. For your body to function properly, you must replenish its water supply by consuming beverages and foods that contain water.
+                    </p>
+
+                    <p class="lead">
+                        So how much fluid does the average, healthy adult living in a temperate climate need? The U.S. National Academies of Sciences, Engineering, and Medicine determined that an adequate daily fluid intake is:
+                    </p>
+
+                    <br>
+
+                    <ul>
+                        <li>About 15.5 cups (3.7 liters) of fluids a day for men</li>
+                        <li>About 11.5 cups (2.7 liters) of fluids a day for women</li>
+                    </ul>
+
+                    <br>
+
+                    <p class="lead">
+                        These recommendations cover fluids from water, other beverages and food. About 20% of daily fluid intake usually comes from food and the rest from drinks.
+                    </p>
+                </div>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -134,7 +281,7 @@
                     <div id="footer-link">
                         <ul>
                             <li>
-                                <h4><a href="">Water Reminder</a></h4>
+                                <h4><a href="../html/water.html">Water Reminder</a></h4>
                             </li>
                             <li>
                                 <h4><a href="">Community</a></h4>
@@ -149,13 +296,13 @@
                 <!-- Contact -->
                 <div class="col-sm-2 col-md-4 col-lg-5">
                     <h3 class="display-6 fw-bold">Contact Us</h3>
-
+                    
                     <div class="contact-icon">
-                        <a href="#"><i class="bi bi-instagram fs-1 me-3"></i></a>
-                        <a href="#"><i class="bi bi-facebook fs-1 me-3"></i></a>
-                        <a href="#"><i class="bi bi-twitter fs-1 me-3"></i></a>
+                        <a href="https://www.instagram.com/accounts/login"><i class="bi bi-instagram fs-1 me-3"></i></a>
+                        <a href="https://web.facebook.com"><i class="bi bi-facebook fs-1 me-3"></i></a>
+                        <a href="https://twitter.com/i/flow/login"><i class="bi bi-twitter fs-1 me-3"></i></a>
                     </div>
-
+                    
                     <div class="star mt-3 mb-1">
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill fs-3"></i>

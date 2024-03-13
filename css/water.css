@@ -20,14 +20,26 @@
     border: none;
 }
 
-/* #water-amt {
-    height: 80%;
+#water-circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #29515D;
+    color: #E5E9EA;
+    padding: 50px 10px;
+    display: block;
+    margin: 1% auto;
 }
 
-#water-circle {
-    border-radius: 50%;
-    padding: 20% 15%;
-    width: 70%;
-    height: 100%;
-    background-color: #8DB4B9;
-} */
+#water-reminder-right > h4 {
+color: #29515D;
+}
+
+.accordion-button[aria-expanded="true"] {
+    font-size: 24px; /* Adjust the font size as per your preference */
+}
+
+#water-text ul li {
+    font-size: 17px;
+}
