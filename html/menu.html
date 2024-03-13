@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=     , initial-scale=1.0">
+        <!-- Bootstrap icon -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+     
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+         
+        <!-- Include jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     
+        <!-- Bootstrap JS, Popper.js, and jQuery -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- link with CSS -->
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/common.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        /* Custom styling for recipe cards */
+        .savesave{
+            border: 1px solid #9dacb5; /* Border color */
+            font-size: 13px;
+        }
+        .recipe-card {
+            border: 2px solid #3498db; /* Border color */
+            background-color: #ecf0f1; /* Background color */
+        }
+
+        .recipe-card img {
+            border-bottom: 2px solid #3498db; /* Border color for image */
+        }
+
+        .recipe-card .card-body {
+            padding: 15px;
+        }
+
+    </style>
+    <title>Ninja</title>
+</head>
+<body style="background-color: #DAE1E7;" >
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-xxl">
+      <a href="#intro" class="navbar-brand">
+        <span class="fw-bold h1 fs-1 text-secondary">AjiFit</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+      aria-label="Toggle navigation"><span class="navbar-toggler-icon navbar-light"></span></button>
+
+      <div class="d-flex flex-column" id="main-nav">
+        <div class="justify-content-start  align-items-center pt-4">
+          <span class="fs-5 text-warning">Where Flavor Meets Fitness, Naturally.</span>
+        </div>
+        <div class="collapse navbar-collapse justify-content- align-items-center ms-1" id="main-nav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="../html/index.html" class="nav-link text-dark">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">Receipe</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">Exercise</a>
+            </li>
+            <li class="nav-item">
+              <a href="../html/ck.html" class="nav-link text-dark">Calories Tracker</a>
+            </li>
+            <li class="nav-item">
+              <a href="../html/water.html" class="nav-link text-dark">Water Reminder</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">Community</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">Q & A</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
+        <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
+          <div>
+            <span class="fs-5 text-warning mt-3">User_name</span>
+            <a href="../html/profile.html"><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
+          </div>
+        </li>
+      </div>
+    </div>
+  </nav>
+        <h1 class="ms-3 pt-3 text-center">AjiFit Menu</h1>
+    <br>
+    <div class="container ms-3">
+        <div class="row justify-content-start">
+            <div class="col-4 me-4 pe-5">
+                <select class="form-select rounded" name="menu" id="menu">
+                    <option value="volvo">Browse by collection</option>
+                    <option value="saab">b</option>
+                    <option value="mercedes">c</option>
+                    <option value="audi">d</option>
+                </select>
+            </div>
+    
+            <div class="col-3">
+                <div class="input-group">
+                    <div class="form-outline ms-5 ps-5" data-mdb-input-init>
+                        <input type="search" id="form1" class="form-control" value="Search" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class=" bg-white rounded p-2 savesave ">
+                    <a href="#" class="text-dark text-decoration-none bg">Saved Recipe</a>
+                </div>
+            </div>
+            <div class="col-2">
+                <select class="form-select rounded " name="menu" id="menu">
+                    <option value="volvo">Filter</option>
+                    <option value="saab">b</option>
+                    <option value="mercedes">c</option>
+                    <option value="audi">d</option>
+                </select>
+            </div>
+        </div>
+        <br>
+    </div>
+    
+
+    <h3 class="fw-bold ms-3">Lasted Recipes</h3>
+    <p class="ms-3">Try out the latest recipes and make something new!</p>
+    <div class="container mt-3">
+        <div class="row ">
+            <!-- Recipe Card 1 -->
+            <div class="col-lg-6">
+                <div class="card mb-3 recipe-card">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <img src="foodfoodfood/one-pot-rice-cooker-fried-rice-1683514170037-1.webp" class="img-fluid rounded-start p-1" alt="Recipe 2 Image">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">One Pot Rice Cooker Fried Rice</h5>
+                                <p class="card-text">It can be made in the rice cooker in under 30 minutes and there is no “frying” involved!  </p>
+                                <p class="card-text"><small class="text-muted">Prep Time: 15 minutes | Bake Time: 12 minutes</small></p>
+                                <a href="#" class="btn btn-secondary">View Recipe</a>
+                                <a href="#" class="btn btn-secondary">Save</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Recipe Card 2 -->
+            <div class="col-lg-6">
+                <div class="card mb-3 recipe-card">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <img src="foodfoodfood/crispy-sesame-tofu-1.webp" class="img-fluid rounded-start p-1" alt="Recipe 2 Image">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Crispy Sesame Tofu</h5>
+                                <p class="card-text">These baked sesame-crusted tofu steaks are soft on the inside, crisp on the outside and full of flavor. </p>
+                                <p class="card-text"><small class="text-muted">Prep Time: 15 minutes | Bake Time: 12 minutes</small></p>
+                                <a href="#" class="btn btn-secondary">View Recipe</a>
+                                <a href="#" class="btn btn-secondary">Save</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h3 class="fw-bold ms-3">Popular Categories</h3>
+    <!--POpular recipe cards-->
+    <div class="row justify-content-center mt-5 ms-1 me-1">
+        <!-- Card 1 -->
+        <div class="col-3">
+            <div class="card rounded-card">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <img src="foodfoodfood/baked-avocado-eggs-1.jpeg" class="img-fluid" alt="Image 1">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h6 class="card-title">QuickFood</h6>
+                            <p class="card-text">20 Recipes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-3">
+            <div class="card rounded-card">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <img src="foodfoodfood/satay-tofu-power-bowl-1682465130524-1.jpeg" class="img-fluid" alt="Image 1">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h6 class="card-title">HighProtein</h6>
+                            <p class="card-text">30 recipes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card rounded-card">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <img src="foodfoodfood/high-protein-creamy-garlic-chive-dip-1.webp" class="img-fluid" alt="Image 1">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title">Low carc</h5>
+                            <p class="card-text">25 recipes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card rounded-card">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <img src="foodfoodfood/roasted-squash-beetroot-salad-1.webp" class="img-fluid" alt="Image 1">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h6 class="card-title ">Vegetarian</h6>
+                            <p class="card-text">35 recipes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    <button class="btn btn-secondary d-block mx-auto">Load more recipes</button>
+    <br>
+    <footer>
+        <div class="container-fluid justify-content-center text-center py-5">
+            <div class="row footer-padding">
+                <!-- All link -->
+                <div class="col-sm-1 col-md-4 col-lg-4">
+                    <div id="footer-link">
+                        <ul>
+                            <li>
+                                <h4><a href="../html/index.html">Home</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="">Receipe</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="">Exercise</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="">Calories Tracker</a></h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+  
+                <div class="col-sm-1 col-md-4 col-lg-3">
+                    <div id="footer-link">
+                        <ul>
+                            <li>
+                                <h4><a href="../html/water.html">Water Reminder</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="">Community</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="">Q & A</a></h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+  
+                <!-- Contact -->
+                <div class="col-sm-2 col-md-4 col-lg-5">
+                    <h3 class="display-6 fw-bold">Contact Us</h3>
+                    
+                    <div class="contact-icon">
+                        <a href="https://www.instagram.com/accounts/login"><i class="bi bi-instagram fs-1 me-3"></i></a>
+                        <a href="https://web.facebook.com"><i class="bi bi-facebook fs-1 me-3"></i></a>
+                        <a href="https://twitter.com/i/flow/login"><i class="bi bi-twitter fs-1 me-3"></i></a>
+                    </div>
+                    
+                    <div class="star mt-3 mb-1">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill fs-3"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+  
+                    <p>&copy; 2004 - 2024 AjiFit. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+     
+    </script>
+    
+</body>
+</html>
