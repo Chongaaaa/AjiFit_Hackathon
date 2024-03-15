@@ -131,7 +131,14 @@
                         </div>
 
                         <div class="col-3">
+
                             <h2 id="genderBox">Female</h2>
+
+                            <select id="genderSelectBox" class="form-select visually-hidden" disabled>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+
                         </div>
 
                         <!-- save btn -->
@@ -346,73 +353,115 @@
             // ------BREAK LINE-----
             // edit button
             editBtn.addEventListener('click', function() {
-
-                // only save button is clickable after click on edit button
+                // Only save button is clickable after clicking on edit button
                 editBtn.disabled = true;
-                saveBtn.disabled= false;
+                saveBtn.disabled = false;
+                genderBox.classList.add('visually-hidden'); // Hide the <h2> element
+                genderSelectBox.classList.remove('visually-hidden'); // Show the <select> element
+                genderSelectBox.disabled = false; // Enable the dropdown
 
-                // Enable input field for editing
-                const ageField = document.querySelector('#ageBox');
-                ageField.setAttribute('contenteditable', true);
-                ageField.focus();
-
-                const genderField = document.querySelector('#genderBox');
-                genderField.setAttribute('contenteditable', true);
-                genderField.focus();
-
-                const signField = document.querySelector('#signBox');
-                signField.setAttribute('contenteditable', true);
-                signField.focus();
-
-                const heightField = document.querySelector('#heightBox');
-                heightField.setAttribute('contenteditable', true);
-                heightField.focus();
-
-                const weightField = document.querySelector('#weightBox');
-                weightField.setAttribute('contenteditable', true);
-                weightField.focus();
+                // Enable input fields for editing
+                enableEditing('ageBox', isNumber);
+                enableEditing('signBox', isValidSignature);
+                enableEditing('heightBox', isNumber);
+                enableEditing('weightBox', isNumber);
             });
 
-            // save button
             saveBtn.addEventListener('click', function() {
+                if (checkEmptyFields()) {
+                    window.alert('Please fill in all the field.');
+                    return;
+                }
+
                 editBtn.disabled = false;
                 saveBtn.disabled = true;
+                genderBox.classList.remove('visually-hidden'); // Show the <h2> element
+                genderSelectBox.classList.add('visually-hidden'); // Hide the <select> element
+                genderSelectBox.disabled = true; // Disable the dropdown
 
-                // Get the edited age value
-                const ageField = document.querySelector('#ageBox');
-                const newAge = ageField.textContent;
-
-                const genderField = document.querySelector('#genderBox');
-                const newGender = genderField.textContent;
-
-                const signField = document.querySelector('#signBox');
-                const newSign = signField.textContent;
-
-                const heightField = document.querySelector('#heightBox');
-                const newHeight = heightField.textContent;
-                
-                const weightField = document.querySelector('#weightBox');
-                const newWeight = weightField.textContent;
-
-                // Update the displayed age
-                ageField.textContent = newAge;
-                genderField.textContent = newGender;
-                signField.textContent = newSign;
-                heightField.textContent = newHeight;
-                weightField.textContent = newWeight;
-
-                // Disable input field
-                ageField.setAttribute('contenteditable', false);
-                genderField.setAttribute('contenteditable', false);
-                signField.setAttribute('contenteditable', false);
-                heightField.setAttribute('contenteditable', false);
-                weightField.setAttribute('contenteditable', false);
+                // Disable input fields
+                disableEditing('ageBox');
+                disableEditing('signBox');
+                disableEditing('heightBox');
+                disableEditing('weightBox');
 
                 // Update BMI display
-                const heightInMeters = parseFloat(newHeight) / 100;
-                const updatedBMI = parseFloat(newWeight) / (heightInMeters * heightInMeters);
-                displayBMI.textContent = updatedBMI.toFixed(1);
+                updateBMI();
+
+                //Bring to database
+                consoleValue()
             });
+
+            function enableEditing(elementId, validationFunction) {
+                const field = document.getElementById(elementId);
+                field.setAttribute('contenteditable', true);
+                field.addEventListener('input', function() {
+                    if (!validationFunction(field.textContent.trim())) {
+                        //window.alert('Invalid input! Please enter a valid value.');
+                        field.textContent = ''; // Clear the invalid input
+                    }
+                });
+            }
+
+            function disableEditing(elementId) {
+                const field = document.getElementById(elementId);
+                field.setAttribute('contenteditable', false);
+            }
+
+            function isNumber(value) {
+
+                if (value.trim() === '') {
+                    return true; // Allow empty value
+                }
+
+                if ( !( /^\d+$/.test(value) ) ) {
+                    window.alert('Invalid input! Please enter a digit.');
+                } else{
+                    return /^\d+$/.test(value);
+                }
+
+            }
+
+            function isValidSignature(value) {
+
+                if (value.trim() === '') {
+                    return true; // Allow empty value
+                }
+
+                if ( !( value.length <= 25 ) ) {
+                    window.alert('Invalid input! Please enter not more than 25 words.');
+                } else{
+                    return value.length <= 25;
+                }
+
+            }
+
+            function checkEmptyFields() {
+
+                if ( ageBox.textContent.trim() === '' || signBox.textContent.trim() === '' || heightBox.textContent.trim() === '' || weightBox.textContent.trim() === '' ) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+
+            function updateBMI() {
+                const displayBMI = document.querySelector('#bmi-circle h2');
+                const height = parseFloat(document.getElementById('heightBox').textContent) / 100; // Convert height to meters
+                const weight = parseFloat(document.getElementById('weightBox').textContent); // Weight in kg
+
+                const bmi = weight / (height * height);
+                displayBMI.textContent = bmi.toFixed(1);
+            }
+
+            function consoleValue() {
+                console.log("Age: " + document.getElementById('ageBox').textContent);
+                console.log("Gender: " + document.getElementById('genderBox').textContent);
+                console.log("Signature: " + document.getElementById('signBox').textContent);
+                console.log("Height: " + document.getElementById('heightBox').textContent);
+                console.log("Weight: " + document.getElementById('weightBox').textContent);
+            }
         });
 
     </script>
