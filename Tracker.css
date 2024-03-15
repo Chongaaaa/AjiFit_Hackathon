@@ -70,11 +70,3 @@ path.purple {
 #time-slt::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
-
-#helo{
-  border: #29515D;
-  border-radius: 1px;
-  color: white;
-  text-align: center;
-  background-color: #29515D;
-}
