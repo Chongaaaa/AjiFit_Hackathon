@@ -55,6 +55,9 @@ path.purple {
   #add-btn span:hover {
     color: #29515D;
   }
+  #add-btn:active{
+  }
+
   input[type=radio]{
     background-color: white;
   }
