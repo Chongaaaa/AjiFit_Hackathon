@@ -206,6 +206,9 @@
                                     <h3>BMI</h3>
                                     <h2></h2>
                                 </div>
+                                <div class="text-center pt-3">
+                                    <h2 id="bmi-result"></h2>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -308,12 +311,7 @@
             const saveBtn = document.getElementById('profile-saveBtn');
 
             // the bmi calculate
-            const displayBMI = document.querySelector('#bmi-circle h2')
-            const height = parseFloat(document.getElementById('heightBox').textContent) / 100; // Convert height to meters
-            const weight = parseFloat(document.getElementById('weightBox').textContent); // Weight in kg
-
-            const bmi = weight / (height * height);
-            displayBMI.textContent = bmi.toFixed(1);
+            updateBMI();
 
             // profile image change
             editProfile.addEventListener('click', function() {
@@ -353,6 +351,7 @@
             // ------BREAK LINE-----
             // edit button
             editBtn.addEventListener('click', function() {
+
                 // Only save button is clickable after clicking on edit button
                 editBtn.disabled = true;
                 saveBtn.disabled = false;
@@ -365,8 +364,10 @@
                 enableEditing('signBox', isValidSignature);
                 enableEditing('heightBox', isNumber);
                 enableEditing('weightBox', isNumber);
+
             });
 
+            // save button
             saveBtn.addEventListener('click', function() {
                 if (checkEmptyFields()) {
                     window.alert('Please fill in all the field.');
@@ -392,6 +393,7 @@
                 consoleValue()
             });
 
+            // open edit field
             function enableEditing(elementId, validationFunction) {
                 const field = document.getElementById(elementId);
                 field.setAttribute('contenteditable', true);
@@ -403,11 +405,13 @@
                 });
             }
 
+            // close edit field
             function disableEditing(elementId) {
                 const field = document.getElementById(elementId);
                 field.setAttribute('contenteditable', false);
             }
 
+            // validation
             function isNumber(value) {
 
                 if (value.trim() === '') {
@@ -451,10 +455,29 @@
                 const height = parseFloat(document.getElementById('heightBox').textContent) / 100; // Convert height to meters
                 const weight = parseFloat(document.getElementById('weightBox').textContent); // Weight in kg
 
+                const bmiResult = document.getElementById('bmi-result');
+                var result = "";
+
                 const bmi = weight / (height * height);
                 displayBMI.textContent = bmi.toFixed(1);
+
+                // Fix typo here: change 'value' to 'bmi'
+                if (bmi < 18.5) {
+                    result = "Underweight";
+                } else if (bmi < 24.9){
+                    result = "Normal";
+                } else if (bmi < 29.9) {
+                    result = "Overweight";
+                } else if (bmi < 34.9) {
+                    result = "Obese";
+                } else {
+                    result = "Extremely Obese";
+                }
+
+                bmiResult.textContent = result;
             }
 
+            // need save to database
             function consoleValue() {
                 console.log("Age: " + document.getElementById('ageBox').textContent);
                 console.log("Gender: " + document.getElementById('genderBox').textContent);
