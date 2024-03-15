@@ -15,10 +15,14 @@
     /* background-color: #29515D; */
 }
 
+#profile-img {
+    justify-content: center;
+}
+
 #profile-img > img {
-    border-radius: 20%;
-    height: 70%;
-    width: 85%;
+    border-radius: 40px;
+    height: 290px;
+    width: 290px;
 }
 
 #profile-name > h6 {
