@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="Tracker.css">
+  <script src="Tracker.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-light">
+    <div class="container-xxl">
+      <a href="#intro" class="navbar-brand">
+        <span class="fw-bold h1 display-3 text-secondary">AjiFit</span>
+      </a>
+      
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+      aria-label="Toggle navigation"><span class="navbar-toggler-icon navbar-light"></span></button>
+
+      <div class="d-flex flex-column" id="main-nav">
+        <div class="justify-content-start  align-items-center pt-4">
+          <span class="fs-5 text-warning">Where Flavor Meets Fitness, Naturally.</span>
+        </div>
+        <div class="collapse navbar-collapse justify-content- align-items-center ms-1" id="main-nav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">Water reminder</a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link text-dark">Calories Tracker</a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link text-dark">adawdawdw</a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link text-dark">adawdawdw</a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link text-dark">adawdawdw</a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link text-dark">adawdawdw</a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link text-dark">adawdawdw</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
+        <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
+          <div>
+            <span class="fs-5 text-warning mt-3">User_name</span>
+            <a href=""><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
+          </div>
+        </li>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row justify-content-center" style="background-color: #E5E9EA;">
+        <div class="col-5 text-white text-center my-4">
+            <div class="mb-3 p-4 justify-content-center" style="background-color: #29515D; width: 40vw;border-radius: 15px 15px 0 0;">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text fs-3 border border-0 text-white" id="inputGroup-sizing-sm"  style="background-color: #29515D;">Carlories per day</span>
+                    </div>
+                    <input type="text" class="form-control fs-5" id="cpd-bar" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="background-color: #C3D6DC;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text fs-3 border border-0 text-white" id="kcal"  style="background-color: #8DB4B9;">kCal</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container p-0" style="width: 40vw; " >
+                <div class="list-group mt-3 mb-1justify-content-start pb-1" style="border-radius: 0 0 15px 15px;">
+                    <div class="list-group-item list-group-item-action active border border-0" style="background-color: #29515D;">
+                        <div class="d-flex w-100 justify-content-start mt-1 ms-1">
+                            <h5 class="mb-1">13 March 2024</h5>
+                            <span class="ms-3"><i class="bi bi-calendar"></i></span>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-8 justify-content-start" >
+                                <div class="container mb-2" style="background-color: #B2C5D3;">
+                                    <div class="row justify-content-start my-1">
+                                        <i class="col-1 bi bi-calendar pt-4"></i>
+                                        <div class="col-5 text-start py-2 ps-4">
+                                            <span class="fs-5">Lunch</span>
+                                            <h6 class="text-muted">nasi lemak</h6>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">12.30pm</span>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">2320 kCal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container mb-2" style="background-color: #B2C5D3;">
+                                    <div class="row justify-content-start my-1">
+                                        <i class="col-1 bi bi-calendar pt-4"></i>
+                                        <div class="col-5 text-start py-2 ps-4">
+                                            <span class="fs-5">Lunch</span>
+                                            <h6 class="text-muted">nasi lemak</h6>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">12.30pm</span>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">2320 kCal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container" style="background-color: #B2C5D3;">
+                                    <div class="row justify-content-start my-1">
+                                        <i class="col-1 bi bi-calendar pt-4"></i>
+                                        <div class="col-5 text-start py-2 ps-4">
+                                            <span class="fs-5">Lunch</span>
+                                            <h6 class="text-muted">nasi lemak</h6>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">12.30pm</span>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">2320 kCal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 justify-content-start me-4 my-1 h-100" style="background-color: #B2C5D3;">
+                                <div class="row justify-content-start">
+                                    <div class="col-2 my-2"><i class="bi bi-bicycle fs-4"></i></div>
+                                    <div class="col-7 my-2">
+                                        <span class="fs-4">Exercise</span>
+                                    </div>
+                                </div>
+                                <div class="text-start">
+                                    <span>246 kCal</span>
+                                </div>
+                                <div class="text-start pb-2">
+                                    <span>30 minutes</span>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item list-group-item-action active border border-0" style="background-color: #29515D;">
+                        <div class="d-flex w-100 justify-content-start mt-1 ms-1">
+                            <h5 class="mb-1">12 March 2024</h5>
+                            <span class="ms-3"><i class="bi bi-calendar"></i></span>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-8 justify-content-start" >
+                                <div class="container mb-2" style="background-color: #B2C5D3;">
+                                    <div class="row justify-content-start my-1">
+                                        <i class="col-1 bi bi-calendar pt-4"></i>
+                                        <div class="col-5 text-start py-2 ps-4">
+                                            <span class="fs-5">Lunch</span>
+                                            <h6 class="text-muted">nasi lemak</h6>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">12.30pm</span>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">2320 kCal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container mb-2" style="background-color: #B2C5D3;">
+                                    <div class="row justify-content-start my-1">
+                                        <i class="col-1 bi bi-calendar pt-4"></i>
+                                        <div class="col-5 text-start py-2 ps-4">
+                                            <span class="fs-5">Lunch</span>
+                                            <h6 class="text-muted">nasi lemak</h6>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">12.30pm</span>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">2320 kCal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container" style="background-color: #B2C5D3;">
+                                    <div class="row justify-content-start my-1">
+                                        <i class="col-1 bi bi-calendar pt-4"></i>
+                                        <div class="col-5 text-start py-2 ps-4">
+                                            <span class="fs-5">Lunch</span>
+                                            <h6 class="text-muted">nasi lemak</h6>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">12.30pm</span>
+                                        </div>
+                                        <div class="col-3 py-2 text-end">
+                                            <span class="fs-5">2320 kCal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 justify-content-start me-4 my-1 h-100" style="background-color: #B2C5D3;">
+                                <div class="row justify-content-start">
+                                    <div class="col-2 my-2"><i class="bi bi-bicycle fs-4"></i></div>
+                                    <div class="col-7 my-2">
+                                        <span class="fs-4">Exercise</span>
+                                    </div>
+                                </div>
+                                <div class="text-start">
+                                    <span>246 kCal</span>
+                                </div>
+                                <div class="text-start pb-2">
+                                    <span>30 minutes</span>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn" id="add-btn" data-bs-toggle="modal" data-bs-target="#tracker"><span>Add record</span></button>
+                </div>
+            </div> 
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="tracker" tabindex="-1" role="dialog" aria-labelledby="trackerLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content text-white" style="background-color: #29515D;">
+                <div class="modal-header">
+                <h5 class="modal-title fs-3" id="trackerLabel">Calories Tracker</h5>
+                </div>
+                <div class="modal-body" >
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <div class="d-flex w-100 justify-content-start mt-1 ms-1">
+                                <input class="border border-0 text-white fs-5" type="date" name="date" id="date-slt" style="background-color: #29515D; ">
+                                <!-- <h5 class="mb-1" id="date-text">13 March 2024</h5>
+                                <button class="ms-3" id="date-slt"><i class="bi bi-calendar"></i></button>                                 -->
+                            </div>
+                            <div class="input-group my-2">
+                                <input type="text" class="form-control fs-5" id="clr-in"  placeholder="Calories intake"  aria-describedby="inputGroup-sizing-sm" style="background-color: #C3D6DC; border: none; border-radius: 8px 0 0 8px;" >
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text fs-5 text-white" style="background-color: #8DB4B9; border: 1px solid #8DB4B9; border-radius: 0 6px 6px 0;">kCal</span>
+                                </div>
+                            </div>
+                            <div class="input-group my-1">
+                                <input type="text" class="form-control fs-5" id="carb-in"  placeholder="Carborhydrate" aria-describedby="inputGroup-sizing-sm" style="background-color: #C3D6DC; border: none; border-radius: 8px 0 0 8px;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text fs-5 text-white" style="background-color: #8DB4B9; border: 1px solid #8DB4B9; border-radius: 0 6px 6px 0;">g</span>
+                                </div>
+                            </div>
+                            <div class="input-group my-1">
+                                <input type="text" class="form-control fs-5" id="prt-in"  placeholder="Protein" aria-describedby="inputGroup-sizing-sm" style="background-color: #C3D6DC; border: none; border-radius: 8px 0 0 8px;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text fs-5 text-white" style="background-color: #8DB4B9; border: 1px solid #8DB4B9; border-radius: 0 6px 6px 0;">g</span>
+                                </div>
+                            </div>
+                            <div class="input-group my-1">
+                                <input type="text" class="form-control fs-5" id="fat-in"  placeholder="Fat" aria-describedby="inputGroup-sizing-sm" style="background-color: #C3D6DC; border: none; border-radius: 8px 0 0 8px;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text fs-5 text-white" style="background-color: #8DB4B9; border: 1px solid #8DB4B9; border-radius: 0 6px 6px 0;">g</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5" >
+                            <div class="d-flex w-100 justify-content-start mt-1 ms-1">
+                                <input class="border border-0 text-white fs-5" type="time" name="date" id="time-slt" style="background-color: #29515D;">
+                                <!-- <h5 class="mb-1" id="time-text">12.00 PM</h5>
+                                <span class="ms-3" id="time-slt"><i class="bi bi-clock"></i></span> -->
+                            </div>
+                            <div>
+                                <div class="form-check fs-5" id="brkf">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked value="Breakfast">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Breakfast
+                                    </label>
+                                </div>
+                                <div class="form-check fs-5" id="lunc">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Lunch">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                      Lunch
+                                    </label>
+                                </div>
+                                <div class="form-check fs-5" id="dinn">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Dinner">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                      Dinner
+                                    </label>
+                                </div>
+                                <div class="form-check fs-5" id="othr">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Other">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                      Other
+                                    </label>
+                                </div>
+                                <textarea class="fs-5 text-dark" id="food-desc" cols="17" rows="3" placeholder="Food description" style="background-color: #C3D6DC; border-radius: 10px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="new-record" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-4 text-dark text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 100 100">
+                <path class="grey" d="M40,90 A40,40 0 1,1 60,90" style="fill:none;"/>
+                <path class="purple" d="M40,90 A40,40 0 1,1 60,90" style="fill:none;"/>
+                <text x="50" y="50" id="clr-text" text-anchor="middle" dy="0.3em" font-size="8" fill="black">1500 / X kCal</text>
+            </svg>
+            <div class="container m-0 ms-0 p-3 align-items-center justify-content-center" style="background-color: #29515D; border-radius: 15px 15px 0 0;">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text fs-5 border border-0 text-white justify-content-end pe-4" id="inputGroup-sizing-sm"  style="background-color: #29515D; width: 10rem;">Carborhydrate</span>
+                    </div>
+                    <span class=""></span>
+                    <input type="text" class="form-control fs-5" id="carb-out" value="0" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="background-color: #C3D6DC;" disabled>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text fs-5 border border-0 text-white" style="background-color: #8DB4B9; border-radius: 0 8px 8px 0;">g</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container m-0 my-2 ms-0 p-3 align-items-center justify-content-center" style="background-color: #29515D;">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text fs-5 border border-0 text-white justify-content-end pe-4" id="inputGroup-sizing-sm"  style="background-color: #29515D; width: 10rem;">Protien</span>
+                    </div>
+                    <input type="text" class="form-control fs-5" id="prt-out" value="0" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="background-color: #C3D6DC;" disabled>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text fs-5 border border-0 text-white"   style="background-color: #8DB4B9;border-radius: 0 8px 8px 0;">g</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container m-0 ms-0 p-3 align-items-center justify-content-center" style="background-color: #29515D; border-radius: 0 0 15px 15px;">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text fs-5 border border-0 text-white justify-content-end pe-4" id="inputGroup-sizing-sm"  style="background-color: #29515D; width: 10rem;">Fat</span>
+                    </div>
+                    <input type="text" class="form-control fs-5" id="fat-out" value="0" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="background-color: #C3D6DC;" disabled>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text fs-5 border border-0 text-white"  style="background-color: #8DB4B9;border-radius: 0 8px 8px 0;">g</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
