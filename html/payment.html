@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+     
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ 
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- link with CSS -->
+    <link rel="stylesheet" href="../css/payment.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+    <title>Payment</title>
+</head>
+<body>
+
+    <div class="container-lg my-5 mx-10 py-3 my-3 justify-content-center" id="paymentContainer">
+        <div id="backBtn" class="justify-content-end text-end me-5 mt-3">
+            <a href="../html/index.html#subscribe">
+                <button class="btn fs-3">BACK</button>
+            </a>
+        </div>
+
+        <div id="ttlContainer" class="row mt-5 pt-2">
+            <div class="col-3">
+                <h3 class="display-5 ps-5 text-end">Total : </h3>
+            </div>
+            <div class="col-1">
+                <h3 class="display-6 text-end">RM</h3>
+            </div>
+            <div class="col-7">
+                <h2 class="display-4 total">00.00</h2>
+            </div>
+        </div>
+
+        <div id="receiptBody" class="row">
+            <div id="receiptInfor" class="col-6 mx-3 my-4 px-5 py-4">
+
+                <div class="row pb-2">
+                    <div class="col-8">
+                        <h3 id="nowDate" class="fs-3">00/00/0000</h3>
+                    </div>
+                    <div class="col-4">
+                        <h3 class="fs-3 text-end">RM</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <h3 id="memberName" class="fs-3 fw-normal">Golden Membership</h3> <!--   NEED RETRIEVE FROM DATABASE -->
+                    </div>
+                    <div class="col-4">
+                        <h3 id="memberPrice" class="fs-3 text-end">00.00</h3>
+                    </div>
+                </div>
+
+                <div class="row mt-5 mb-2 pb-2 underline">
+                    <div class="col-8">
+                        <h3 class="fs-3 fw-normal">SST (10%)</h3>
+                    </div>
+                    <div class="col-4 text-end">
+                        <h3 id="sst">00.00</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <h2 class="fs-2 fw-normal">TOTAL</h2>
+                    </div>
+                    <div class="col-4">
+                        <h2 class="fs-2 text-end total">00.00</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="payMethod" class="col-5 py-4 px-3">
+                <h3 class="fs-3 mt-3">Select your Payment Method:</h3>
+                <div id="selectPay" class="mt-5">
+                    <button id="creditcard" class="btn fs-2 d-block mx-5 px-4">
+                        Credit Card <span class="justify-content-end text-end ms-4"><i class="bi bi-credit-card"></i></span>
+                    </button>
+                    <button id="cash" class="btn fs-2 d-block mx-5 px-4 mt-3">
+                        Cash <span class="justify-content-end text-end ms-5"><i class="bi bi-cash"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <p class="lead text-center mt-2">--- Terms and Condition apply ---</p>
+    </div>
+
+    <script>
+        //when the page is reload
+        document.addEventListener('DOMContentLoaded', function() {
+            const nowDate = document.getElementById('nowDate');
+            const displayPrice = document.getElementById('memberPrice'); // NEED RETRIEVE FROM DATABASE
+            const displaySST = document.getElementById('sst');
+            const displayTotal = document.getElementsByClassName('total');
+
+            // ----- BREAK LINE -----
+            // Get current Date
+            const currentDate = new Date();
+
+            const day = currentDate.getDate();
+            const month = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
+            const year = currentDate.getFullYear();
+
+            const formattedDay = day < 10 ? '0' + day : day;
+            const formattedMonth = month < 10 ? '0' + month : month;
+            const formattedDate = formattedDay + '/' + formattedMonth + '/' + year;
+
+            nowDate.textContent = formattedDate;
+
+            // ----- BREAK LINE -----
+            // calculate price
+            var price = 199.99; //currently
+            var sst = price*0.1;
+            var newSST = sst.toFixed(2);
+            var total = price + newSST;
+
+            displayPrice.textContent = price.toFixed(2);
+            displaySST.textContent = newSST.toFixed(2);
+            displayTotal.textContent = total.toFixed(2);
+
+            // credit card payment dialog pop out
+            const cardBtn = documet.getElementById('creditcard');
+            cardBtn.addEventListener('click', function(){
+
+            });
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

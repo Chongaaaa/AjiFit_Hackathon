@@ -1,0 +1,34 @@
+#paymentContainer {
+    background-color: #8DB4B9;
+}
+
+#backBtn button {
+    border: solid 3px #B2C5D3;
+}
+
+#backBtn button:hover {
+    background-color: #B2C5D3;
+}
+
+#ttlContainer {
+    background-color: #E5E9EA;
+}
+
+#receiptInfor {
+    background-color: #C3D6DC;
+}
+
+.underline {
+    border-bottom: solid 2px #192939;
+}
+
+#selectPay button {
+    border: 3px solid #C3D6DC;
+    border-radius: 10px;
+    width: 70%;
+}
+
+#selectPay button:hover {
+    background-color: #ffffff;
+    transition: 1s ease-out;
+}
