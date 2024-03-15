@@ -71,6 +71,7 @@
 
 .btn_ql:hover {
     background-color: #29515D;
+    color: #e5e9ea;
     transition: 0.3s ease-in;
 }
 
@@ -80,7 +81,7 @@
 }
 
 #whats_new, #our_story {
-    padding: 2vw 3vw;
+    padding: 2vw 3vw 3vw;
 }
 
 #whats_new {
@@ -89,7 +90,7 @@
 
 #whats_new > h5, #our_story > h5 {
     border-bottom: solid #192939;
-    margin-bottom: 3%;
+    margin-bottom: 2%;
 }
 
 #whats_new > h6, #whats_new > p{
@@ -97,16 +98,25 @@
 }
 
 #whats_new > img {
-    width: 30%;
-    height: 70%;
+    width: 340px;
     border-radius: 10px;
     display: flex;
     float: right;
+    margin-right: 1vw;
+}
+
+#whats_new > button {
+    border: solid 3px #192939;
 }
  
 #whats_new > button > a {
     text-decoration: none;
     color: #192939;
+}
+
+#whats_new > button:hover {
+    background-color: #e5e9ea;
+    border: double 3px #192939;
 }
 
 #our_story > img {
@@ -143,8 +153,12 @@
 }
 
 .card-header {
-    background-color: #e5e9ea;
+    background-color: #8DB4B9;
     color: #29515D;
+}
+
+.normal-card {
+    border: solid 3px #C3D6DC;
 }
 
 .primary-card {
@@ -159,7 +173,7 @@
 .subscribe-btn:hover {
     background-color: #8DB4B9;
     color: #29515D;
-    transition: 10ms ease-out;
+    transition: 10ms ease-in;
 }
 
 /* Show carousel-content for medium screens and larger */

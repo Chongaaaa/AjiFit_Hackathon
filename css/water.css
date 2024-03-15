@@ -10,14 +10,23 @@
     width: 100%;
 }
 
+.water-btn button:hover {
+    background-color: #29515D;
+    color: #B2C5D3;
+    transition: .3s ease-in;
+}
+
 #water-calc {
     background-color: #E5E9EA;
 }
 
-#btn-calc-water {
-    background-color: #B2C5D3;
-    color: #192939;
-    border: none;
+#water-calc button {
+    background-color: #C3D6DC;
+}
+
+#water-calc button:hover {
+    background-color: #8DB4B9;
+    transition: .1s ease-out;
 }
 
 #water-circle {
