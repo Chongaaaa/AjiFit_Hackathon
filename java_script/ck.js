@@ -134,6 +134,60 @@ document.addEventListener("DOMContentLoaded", function() {
         items.forEach((item, index) => {
             item.parentNode.style.backgroundColor = originalBackgroundColors[index];
         });
+
+        const userName1 = document.querySelector('#item1 [id="user-name"]').textContent.trim();
+        const userName2 = document.querySelector('#item2 [id="user-name"]').textContent.trim();
+        const userName3 = document.querySelector('#item3 [id="user-name"]').textContent.trim();
+        if(userName1 === "Chyi keat"){
+            chyiKeatRank = 1;
+        } 
+        else if(userName2 === "Chyi keat"){
+            chyiKeatRank = 2;
+        }
+        else if(userName3 === "Chyi keat"){
+            chyiKeatRank = 3;
+        }
+        else{
+            chyiKeatRank = 4;
+        }
+
+        // Check if Chyi keat's rank is 1
+        if (chyiKeatRank === 1) {
+            // Change the profile picture source to the default source
+            var profilePic = document.querySelector('#item1-pfp');
+            profilePic.src = '/image/profile_img.webp';
+            var profilePic = document.querySelector('#item2-pfp');
+            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            var profilePic = document.querySelector('#item3-pfp');
+            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+        } 
+        else if(chyiKeatRank === 2) {
+            // Change the profile picture source to /image/baked-avocado-eggs-1.jpeg
+            var profilePic = document.querySelector('#item1-pfp');
+            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            var profilePic = document.querySelector('#item2-pfp');
+            profilePic.src = '/image/profile_img.webp';
+            var profilePic = document.querySelector('#item3-pfp');
+            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+        }
+        else if(chyiKeatRank === 3) {
+            // Change the profile picture source to /image/baked-avocado-eggs-1.jpeg
+            var profilePic = document.querySelector('#item1-pfp');
+            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            var profilePic = document.querySelector('#item2-pfp');
+            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            var profilePic = document.querySelector('#item3-pfp');
+            profilePic.src = '/image/profile_img.webp';
+        }
+        else{
+            // Change the profile picture source to /image/baked-avocado-eggs-1.jpeg
+            var profilePic = document.querySelector('#item1-pfp');
+            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            var profilePic = document.querySelector('#item2-pfp');
+            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            var profilePic = document.querySelector('#item3-pfp');
+            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+        }
     }
 
     function updateStreakForUser(userName, newStreak) {
@@ -168,5 +222,4 @@ document.addEventListener("DOMContentLoaded", function() {
     rearrangeItems();
 
 
-    
 }); 
