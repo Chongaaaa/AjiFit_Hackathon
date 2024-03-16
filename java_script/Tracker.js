@@ -1,47 +1,47 @@
 document.addEventListener("DOMContentLoaded", function() {
-  var caloriesPDay = document.getElementById("cpd-bar");
-  var alertShown = false; // Variable to track whether alert has been shown
-
-  function handleInput() {
-      // Get the value entered by the user
-      var userInput = caloriesPDay.value.trim();
-      
-      // Check if the input is a valid number
-      if (!isNaN(userInput) && userInput !== "") {
-          // Input is a valid number
-          console.log("Valid numeric input: " + userInput);
-          
-          // Set CSS variable with the value of CaloriesPDay
-          document.documentElement.style.setProperty('--caloriesPDay', userInput);
-
-          if (userInput < 1500) {
-              // If smaller than 1500, fully fill the path
-              document.querySelector("path.purple").style.strokeDashoffset = "0";
-          } else {
-              // If greater than or equal to 1500, calculate the dash offset
-              document.querySelector("path.purple").style.strokeDashoffset = `calc(40 * 3.142 * 1.85 - (1500 / var(--caloriesPDay)) * (40 * 3.142 * 1.85))`;
-          }
-
-          document.getElementById("clr-text").textContent = `1500 / ${userInput} kCal`;
-
-          // Reset alertShown variable
-          alertShown = false;
-      } else {
-          // Input is not a valid number
-          if (!alertShown) {
-              // If alert has not been shown yet, show the alert
-              alert("Please enter a valid numeric value.");
-              alertShown = true; // Set alertShown to true
-          }
-          caloriesPDay.value = ""; // Clear the input field
-          caloriesPDay.focus(); // Focus back on the input field
-      }
-  }
-
-  // Add event listener for the blur event
-  caloriesPDay.addEventListener("blur", handleInput);
-
-  // Add event listener for keydown event
+    var caloriesPDay = document.getElementById("cpd-bar");
+    var alertShown = false; // Variable to track whether alert has been shown
+  
+    function handleInput() {
+        // Get the value entered by the user
+        var userInput = caloriesPDay.value.trim();
+        
+        // Check if the input is a valid number
+        if (!isNaN(userInput) && userInput !== "") {
+            // Input is a valid number
+            console.log("Valid numeric input: " + userInput);
+            
+            // Set CSS variable with the value of CaloriesPDay
+            document.documentElement.style.setProperty('--caloriesPDay', userInput);
+  
+            if (userInput < 1500) {
+                // If smaller than 1500, fully fill the path
+                document.querySelector("path.purple").style.strokeDashoffset = "0";
+            } else {
+                // If greater than or equal to 1500, calculate the dash offset
+                document.querySelector("path.purple").style.strokeDashoffset = calc(40 * 3.142 * 1.85 - (1500 / var(--caloriesPDay)) * (40 * 3.142 * 1.85));
+            }
+  
+            document.getElementById("clr-text").textContent = 1500 / ${userInput} kCal;
+  
+            // Reset alertShown variable
+            alertShown = false;
+        }else{
+            // Input is not a valid number
+            if (!alertShown) {
+                // If alert has not been shown yet, show the alert
+                alert("Please enter a valid numeric value.");
+                alertShown = true; // Set alertShown to true
+            }
+            caloriesPDay.value = ""; // Clear the input field
+            caloriesPDay.focus(); // Focus back on the input field
+        }
+    }
+  
+    // Add event listener for the blur event
+    caloriesPDay.addEventListener("blur", handleInput);
+  
+    // Add event listener for keydown event
     caloriesPDay.addEventListener("keydown", function(event) {
         // Check if the pressed key is space (keyCode 32) or enter (keyCode 13)
         if (event.keyCode === 13) {
