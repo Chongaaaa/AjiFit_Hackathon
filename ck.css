@@ -1,0 +1,86 @@
+.short-div{
+    height: 50%;
+}
+
+#vd-btn, #pt-btn, #pb-btn {
+    background-color: #29515D; 
+    border: 2px solid #29515D;
+    border-radius: 5px;
+  }
+  #vd-btn a, #pt-btn a, #pb-btn a{
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+  }
+  #vd-btn:hover,#pt-btn:hover,#pb-btn:hover {
+    background-color: white;
+    border: 2px solid #29515D;
+  }
+  #vd-btn a:hover, #pt-btn a:hover,#pb-btn a:hover {
+    color: #29515D;
+  }
+  
+  #search-icon{
+    background-color: #8DB4B9; 
+    border: 3px solid #8DB4B9;
+    font-size: 15px;
+    border-bottom: none;
+    border-left: none;
+    border-radius: 0 5px 0 0;
+    color: white;
+  }
+  #search-icon:hover{
+    font-size: 15px;
+    background-color: white; 
+    border-radius: 0 5px 0 0;
+    color: #8DB4B9;
+    border: 3px solid #8DB4B9;
+    border-bottom: none;
+    border-left: none;
+  }
+  #search-bar{
+    font-size: 15px;
+    background-color: #C3D6DC; 
+    border-radius: 5px 0 0 0;
+    border: 3px solid #C3D6DC;
+    border-bottom: none;
+    border-right: none;
+    color: white;
+    font-weight: bold;
+  }
+  #search-bar:hover{
+    font-size: 15px;
+    background-color: white;
+    color: #29515D;
+    border: 3px solid #C3D6DC;
+    border-right: none;
+    border-bottom: none;
+  }
+  #search-bar:focus{
+    font-size: 15px;
+    border-right: none;
+    border-bottom: none;
+    color: #29515D;
+    box-shadow: none;
+  }
+  
+  #like-icon:hover, #cmt-icon:hover{
+    color: #ff474c;
+    transition: 0.35s;
+  }
+  #cmt-icon:hover{
+    color: #24a0ed;
+    transition: 0.35s;
+  }
+  
+  #board{
+    transform: scale(1);
+  }
+  #board:hover{
+    transform: scale(1.08);
+    -ms-transform-origin-y: scale(1.2);
+    -ms-transform-origin-z: scale(1.08);
+    border-radius: 10px;
+    transition: 0.2s;
+  }
+  
