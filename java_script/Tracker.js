@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
             // Reset alertShown variable
             alertShown = false;
-        } else {
+        }else{
             // Input is not a valid number
             if (!alertShown) {
                 // If alert has not been shown yet, show the alert
