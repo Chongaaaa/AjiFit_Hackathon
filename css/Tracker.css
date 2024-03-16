@@ -26,47 +26,57 @@ path.purple {
     border-radius: 8px 0 0 8px;
 }
 
+#kcal{
+  background-color: #8DB4B9; 
+  border-radius: 0 8px 8px 0;
+  border: none;
+}
+
 #type-bar:focus{
     box-shadow: none;
 }
 
 #add-btn {
-    position: absolute;
-    top: 90%;
-    left: 44.5%;
-    z-index: 1000;
-    background-color: #29515D; 
-    border: 3px solid white;
-    border-radius: 5px;
-    box-shadow: none;
-    
-  }
-  #add-btn span{
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    color: white;
-  }
-  #add-btn:hover {
-    background-color: white;
-    color: #29515D;
-    border: 3px solid #29515D;
-  }
-  #add-btn span:hover {
-    color: #29515D;
-  }
+  position: absolute;
+  top: 90%;
+  left: 44.5%;
+  z-index: 1000;
+  background-color: #29515D; 
+  border: 3px solid white;
+  border-radius: 5px;
+  box-shadow: none;
+  
+}
+#add-btn span{
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+#add-btn:hover {
+  background-color: white;
+  color: #29515D;
+  border: 3px solid #29515D;
+}
+#add-btn span:hover {
+  color: #29515D;
+}
 
-  input[type=radio]{
-    background-color: white;
-  }
+input[type=radio]{
+  background-color: white;
+}
 
-  input[type=radio]:checked{
-    background-color: #8DB4B9;
-    border: 1px solid #8DB4B9;
-    box-shadow: none;
-  }
+input[type=radio]:checked{
+  background-color: #8DB4B9;
+  border: 1px solid #8DB4B9;
+  box-shadow: none;
+}
 
 #date-slt::-webkit-calendar-picker-indicator,
 #time-slt::-webkit-calendar-picker-indicator {
     filter: invert(1);
+}
+
+#food-desc:focus{
+  outline: none;
 }

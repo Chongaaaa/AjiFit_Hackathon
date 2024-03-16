@@ -6,6 +6,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../css/ck.css">
+  <script src="../java_script/ck.js"></script>
   <title>Document</title>
 </head>
 <body>
@@ -67,7 +68,7 @@
       <div class="col-2 px-1 py-5">
         <ul class="list-group border border-radius-1 text-dark">
           <li class="list-group-item text-center text-dark border-0" style="background-color: #728790; border-radius: 10px 10px 0 0;">
-            <h3 class="fw-bold text-white pt-1 ">Leaderboard</h3>
+            <h3 class="fw-bold text-white pt-1 ">Leaderboard of login streak</h3>
           </li>
           <li class="list-group-item text-center border-0" style="background-color: #7B9098;">
             <div class="d-flex justify-content-center">
@@ -83,61 +84,56 @@
               </div>
             </div>
             <div class="row justify-content-center g-5 mb-3">
-              <img src="..." class="col-3 rounded-circle bg-light fs-1" alt="..." style="transform: rotate(-15deg);">
-              <img src="..." class="col-3 rounded-circle bg-light fs-1" alt="...">
-              <img src="..." class="col-3 rounded-circle bg-light fs-1" alt="..." style="transform: rotate(15deg);">
+              <img src="/image/cal.jpeg" class="col-3 rounded-circle bg-light fs-1" id="item2-pfp" alt="..." style="transform: rotate(-15deg);">
+              <img src="/image/profile_img.webp" class="col-3 rounded-circle bg-light fs-1" id="item1-pfp" alt="...">
+              <img src="/image/baked-avocado-eggs-1.jpeg" class="col-3 rounded-circle bg-light fs-1-pfp" id="item3-pfp" alt="..." style="transform: rotate(15deg);">
             </div>
           </li>
-          <li class="list-group-item border-0" id="board" style="background-color: #84989D;">
-            <div class="row d-flex justify-content-between border-0 px-2" style="border-radius: 10px;">
-              <span class="col-2 fs-5 text-white fw-bold">1</span>
-              <span class="col-7 fs-5 text-white fw-bold">The weeknd</span>
-              <span class="col-3 fs-5 text-white fw-bold">65</span>
-            </div>
-          </li>
-          <li class="list-group-item border-0" id="board" style="background-color: #8DA1A5;">
-            <div class="row d-flex justify-content-between border-0 px-2" style="border-radius: 10px;">
-              <span class="col-2 fs-5 text-white fw-bold">1</span>
-              <span class="col-7 fs-5 text-white fw-bold">The weeknd</span>
-              <span class="col-3 fs-5 text-white fw-bold">65</span>
-            </div>
-          </li>
-          <li class="list-group-item border-0" id="board" style="background-color: #96A8AD;">
-            <div class="row d-flex justify-content-between border-0 px-2" style="border-radius: 10px;">
-              <span class="col-2 fs-5 text-white fw-bold">1</span>
-              <span class="col-7 fs-5 text-white fw-bold">The weeknd</span>
-              <span class="col-3 fs-5 text-white fw-bold">65</span>
-            </div>
-          </li>
-          <li class="list-group-item border-0" id="board" style="background-color: #9FB0B5;">
-            <div class="row d-flex justify-content-between border-0 px-2" style="border-radius: 10px;">
-              <span class="col-2 fs-5 text-white fw-bold">1</span>
-              <span class="col-7 fs-5 text-white fw-bold">The weeknd</span>
-              <span class="col-3 fs-5 text-white fw-bold">65</span>
-            </div>
-          </li>
-          <li class="list-group-item border-0" id="board" style="background-color: #A8B7BD;">
-            <div class="row d-flex justify-content-between border-0 px-2" style="border-radius: 10px;">
-              <span class="col-2 fs-5 text-white fw-bold">1</span>
-              <span class="col-7 fs-5 text-white fw-bold">The weeknd</span>
-              <span class="col-3 fs-5 text-white fw-bold">65</span>
-            </div>
-          </li>
-          <li class="list-group-item border-0" id="board" style="background-color: #B1C0C5;">
-            <div class="row d-flex justify-content-between border-0 px-2" style="border-radius: 10px;">
-              <span class="col-2 fs-5 text-white fw-bold">1</span>
-              <span class="col-7 fs-5 text-white fw-bold">The weeknd</span>
-              <span class="col-3 fs-5 text-white fw-bold">65</span>
-            </div>
-          </li>
+          <div id="l_board">
+            <li class="list-group-item border-0" style="background-color: #84989D;">
+              <div class="row d-flex justify-content-between border-0 px-2" id="item1" style="border-radius: 10px;">
+                <span class="col-2 fs-5 text-white fw-bold" >1</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">The weeknd</span>
+                <span class="col-3 fs-5 text-white fw-bold" id="streak">23</span>
+              </div>
+            </li>
+            <li class="list-group-item border-0" id="board" style="background-color: #8DA1A5;">
+              <div class="row d-flex justify-content-between border-0 px-2" id="item2" style="border-radius: 10px;">
+                <span class="col-2 fs-5 text-white fw-bold" >2</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">The weeknd</span>
+                <span class="col-3 fs-5 text-white fw-bold" id="streak">63</span>
+              </div>
+            </li>
+            <li class="list-group-item border-0" id="board" style="background-color: #96A8AD;">
+              <div class="row d-flex justify-content-between border-0 px-2" id="item3" style="border-radius: 10px;">
+                <span class="col-2 fs-5 text-white fw-bold" >3</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">The weeknd</span>
+                <span class="col-3 fs-5 text-white fw-bold" id="streak">69</span>
+              </div>
+            </li>
+            <li class="list-group-item border-0" id="board" style="background-color: #9FB0B5;">
+              <div class="row d-flex justify-content-between border-0 px-2" id="item4" style="border-radius: 10px;">
+                <span class="col-2 fs-5 text-white fw-bold" >4</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">The weeknd</span>
+                <span class="col-3 fs-5 text-white fw-bold" id="streak">5</span>
+              </div>
+            </li>
+            <li class="list-group-item border-0" id="board" style="background-color: #A8B7BD;">
+              <div class="row d-flex justify-content-between border-0 px-2" id="item5" style="border-radius: 10px;">
+                <span class="col-2 fs-5 text-white fw-bold" >5</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">Chyi keat</span>
+                <span class="col-3 fs-5 text-white fw-bold" id="streak">30</span>
+              </div>
+            </li>
+          </div>
         </ul>
       </div>
       <div class="col-7">
         <div class="px-2 pt-5 pb-2">
           <span class="fs-4 fw-bold">Achievement progress bar</span>
           <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 70%; background: #29515D;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-            <div class="progress-bar" role="progressbar" style="width: 30%; background-color: #C3D6DC;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar" role="progressbar" style="width: calc((17 / 30) * 100%); background: #29515D;" aria-valuenow="17" aria-valuemin="0" aria-valuemax="30"></div>
+            <div class="progress-bar" role="progressbar" style="width: calc((13 / 30) * 100%); background: #C3D6DC;" aria-valuenow="13" aria-valuemin="0" aria-valuemax="30"></div>
           </div>
           <span>Five days in a row, you are on fire! <i class="bi bi-fire text-warning fs-5"></i></span>
         </div>
@@ -159,66 +155,76 @@
                 </div>
                 
                 <div class="card-body" style="background-color: #728790; border-radius: 10px 0 10px 10px;">
-                  <div class="card-title text-white" style="height: 8vh;"><img src="..." class="rounded-circle border border-1 fs-3" alt="...">
-                    <input type="text" class="fs-5 ps-1 text-white align-items-start" id="post-content" style="width: 95%; height: 100%; background-color: #728790; border: none;" placeholder="How was your day, do you have something to share?">
+                  <div class="card-title text-white" style="height: 8vh;" id="pfp">
+                    <img src="..."class="rounded-circle border border-1 fs-3" alt="...">
+                    <input type="text" class="fs-5 ps-1 text-white align-items-start" id="post-content" style="width: 60%; height: 100%; background-color: #728790; border: none;" placeholder="How was your day, do you have something to share?">
+                    <div class="ms-5 pb-2 mb-2" id="post-media"></div>
                   </div>
                 </div>
               </div>
               <div class="row g-0">
-                <div class="col-1 ps-3"><div class="btn" id="vd-btn"><a href="#" class="card-link text-decoration-none">Video</a></div></div>
-                <div class="col-1 ps-2"><div class="btn" id="pt-btn"><a href="#" class="card-link text-decoration-none">Photo</a></div></div>
-                <div class="col-10 text-end pe-3"><div class="btn" id="pb-btn" ><a href="#" class="card-link text-decoration-none">Publish</a></div></div>
+                <div class="col-3 ps-3">
+                  <div class="btn" id="vd-btn">
+                      <!-- Trigger file selection when the button is clicked -->
+                      <label for="photo-upload"class="card-link text-decoration-none">Photo</label>
+                      <input type="file" id="photo-upload" style="display: none;">
+                  </div>
+                </div>
+                <div class="col-9 text-end pe-3"><div class="btn" id="pb-btn" >Publish</div></div>
               </div>
             </div>
           </div>
           <div class="card mb-4 mt-2">
-            <div class="card-body justify-content-start align-items-center text-white" style="background-color: #728790;">
-              <h5 class="card-title">Activity</h5>
-
+            <div class="card-body justify-content-start align-items-center text-white mb-0 pb-0" style="background-color: #728790;">
+              <h5 class="card-title fs-3">Activity</h5>
+            </div>
+            <div class="card-body justify-content-start align-items-center text-white pt-0" id="Activity" style="background-color: #728790;">
               <div class="card-body">
-                <div class="card-title text-white ">
-                  <img src="..." class="rounded-circle border border-1 fs-4" alt="...">
-                  <span class="fs-5">Username | Public</span>
-                  <h6 class="ps-4 ms-3" style="font-size: 12px;">x hours ago</h6>
+                <div class="card-title text-white " id="pfp">
+                  <img src="/image/profile_img.webp" class="rounded-circle border border-1 fs-3" alt="..." >
+                  <span class="fs-5">Username | Public | <span style="font-size: 15px;">x hours ago</span></span>
                 </div>
-                <div class="card-body" style="background-color: #D9D9D9; height: 10rem;">
+                <div class="card-body" id="post" >
+                  <img src="/image/Post_pic_3.jpg" id="photo-content" alt="">
                 </div>
                 <div class="mt-1">
-                  <i class="bi bi-hand-thumbs-up-fill ms-2 fs-4" id="like-icon"></i>  
+                  <i class="bi bi-hand-thumbs-up-fill ms-3 fs-4" id="like-icon"></i>  
                   <i class="bi bi-chat-fill ms-2 fs-4" id="cmt-icon"></i>
-                </div>   
+                  <span class="ms-2 fs-4" id="text-content">Let's go to GYM !!!</span>
+                </div>     
               </div>
-
+              <hr>
               <div class="card-body">
-                <div class="card-title text-white ">
-                  <img src="..." class="rounded-circle border border-1 fs-4" alt="...">
-                  <span class="fs-5">Username | Public</span>
-                  <h6 class="ps-4 ms-3" style="font-size: 12px;">x hours ago</h6>
+                <div class="card-title text-white " id="pfp">
+                  <img src="/image/profile_img.webp" id="pf_img" class="rounded-circle border border-1 fs-3" alt="..." >
+                  <span class="fs-5">Username | Public | <span style="font-size: 15px;">x hours ago</span></span>
                 </div>
-                <div class="card-body" style="background-color: #D9D9D9; height: 10rem;">
+                <div class="card-body" id="post" >
+                  <img src="/image/Post_pic_2.jpg" id="photo-content" alt="">
                 </div>
                 <div class="mt-1">
-                  <i class="bi bi-hand-thumbs-up-fill ms-2 fs-4" id="like-icon"></i>  
+                  <i class="bi bi-hand-thumbs-up-fill ms-3 fs-4" id="like-icon"></i>  
                   <i class="bi bi-chat-fill ms-2 fs-4" id="cmt-icon"></i>
-                </div>   
+                  <span class="ms-2 fs-4" id="text-content">Let's go to GYM !!!</span>
+                </div>     
               </div>
-
+              <hr>
               <div class="card-body">
-                <div class="card-title text-white ">
-                  <img src="..." class="rounded-circle border border-1 fs-4" alt="...">
-                  <span class="fs-5">Username | Public</span>
-                  <h6 class="ps-4 ms-3" style="font-size: 12px;">x hours ago</h6>
+                <div class="card-title text-white " id="pfp">
+                  <img src="/image/profile_img.webp" id="pf_img"  class="rounded-circle border border-1 fs-3" alt="..." >
+                  <span class="fs-5">Username | Public | <span style="font-size: 15px;">x hours ago</span></span>
                 </div>
-                <div class="card-body" style="background-color: #D9D9D9; height: 10rem;">
+                <div class="card-body" id="post" >
+                  <img src="/image/Post_pic_1.jpg" id="photo-content" alt="">
                 </div>
                 <div class="mt-1">
-                  <i class="bi bi-hand-thumbs-up-fill ms-2 fs-4" id="like-icon"></i>  
+                  <i class="bi bi-hand-thumbs-up-fill ms-3 fs-4" id="like-icon"></i>  
                   <i class="bi bi-chat-fill ms-2 fs-4" id="cmt-icon"></i>
+                  <span class="ms-2 fs-4" id="text-content">Let's go to GYM !!!</span>
                 </div>     
               </div>
             </div>
           </div>
-          <a href="#" class="btn btn-primary position-fixed bottom-0 end-0" style="margin-right: 19%; margin-bottom: 2.5%; padding-top: 11px; height: 3rem; background-color: #192939; border: none;">Search</a>        
         </div>
       </div>
     </div>

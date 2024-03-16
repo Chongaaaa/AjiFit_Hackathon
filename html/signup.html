@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <!-- link with CSS -->
             <link rel="stylesheet" href="css/index.css">
@@ -9,7 +11,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>SignIn</title>
 </head>
-<body style="background-color: #DAE1E7;">
+
+<body style="background-color: #DAE1E7;" class="justify-content-between">
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-xxl">
           <a href="#intro" class="navbar-brand">
@@ -60,99 +63,102 @@
             </li>
           </div>
         </div>
-      </nav>
+    </nav>
+
     <div class="container">
-        <div class="row "> <!--two section-->
-            <div class="col-md-6 ">
-                <form class="row ">
-                        <div class="col-md-10 ms-5 mt-3">
-                            <h3 class="md-4 mt-5 pt-5">Track Your Progress & More!</h3>
-                            <div class="d-flex">
-                                <p class="me-5 pe-5 ">Satrt your fitness journey!</p>
-                                <a href="login.html" class="text-dark ms-5 ps-4">Exiting user?</a>
-                            </div>
-                            <label for="validationDefault01" class="form-label col-6 fw-bold">Name</label>
-                            <input type="text" class="form-control" id="validationDefault01" value="Enter Your Name Here" required>
-
-                            <label for="validationDefault02" class="form-label fw-bold">Email</label>
-                            <input type="email" class="form-control" id="validationDefault02" value="Enter Your Email Here" required>
-
-
-                            <label for="validationDefault02" class="form-label fw-bold">Password</label>
-                            <input type="password" class="form-control" id="validationDefault02" value="" required>
-
-
-                            <label for="validationDefault05" class="form-label fw-bold ">Re-enter Password</label>
-                            <input type="password" class="form-control" id="validationDefault05" required>
-                        <div class="col-12">
-                            <div class="form-check mb-3">
-                                <input class="form-check-input fw-bold" type="checkbox" value="" id="invalidCheck2" required>
-                                <label class="form-check-label" for="invalidCheck2">
-                                    Agree to terms and conditions
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-12 text-center">
-                            <button class="btn btn-secondary" type="submit">Submit form</button>
-                        </div>
-                    </div>
-                </form>
+        <div class="row "> 
+        <div class="col-md-6 ">
+            <h3 class="md-4 mt-5 pt-5">Track Your Progress & More!</h3>
+            <div class="d-flex">
+                <p class="me-5 pe-5 ">Satrt your fitness journey!</p>
+                <a href="login.html" class="text-dark text-end ms-5 ps-4 ">Exiting user?</a>
             </div>
-            <div style="background-color: #cedce1;" class="col-md-6 pt-5  ps-3 justify-content-center">
-                    <div class="col-11 ms-3 mb-5  "> 
-                        <div class="col rounded bg-light p-3 mb-3">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h5 class="fw-bold">Exercise Plan</h5>
-                                    <p>Enjoy your daily workouts and your progress on your fitness journey.</p>
-                                </div>
-                                <div class="col-md-4  align-items-center justify-content-end">
-                                    <img src="image/exercise.jpeg" alt="a" class="img-fluid" width="200px" height="50px">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col rounded bg-light p-3 mb-3">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h5 class="fw-bold">Community</h5>
-                                    <p>Join our community to motivate 
-                                        one another and work out together.</p>
-                                </div>
-                                <div class="col-md-4  align-items-center justify-content-end">
-                                    <img src="image/commuity.jpeg" alt="a" class="img-fluid" width="200px" height="150px">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col rounded bg-light p-3 mb-3">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h5 class="fw-bold">Calories tracker</h5>
-                                    <p>Track your daily food calories 
-                                        consume!</p>
-                                </div>
-                                <div class="col-md-4  align-items-center justify-content-end">
-                                    <img src="image/cal.jpeg" alt="a" class="img-fluid" width="300px" height="200px">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col rounded bg-light p-3 mb-3">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h5 class="fw-bold">Menu</h5>
-                                    
-                                    <p>Save and organize all of your favorite 
-                                        recipes!</p>
-                                </div>
-                                <div class="col-md-4  align-items-center justify-content-end">
-                                    <img src="image/healthymenu.jpeg" alt="a" class="img-fluid" width="200px" height="50px">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <form action="" id="signupForm">
+
+            <label for="validationDefault01" class="form-label col-6 fw-bold" >Name</label>
+            <input type="text" class="form-control" id="name" placeholder="name" required>
+
+            <label for="validationDefault02" class="form-label fw-bold" id="email">Email</label>
+            <input type="email" class="form-control" id="emailid" value="email@gmail.com" required>
+
+
+            <label for="validationDefault02" class="form-label fw-bold" >Password</label>
+            <input type="password" class="form-control" id="password" value="" required>
+
+            <label for="validationDefault05" class="form-label fw-bold " >Re-enter Password</label>
+            <input type="password" class="form-control" id="repassword" required>
+
+            <div class="col-12">
+                <div class="form-check mb-3">
+                    <input class="form-check-input fw-bold" type="checkbox" value=""  required>
+                    <label class="form-check-label" for="invalidCheck2">
+                        Agree to terms and conditions
+                    </label>
+                </div>
             </div>
+            <div class="col-12 text-center">
+                <button class="btn btn-secondary" type="submit" >Submit form</button>
+            </div>
+            </form>
+
         </div>
+        <div style="background-color: #cedce1;" class="col-md-6 pt-5 ps-3 justify-content-center">
+            <div class="col-11 ms-3 mb-5 "> 
+                <div class="col rounded bg-light p-3 mb-3 ">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="fw-bold">Exercise Plan</h5>
+                            <p>Enjoy your daily workouts and your progress on your fitness journey.</p>
+                        </div>
+                        <div class="col-md-4  align-items-center justify-content-end">
+                            <img src="image/exercise.jpeg" alt="a" class="img-fluid" width="200px" height="50px">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col rounded bg-light p-3 mb-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="fw-bold">Community</h5>
+                            <p>Join our community to motivate 
+                                one another and work out together.</p>
+                        </div>
+                        <div class="col-md-4  align-items-center justify-content-end">
+                            <img src="image/commuity.jpeg" alt="a" class="img-fluid" width="200px" height="150px">
+                        </div>
+                    </div>
+                </div>
+                <div class="col rounded bg-light p-3 mb-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="fw-bold">Calories tracker</h5>
+                            <p>Track your daily food calories 
+                                consume!</p>
+                        </div>
+                        <div class="col-md-4  align-items-center justify-content-end">
+                            <img src="image/cal.jpeg" alt="a" class="img-fluid" width="300px" height="200px">
+                        </div>
+                    </div>
+                </div>
+                <div class="col rounded bg-light p-3 mb-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="fw-bold">Menu</h5>
+                            
+                            <p>Save and organize all of your favorite 
+                                recipes!</p>
+                        </div>
+                        <div class="col-md-4  align-items-center justify-content-end">
+                            <img src="image/healthymenu.jpeg" alt="a" class="img-fluid" width="200px" height="50px">
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
+        
+    </div>
+    </div>
+
     <footer>
         <div class="container-fluid justify-content-center text-center py-5">
             <div class="row footer-padding">
@@ -214,10 +220,73 @@
         </div>
     </footer>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-     
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+   
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
+
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
+        authDomain: "useruser-5f5dc.firebaseapp.com",
+        databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
+        projectId: "useruser-5f5dc",
+        storageBucket: "useruser-5f5dc.appspot.com",
+        messagingSenderId: "294580009654",
+        appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
+        measurementId: "G-BZTH9RR80E"
+        };
+
+  // Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Reference your database
+var database = firebase.database();
+
+document.getElementById("signupForm").addEventListener("submit", submitForm);
+
+function submitForm(e) {
+    e.preventDefault();
+
+    var name = document.getElementById("name").value;
+    var emailid = document.getElementById("emailid").value;
+    var password = document.getElementById("password").value;
+    var repassword = document.getElementById("repassword").value;
+
+    if (password !== repassword) {
+        alert("Passwords do not match. Please re-enter.");
+        document.getElementById("password").value = "";
+        document.getElementById("repassword").value = "";
+        return;
+    }
+
+    var userid = generateUserId();
+    saveMessages(name, emailid, password, userid);
+
+    // Reset the form
+    document.getElementById("signupForm").reset();
+}
+
+function saveMessages(name, emailid, password, userid) {
+    database.ref("users/" + userid).set({
+        name: name,
+        userid: userid,
+        emailid: emailid,
+        password: password,
+    });
+};
+
+function generateUserId() {
+    // Generate a random 3-digit user ID
+    var min = 100;
+    var max = 999;
+    var userId = Math.floor(Math.random() * (max - min + 1)) + min;
+    return userId.toString();
+}
+</script>
 
 </body>
+
 </html>
