@@ -83,4 +83,10 @@
     border-radius: 10px;
     transition: 0.2s;
   }
-  
+
+  #post-content:focus{
+    outline: none;
+  }
+  #post-content::placeholder{
+    color: white;
+  }
