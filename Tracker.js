@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
           if (userInput < 1500) {
               // If smaller than 1500, fully fill the path
               document.querySelector("path.purple").style.strokeDashoffset = "0";
+              document.querySelector("path.purple").style.stroke = "red";
           } else {
+                document.querySelector("path.purple").style.stroke = "#8DB4B9";
               // If greater than or equal to 1500, calculate the dash offset
               document.querySelector("path.purple").style.strokeDashoffset = `calc(40 * 3.142 * 1.85 - (1500 / var(--caloriesPDay)) * (40 * 3.142 * 1.85))`;
           }
