@@ -11,7 +11,7 @@
 #profile-right {
     width: 65%;
     padding: 3%;
-    margin: 8% 0%;
+    margin: 4% 0%;
     /* background-color: #29515D; */
 }
 
@@ -21,8 +21,8 @@
 
 #profile-img > img {
     border-radius: 40px;
-    height: 290px;
-    width: 290px;
+    height: 320px;
+    width: 300px;
 }
 
 #profile-name > h6 {
@@ -45,19 +45,22 @@
 }
 
 #bmi {
-    margin-top: -13%;
+    margin-top: -17%;
     margin-right: 10%;
     width: 55%;
     height: 155%;
     display: flex;
     float: right;
+    flex-direction: column;
+    align-items: center;
 }
 
 #bmi-circle {
     text-align: center;
     justify-content: center;
-    padding: 15%;
-    width: 100%;
+    padding: 20% 15% 15%;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     background-color: #B2C5D3;
 }
