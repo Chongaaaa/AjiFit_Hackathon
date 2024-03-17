@@ -30,23 +30,26 @@
                   <a href="../html/index.html" class="nav-link text-dark">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a href="../html/menu.html" class="nav-link text-dark">Receipe</a>
+                  <a href="#" class="nav-link text-dark">Receipe</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link text-dark">Exercise</a>
                 </li>
                 <li class="nav-item">
-                  <a href="../html/Tracker.html" class="nav-link text-dark">Calories Tracker</a>
+                  <a href="../html/ck.html" class="nav-link text-dark">Calories Tracker</a>
                 </li>
                 <li class="nav-item">
                   <a href="../html/water.html" class="nav-link text-dark">Water Reminder</a>
                 </li>
                 <li class="nav-item">
-                  <a href="../html/ck.html" class="nav-link text-dark">Community</a>
+                  <a href="#" class="nav-link text-dark">Community</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link text-dark">Q & A</a>
                 </li>
+                <li class="logged-in nav-item">
+                    <a href="./login.html" class="nav-link text-dark" id="logout">Logout</a>
+                  </li>
               </ul>
             </div>
           </div>
@@ -55,7 +58,7 @@
             <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
               <div>
                 <span class="fs-5 text-warning mt-3">User_name</span>
-                <a href="../html/profile.html"><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
+                <a href="#"><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
               </div>
             </li>
           </div>
@@ -64,7 +67,7 @@
 
     <div class="container">
         <div class="row "> 
-        <div class="col-md-6 ">
+        <div class="col-md-6 " id="modal-login">
             <h3 class="md-4 mt-5 pt-5">Track Your Progress & More!</h3>
             <div class="d-flex">
                 <p class="me-5 pe-5 ">Satrt your fitness journey!</p>
@@ -72,9 +75,9 @@
             </div>
             <form action="" id="loginForm">
 
-            <label for="validationDefault01" class="form-label col-6 fw-bold" >Name</label>
-            <input type="text" class="form-control" id="name" placeholder="name" required>
-
+                <label for="validationDefault02" class="form-label fw-bold" id="email">Email</label>
+                <input type="email" class="form-control" id="email" value="email@gmail.com" required>
+    
 
             <label for="validationDefault02" class="form-label fw-bold" >Password</label>
             <input type="password" class="form-control" id="password" value="" required>
@@ -90,9 +93,15 @@
                 </div>
             </div>
             <div class="col-12 text-center">
-                <button class="btn btn-secondary" type="submit" >Submit form</button>
+                <button class="btn btn-secondary" type="submit"  >Submit form</button>
             </div>
             </form>
+            <!-- Error message display for sign-up -->
+            <p id="signupError" style="color: red;"></p>
+
+            <!-- Error message display for login -->
+            <p id="loginError" style="color: red;"></p>
+
 
         </div>
         <div style="background-color: #cedce1;" class="col-md-6 pt-5 ps-3 justify-content-center">
@@ -163,13 +172,13 @@
                                 <h4><a href="../html/index.html">Home</a></h4>
                             </li>
                             <li>
-                                <h4><a href="../html/menu.html">Receipe</a></h4>
+                                <h4><a href="">Receipe</a></h4>
                             </li>
                             <li>
                                 <h4><a href="">Exercise</a></h4>
                             </li>
                             <li>
-                                <h4><a href="../html/Tracker.html">Calories Tracker</a></h4>
+                                <h4><a href="">Calories Tracker</a></h4>
                             </li>
                         </ul>
                     </div>
@@ -182,7 +191,7 @@
                                 <h4><a href="../html/water.html">Water Reminder</a></h4>
                             </li>
                             <li>
-                                <h4><a href="../html/ck.html">Community</a></h4>
+                                <h4><a href="">Community</a></h4>
                             </li>
                             <li>
                                 <h4><a href="">Q & A</a></h4>
@@ -216,7 +225,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+        var modals = document.querySelectorAll('.modal');
+        M.Modal.init(modals);
+
+        var items = document.querySelectorAll('.collapsible');
+        M.Collapsible.init(items);
+
+        });
+    </script>
+    <script type="module" src="./mail.js"></script>
+
 
 
 </body>
