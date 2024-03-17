@@ -449,6 +449,9 @@
                     return false;
                 } else {
                     calcWater(value);
+                    
+                    updateWaterLevel();
+                    waterDrinkDisplay.textContent = ( waterDrink + " ml");
                 }
             });
 

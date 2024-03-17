@@ -76,6 +76,16 @@
     flex: 1 1 150px;
 }
 
+#cardDialog a {
+    text-decoration: none;
+    color: #E5E9EA;
+}
+
+#cardDialog a:hover {
+    text-decoration: none;
+    color: #E5E9EA;
+}
+
 .submit-btn, #qrDone {
     width: 80%;
     background-color: #8DB4B9;

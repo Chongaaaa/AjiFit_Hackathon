@@ -209,7 +209,9 @@
             </div>
 
             <div class="creditcard-btn my-5 text-center justify-content-center">
-                <input type="submit" value="CONFIRM" id="card-submit" class="submit-btn fs-3 py-2 px-3 fw-bold">
+                <button id="card-submit" class="submit-btn fs-4 py-2 px-3 fw-bold">
+                    <a href="../html/index.html#subscribe" style="display: block;">CONFIRM</a>
+                </button>
             </div>
 
         </form>
@@ -229,9 +231,8 @@
         </div>
 
         <div class="container-sm text-center justify-content-center mt-4 mb-5">
-            <button id="qrDone" class="btn">DONE</button>
+            <button id="qrDone" class="btn fs-4">DONE</button>
         </div>
-
 
     </div>
 
@@ -389,22 +390,23 @@
                 }
 
                 // submit btn
-                const submit = document.getElementById('card-submit');
-                submit.addEventListener('click', function(event) {
+                document.getElementById('card-submit').addEventListener('click', function(event) {
                     if (checkEmptyFields()) {
                         window.alert('Please fill in all the fields.');
-                        event.preventDefault(); 
+                        event.preventDefault();
                     } else if (cardNumberInput.value.length !== 16 && /^\d+$/.test(cardNumberInput.value.trim())) {
                         window.alert('Please make sure your Card Number has 16 digits.');
                         event.preventDefault();
-                    }else if (cvvInput.value.length !== 3 && /^\d+$/.test(cvvInput.value.trim())) {
+                    } else if (cvvInput.value.length !== 3 && /^\d+$/.test(cvvInput.value.trim())) {
                         window.alert('Please make sure your CVV has 3 digits.');
                         event.preventDefault();
                     } else {
-                        window.alert('Your payment had been process sucessfully.');
-                        window.location.href = '/html/index.html#subscribe';
+                        window.alert('Your payment had been processed successfully.');
+                        console.log("Redirecting to index.html"); // Add this line for debugging
+                        window.location.href = "/html/index.html#subscribe";
                     }
                 });
+
 
                 function checkEmptyFields() {
                     if (cardNumberInput.value.trim() === '' || cardHolderInput.value.trim() === '' || monthInput.value.trim() === 'month' || yearInput.value.trim() === 'year' || cvvInput.value.trim() === '') {
@@ -439,9 +441,9 @@
             qrDone.addEventListener('click', function() {
 
                 console.log('index page');
-                window.location.href = '/html/index.html#subscribe';
-            });
+                window.location.href = "/html/index.html#subscribe";
 
+            });
 
         });
     </script>

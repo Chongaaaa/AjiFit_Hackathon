@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="col-3">
-                            <h2 id="ageBox">32</h2>
+                            <h2 id="ageBox">0</h2>
                         </div>
 
                         <!-- edit btn -->
@@ -132,11 +132,12 @@
 
                         <div class="col-3">
 
-                            <h2 id="genderBox">Female</h2>
+                            <h2 id="genderBox">Male/Female</h2>
 
                             <select id="genderSelectBox" class="form-select visually-hidden" disabled>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="malefemale" selected disabled>Male/Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
 
                         </div>
@@ -350,21 +351,44 @@
 
             // ------BREAK LINE-----
             // edit button
+            // edit button
             editBtn.addEventListener('click', function() {
-
                 // Only save button is clickable after clicking on edit button
                 editBtn.disabled = true;
                 saveBtn.disabled = false;
-                genderBox.classList.add('visually-hidden'); // Hide the <h2> element
-                genderSelectBox.classList.remove('visually-hidden'); // Show the <select> element
-                genderSelectBox.disabled = false; // Enable the dropdown
 
                 // Enable input fields for editing
-                enableEditing('ageBox', isNumber);
                 enableEditing('signBox', isValidSignature);
                 enableEditing('heightBox', isNumber);
                 enableEditing('weightBox', isNumber);
+                enableEditing('ageBox', isNumber); // Include this line to enable editing for the age field
 
+                // If genderBox content is 'Male/Female', show the select box
+                if (genderBox.textContent === 'Male/Female') {
+                    genderBox.classList.add('visually-hidden'); // Hide the <h2> element
+                    genderSelectBox.classList.remove('visually-hidden'); // Show the <select> element
+                    genderSelectBox.disabled = false; // Enable the dropdown
+                } else {
+                    genderBox.classList.remove('visually-hidden');
+                    genderSelectBox.classList.add('visually-hidden');
+                    genderSelectBox.disabled = true; // Disable the dropdown
+                }
+
+                if (ageBox.textContent === '0') {
+                    enableEditing('ageBox', isNumber); 
+                } else {
+                    disableEditing('ageBox');
+                }
+
+            });
+
+            // Event listener for gender select box
+            const genderSelectBox = document.getElementById('genderSelectBox');
+            genderSelectBox.addEventListener('change', function() {
+                genderBox.textContent = genderSelectBox.value; // Update genderBox with selected value
+                genderBox.classList.remove('visually-hidden'); // Show the <h2> element
+                genderSelectBox.classList.add('visually-hidden'); // Hide the <select> element
+                genderSelectBox.disabled = true; // Disable the dropdown after selection
             });
 
             // save button
@@ -420,6 +444,8 @@
 
                 if ( !( /^\d+$/.test(value) ) ) {
                     window.alert('Invalid input! Please enter a digit.');
+                } else if (value.length > 3 ) {
+                    window.alert('Invalid input! Please enter properly.');
                 } else{
                     return /^\d+$/.test(value);
                 }

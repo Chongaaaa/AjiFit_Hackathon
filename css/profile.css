@@ -2,6 +2,10 @@
     display: flex;
 }
 
+#profile h2 {
+    outline: none;
+}
+
 #profile-left {
     /* background-color: #29515D; */
     width: 35%;
