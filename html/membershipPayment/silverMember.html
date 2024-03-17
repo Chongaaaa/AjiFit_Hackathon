@@ -23,8 +23,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- link with CSS -->
-    <link rel="stylesheet" href="../css/payment.css">
-    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../../css/payment.css">
+    <link rel="stylesheet" href="../../css/common.css">
 
     <title>Payment</title>
 </head>
@@ -34,7 +34,7 @@
     <!-- Main -->
     <div class="container-lg my-5 mx-10 py-3 my-3 justify-content-center" id="paymentContainer">
         <div id="backBtn" class="justify-content-end text-end me-5 mt-3">
-            <a href="../html/index.html#subscribe">
+            <a href="../../html/index.html#subscribe">
                 <button class="btn fs-3">BACK</button>
             </a>
         </div>
@@ -65,7 +65,7 @@
 
                 <div class="row">
                     <div class="col-8">
-                        <h3 id="memberName" class="fs-3 fw-normal">Golden Membership</h3>
+                        <h3 id="memberName" class="fs-3 fw-normal">Silver Membership</h3>
                         <!--   NEED RETRIEVE FROM DATABASE -->
                     </div>
                     <div class="col-4">
@@ -123,8 +123,8 @@
             <div class="front mx-5 mt-2 mb-4">
 
                 <div class="card-image mb-4">
-                    <img src="../image/chip.png" alt="Credit Card Chip" style="height: 60px; width: 90px; display: inline-block;">
-                    <img src="../image/visa.png" alt="Visa" style="height: 60px; width: 100px; display: inline-block; ">
+                    <img src="../../image/chip.png" alt="Credit Card Chip" style="height: 60px; width: 90px; display: inline-block;">
+                    <img src="../../image/visa.png" alt="Visa" style="height: 60px; width: 100px; display: inline-block; ">
                 </div>
 
                 <div class="card-number-box py-2 px-3 fs-1">################</div>
@@ -148,7 +148,7 @@
                 <div class="box text-end">
                     <span class="py-2 px-3 fs-4">CVV</span>
                     <div class="cvv-box"></div>
-                    <img src="../image/visa.png" alt="Visa" style="height: 60px; width: 100px;">
+                    <img src="../../image/visa.png" alt="Visa" style="height: 60px; width: 100px;">
                 </div>
             </div>
 
@@ -210,7 +210,7 @@
 
             <div class="creditcard-btn my-5 text-center justify-content-center">
                 <button id="card-submit" class="submit-btn fs-4 py-2 px-3 fw-bold">
-                    <a href="../html/index.html#subscribe" style="display: block;">CONFIRM</a>
+                    <a href="../../html/index.html#subscribe" style="display: block;">CONFIRM</a>
                 </button>
             </div>
 
@@ -227,7 +227,7 @@
         </div>
         
         <div id="qr-img" class="container-sm mt-3 justify-content-center text-center">
-            <img src="../image/qrPayment.jpg" alt="my QR code" style="height: 350px; width: 300px; border-radius: 20px;">
+            <img src="../../image/qrPayment.jpg" alt="my QR code" style="height: 350px; width: 300px; border-radius: 20px;">
         </div>
 
         <div class="container-sm text-center justify-content-center mt-4 mb-5">
@@ -261,7 +261,7 @@
 
             // ----- BREAK LINE -----
             // calculate price
-            var price = 199.99; //currently
+            var price = 99.99; //currently
             var sst = price * 0.1;
             var newSST = parseFloat(sst.toFixed(2));
             var ttl = price + newSST;
@@ -403,7 +403,7 @@
                     } else {
                         window.alert('Your payment had been processed successfully.');
                         console.log("Redirecting to index.html"); // Add this line for debugging
-                        window.location.href = "/html/index.html#subscribe";
+                        window.location.href = "/../html/index.html#subscribe";
                     }
                 });
 
@@ -441,7 +441,7 @@
             qrDone.addEventListener('click', function() {
 
                 console.log('index page');
-                window.location.href = "/html/index.html#subscribe";
+                window.location.href = "/../html/index.html#subscribe";
 
             });
 

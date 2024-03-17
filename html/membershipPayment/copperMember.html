@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- link with CSS -->
+    <link rel="stylesheet" href="../../css/payment.css">
+    <link rel="stylesheet" href="../../css/common.css">
+
+    <title>Payment</title>
+</head>
+
+<body>
+
+    <!-- Main -->
+    <div class="container-lg my-5 mx-10 py-3 my-3 justify-content-center" id="paymentContainer">
+        <div id="backBtn" class="justify-content-end text-end me-5 mt-3">
+            <a href="../../html/index.html#subscribe">
+                <button class="btn fs-3">BACK</button>
+            </a>
+        </div>
+
+        <div id="ttlContainer" class="row mt-5 pt-2">
+            <div class="col-3">
+                <h3 class="display-5 ps-5 text-end">Total : </h3>
+            </div>
+            <div class="col-1">
+                <h3 class="display-6 text-end">RM</h3>
+            </div>
+            <div class="col-7">
+                <h2 id="total" class="display-4">00.00</h2>
+            </div>
+        </div>
+
+        <div id="receiptBody" class="row">
+            <div id="receiptInfor" class="col-6 mx-3 my-4 px-5 py-4">
+
+                <div class="row pb-2">
+                    <div class="col-8">
+                        <h3 id="nowDate" class="fs-3">00/00/0000</h3>
+                    </div>
+                    <div class="col-4">
+                        <h3 class="fs-3 text-end">RM</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <h3 id="memberName" class="fs-3 fw-normal">Copper Membership</h3>
+                        <!--   NEED RETRIEVE FROM DATABASE -->
+                    </div>
+                    <div class="col-4">
+                        <h3 id="memberPrice" class="fs-3 text-end">00.00</h3>
+                    </div>
+                </div>
+
+                <div class="row mt-5 mb-2 pb-2 underline">
+                    <div class="col-8">
+                        <h3 class="fs-3 fw-normal">SST (10%)</h3>
+                    </div>
+                    <div class="col-4 text-end">
+                        <h3 id="sst">00.00</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <h2 class="fs-2 fw-normal">TOTAL</h2>
+                    </div>
+                    <div class="col-4">
+                        <h2 id="ttl" class="fs-2 text-end">00.00</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="payMethod" class="col-5 py-4 px-3">
+                <h3 class="fs-3 mt-3">Select your Payment Method:</h3>
+                <div id="selectPay" class="mt-5">
+                    <button id="creditcard" class="btn fs-3 d-block mx-5 px-4 py-2">
+                        Credit Card<span class="justify-content-end text-end ms-4"><i
+                                class="bi bi-credit-card"></i></span>
+                    </button>
+                    <button id="qr" class="btn fs-3 d-block mx-5 px-4 py-2 mt-3">
+                        QR Code<span class="justify-content-end text-end ms-5"><i class="bi bi-qr-code"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <p class="lead text-center mt-2">--- Terms and Condition apply ---</p>
+    </div>
+
+    <!-- credit card dialog -->
+    <div id="cardDialog" class="container-fluid justify-content-center px-5 mb-5">
+
+        <div class="container-fluid text-end xBtn">
+            <button id="xCardBtn" class="btn mt-2"> <i class="bi bi-x-square-fill fs-1"></i> </button>
+        </div>
+
+        <!-- card image -->
+        <div class="card-container container-lg px-5">
+
+            <div class="front mx-5 mt-2 mb-4">
+
+                <div class="card-image mb-4">
+                    <img src="../../image/chip.png" alt="Credit Card Chip" style="height: 60px; width: 90px; display: inline-block;">
+                    <img src="../../image/visa.png" alt="Visa" style="height: 60px; width: 100px; display: inline-block; ">
+                </div>
+
+                <div class="card-number-box py-2 px-3 fs-1">################</div>
+                <div class="flexbox">
+                    <div class="box">
+                        <span class="py-2 px-3 fs-4">CARD HOLDER</span>
+                        <div class="card-holder-name px-3 pb-3 fs-4">FULL NAME</div>
+                    </div>
+                    <div class="box">
+                        <span class="py-2 px-3 fs-4">EXPIRES</span>
+                        <div class="expiration">
+                            <span class="exp-month py-2 px-3 fs-4">MM</span>
+                            <span class="exp-year px-3 pb-3 fs-4">YY</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="back mx-5 mt-2 mb-4">
+                <div class="stripe mt-4 mb-3"></div>
+                <div class="box text-end">
+                    <span class="py-2 px-3 fs-4">CVV</span>
+                    <div class="cvv-box"></div>
+                    <img src="../../image/visa.png" alt="Visa" style="height: 60px; width: 100px;">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- credit card form -->
+        <form action="" class="mx-3">
+            <div class="inputBox mt-3">
+                <span class="d-block pb-1 fs-4">Card Number</span>
+                <input type="text" maxlength="16" class="card-number-input">
+            </div>
+
+            <div class="inputBox mt-3">
+                <span class="d-block pb-1 fs-4">Card Holder</span>
+                <input type="text" maxlength="16" class="card-holder-input">
+            </div>
+
+            <div class="flexbox">
+                <div class="inputBox mt-3">
+                    <span class="d-block pb-1 fs-4">Expiration MM</span>
+                    <select name="" id="" class="month-input">
+                        <option value="month" selected disabled>month</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+
+                <div class="inputBox mt-3">
+                    <span class="d-block pb-1 fs-4">Expiration YY</span>
+                    <select name="" id="" class="year-input">
+                        <option value="year" selected disabled>year</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                        <option value="2032">2032</option>
+                    </select>
+                </div>
+
+                <div class="inputBox mt-3">
+                    <span class="d-block pb-1 fs-4">CVV</span>
+                    <input type="text" maxlength="3" class="cvv-input">
+                </div>
+
+            </div>
+
+            <div class="creditcard-btn my-5 text-center justify-content-center">
+                <button id="card-submit" class="submit-btn fs-4 py-2 px-3 fw-bold">
+                    <a href="../../html/index.html#subscribe" style="display: block;">CONFIRM</a>
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- qr code dialog -->
+    <div id="qrDialog" class="container-fluid justify-content-center">
+
+        <!-- qr code img -->
+        <div class="container-fluid text-end xBtn">
+            <button id="xQRBtn" class="btn mt-2"> <i class="bi bi-x-square-fill fs-1"></i> </button>
+        </div>
+        
+        <div id="qr-img" class="container-sm mt-3 justify-content-center text-center">
+            <img src="../../image/qrPayment.jpg" alt="my QR code" style="height: 350px; width: 300px; border-radius: 20px;">
+        </div>
+
+        <div class="container-sm text-center justify-content-center mt-4 mb-5">
+            <button id="qrDone" class="btn fs-4">DONE</button>
+        </div>
+
+    </div>
+
+    <script>
+        //when the page is reload
+        document.addEventListener('DOMContentLoaded', function () {
+            const nowDate = document.getElementById('nowDate');
+            const displayPrice = document.getElementById('memberPrice'); // NEED RETRIEVE FROM DATABASE
+            const displaySST = document.getElementById('sst');
+            const displayTotal1 = document.getElementById('total');
+            const displayTotal2 = document.getElementById('ttl');
+
+            // ----- BREAK LINE -----
+            // Get current Date
+            const currentDate = new Date();
+
+            const day = currentDate.getDate();
+            const month = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
+            const year = currentDate.getFullYear();
+
+            const formattedDay = day < 10 ? '0' + day : day;
+            const formattedMonth = month < 10 ? '0' + month : month;
+            const formattedDate = formattedDay + '/' + formattedMonth + '/' + year;
+
+            nowDate.textContent = formattedDate;
+
+            // ----- BREAK LINE -----
+            // calculate price
+            var price = 19.99; //currently
+            var sst = price * 0.1;
+            var newSST = parseFloat(sst.toFixed(2));
+            var ttl = price + newSST;
+
+            // console.log(price);
+            // console.log(sst);
+            // console.log(newSST);
+            // console.log(ttl);
+
+            displayPrice.textContent = price.toFixed(2);
+            displaySST.textContent = newSST.toFixed(2);
+            displayTotal1.textContent = ttl.toFixed(2);
+            displayTotal2.textContent = ttl.toFixed(2);
+
+            // ----- BREAK LINE -----
+            // credit card payment dialog pop out
+            const cardBtn = document.getElementById('creditcard');
+            const cardDialog = document.getElementById('cardDialog');
+            const closeCard = document.getElementById('xCardBtn');
+            cardBtn.addEventListener('click', function () {
+                
+                cardDialog.style.display = 'block';
+
+                //cardAction();
+            });
+
+            closeCard.addEventListener('click', function() {
+                cardDialog.style.display = 'none';
+            });
+
+ 
+            const cardNumberInput = document.querySelector('.card-number-input');
+            const cardNumberBox = document.querySelector('.card-number-box');
+            const cardHolderInput = document.querySelector('.card-holder-input');
+            const cardHolderName = document.querySelector('.card-holder-name');
+            const monthInput = document.querySelector('.month-input');
+            const monthBox = document.querySelector('.exp-month');
+            const yearInput = document.querySelector('.year-input');
+            const yearBox = document.querySelector('.exp-year');
+            const cvvInput = document.querySelector('.cvv-input');
+            const cvvBox = document.querySelector('.cvv-box');
+
+            const frontC = document.querySelector('.front');
+            const backC = document.querySelector('.back');
+
+            cardAction();
+
+            function cardAction() {
+
+                // Flipping the card
+                cvvInput.onmouseenter = () => {
+                    frontC.style.transform = 'perspective(1000px) rotateY(-180deg)';
+                    backC.style.transform = 'perspective(1000px) rotateY(0deg)';
+                }
+
+                cvvInput.onmouseleave = () => {
+                    frontC.style.transform = 'perspective(1000px) rotateY(0deg)';
+                    backC.style.transform = 'perspective(1000px) rotateY(180deg)';
+                }
+
+                // Retrieving data from the form
+                cardNumberInput.oninput = () => {
+                    cardNumberBox.textContent = cardNumberInput.value;
+                }
+
+                cardHolderInput.oninput = () => {
+                    cardHolderName.textContent = cardHolderInput.value;
+                }
+
+                monthInput.onchange = () => {
+                    monthBox.textContent = monthInput.value;
+                }
+
+                yearInput.onchange = () => {
+                    yearBox.textContent = yearInput.value.slice(-2);
+                }
+
+                cvvInput.oninput = () => {
+                    cvvBox.textContent = cvvInput.value;
+                }
+
+                // Validation on form 
+                // card number input
+                cardNumberInput.addEventListener('input', function () {
+                    const inputValue = cardNumberInput.value.trim();
+                    if (!/^\d+$/.test(inputValue)) {
+                        cardNumberInput.value = "";
+                        cardNumberBox.textContent = "###############";
+                        alert("Please enter digits only for card number.");
+                    }
+                });
+
+                // CVV input
+                cvvInput.addEventListener('input', function () {
+                    const inputValue = cvvInput.value.trim();
+                    if (!/^\d+$/.test(inputValue)) {
+                        cvvInput.value = "";
+                        cvvBox.textContent = "";   
+                        alert("Please digits only numeric characters for CVV.");
+                    }
+                });
+
+                // set jan and feb is unavailable for 2024
+                yearInput.addEventListener('change', function () {
+                    if (yearInput.value === '2024') {
+                        disableMonths(['01', '02']);
+                    } else {
+                        enableAllMonths();
+                    }
+                });
+
+                function disableMonths(monthsToDisable) {
+                    monthsToDisable.forEach(month => {
+                        const optionToDisable = monthInput.querySelector(`option[value="${month}"]`);
+                        if (optionToDisable) {
+                            optionToDisable.disabled = true;
+                        }
+                    });
+                }
+
+                function enableAllMonths() {
+                    const allOptions = monthInput.querySelectorAll('option');
+                    allOptions.forEach(option => {
+                        option.disabled = false;
+                    });
+                }
+
+                // submit btn
+                document.getElementById('card-submit').addEventListener('click', function(event) {
+                    if (checkEmptyFields()) {
+                        window.alert('Please fill in all the fields.');
+                        event.preventDefault();
+                    } else if (cardNumberInput.value.length !== 16 && /^\d+$/.test(cardNumberInput.value.trim())) {
+                        window.alert('Please make sure your Card Number has 16 digits.');
+                        event.preventDefault();
+                    } else if (cvvInput.value.length !== 3 && /^\d+$/.test(cvvInput.value.trim())) {
+                        window.alert('Please make sure your CVV has 3 digits.');
+                        event.preventDefault();
+                    } else {
+                        window.alert('Your payment had been processed successfully.');
+                        console.log("Redirecting to index.html"); // Add this line for debugging
+                        window.location.href = "/../html/index.html#subscribe";
+                    }
+                });
+
+
+                function checkEmptyFields() {
+                    if (cardNumberInput.value.trim() === '' || cardHolderInput.value.trim() === '' || monthInput.value.trim() === 'month' || yearInput.value.trim() === 'year' || cvvInput.value.trim() === '') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+
+            }
+
+            // ----- BREAK LINE -----
+            // qr code payment pop out
+            const qrBtn = document.getElementById('qr');
+            const qrDialog = document.getElementById('qrDialog');
+            const closeQR = document.getElementById('xQRBtn');
+            const qrDone = document.getElementById('qrDone');
+            qrBtn.addEventListener('click', function () {
+
+                document.body.classList.add("stop-scrolling");
+                qrDialog.style.display = 'block';
+
+            });
+
+            closeQR.addEventListener('click', function() {
+
+                document.body.classList.remove("stop-scrolling");
+                qrDialog.style.display = 'none';
+                
+            });
+
+            qrDone.addEventListener('click', function() {
+
+                console.log('index page');
+                window.location.href = "/../html/index.html#subscribe";
+
+            });
+
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
