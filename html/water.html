@@ -162,10 +162,15 @@
             </div>
     
             <!-- right side -->
-            <div class="col-6 text-center mt-3" id="water-reminder-right">
-                <img src="../image/drink_water.webp" alt="" style="width: 50%;">
+            <div class="col-6 text-center mt-5" id="water-reminder-right">
 
-                <h4 class="fw-normal mt-3">YOU HAD DRINK: <span style="font-weight:bold; color: #192939;">500ml</span></h4>
+                <div id="waterBottleOuter" class="container-sm mb-4">
+
+                    <div id="waterBottleInner"></div>
+
+                </div>
+
+                <h4 class="fw-normal mt-3">YOU HAD DRINK: <span id="waterDrinkDisplay" style="font-weight:bold; color: #192939;">0 ml</span></h4>
             </div>
 
         </div>
@@ -336,16 +341,56 @@
             // open and close reminder
             const openR = document.getElementById('openReminder');
             const closeR = document.getElementById('closeReminder');
+
+            const waterDrinkDisplay = document.getElementById('waterDrinkDisplay');
+            let waterDrink = 0;
+
+            // update water level
+            const waterBottleInner = document.getElementById('waterBottleInner');
+            function updateWaterLevel() {
+                const percentageFilled = (waterDrink / parseInt(waterNeedDisplay.textContent)) * 100;
+                waterBottleInner.style.height = percentageFilled + '%';
+            }
+
             openR.addEventListener('click', function() {
-                console.log("Water Reminder: Open");
-                if(confirm("We wil get access to your email now! Thanks for opening our water reminder!")){
+
+                if(confirm("We wil get access to your email now! You will get your reminder every 1 hour! Thanks for opening our water reminder!")){
                     openR.disabled = true;
                     closeR.disabled = false;
+
+                    updateWaterLevel();
+
                 } else {
                     openR.disabled = true;
                     closeR.disabled = false;
                 }
+                
+                console.log("Water Reminder: Open"); //update database status
+
+                sendEmailReminder();
+
+                setInterval(function() {
+                    sendEmailReminder();
+                }, 1000 * 60 * 60); // 1000ms * 60s * 60min = 1hr
+
             });
+
+            function sendEmailReminder() {
+                // You need to implement the logic to send an email here.
+                // This could be done using an API or a server-side script.
+                // For demonstration purposes, we'll just log a message to the console.
+                console.log("Time to drink water! Don't forget to hydrate.");
+
+                if(confirm("Time to drink water! Don't forget to hydrate.")){
+                    waterDrink += 100;
+
+                    updateWaterLevel();
+                }
+
+                console.log(waterDrink);
+
+                waterDrinkDisplay.textContent = ( waterDrink + " ml");
+            }
 
             closeR.addEventListener('click', function() {
                 console.log("Water Reminder: Close");
@@ -356,6 +401,8 @@
                     openR.disabled = false;
                     closeR.disabled = true;
                 }
+
+                waterDrink = 0;
             });
 
             // ----- BREAK LINE ------
