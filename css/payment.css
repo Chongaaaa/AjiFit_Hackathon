@@ -76,7 +76,7 @@
     flex: 1 1 150px;
 }
 
-.submit-btn {
+.submit-btn, #qrDone {
     width: 20%;
     background-color: #8DB4B9;
     color: #E5E9EA;
@@ -84,7 +84,7 @@
     border-radius: 20px;
 }
 
-.submit-btn:hover {
+.submit-btn:hover, #qrDone:hover {
     background-color: #29515D;
 }
 
