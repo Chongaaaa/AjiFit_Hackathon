@@ -33,23 +33,26 @@
                   <a href="../html/index.html" class="nav-link text-dark">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a href="../html/menu.html" class="nav-link text-dark">Receipe</a>
+                  <a href="#" class="nav-link text-dark">Receipe</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link text-dark">Exercise</a>
                 </li>
                 <li class="nav-item">
-                  <a href="../html/Tracker.html" class="nav-link text-dark">Calories Tracker</a>
+                  <a href="../html/ck.html" class="nav-link text-dark">Calories Tracker</a>
                 </li>
                 <li class="nav-item">
                   <a href="../html/water.html" class="nav-link text-dark">Water Reminder</a>
                 </li>
                 <li class="nav-item">
-                  <a href="../html/ck.html" class="nav-link text-dark">Community</a>
+                  <a href="#" class="nav-link text-dark">Community</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link text-dark">Q & A</a>
                 </li>
+                <li class="logged-in nav-item">
+                    <a href="./itworks.html" class="nav-link text-dark" id="logout">Logout</a>
+                  </li>
               </ul>
             </div>
           </div>
@@ -67,7 +70,7 @@
 
     <div class="container">
         <div class="row "> 
-        <div class="col-md-6 ">
+        <div class="col-md-6 modal-signup">
             <h3 class="md-4 mt-5 pt-5">Track Your Progress & More!</h3>
             <div class="d-flex">
                 <p class="me-5 pe-5 ">Satrt your fitness journey!</p>
@@ -170,13 +173,13 @@
                                 <h4><a href="../html/index.html">Home</a></h4>
                             </li>
                             <li>
-                                <h4><a href="../html/menu.html">Receipe</a></h4>
+                                <h4><a href="">Receipe</a></h4>
                             </li>
                             <li>
                                 <h4><a href="">Exercise</a></h4>
                             </li>
                             <li>
-                                <h4><a href="../html/Tracker.html">Calories Tracker</a></h4>
+                                <h4><a href="">Calories Tracker</a></h4>
                             </li>
                         </ul>
                     </div>
@@ -189,7 +192,7 @@
                                 <h4><a href="../html/water.html">Water Reminder</a></h4>
                             </li>
                             <li>
-                                <h4><a href="../html/ck.html">Community</a></h4>
+                                <h4><a href="">Community</a></h4>
                             </li>
                             <li>
                                 <h4><a href="">Q & A</a></h4>
@@ -226,66 +229,19 @@
    
     <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
-
     <script>
-        const firebaseConfig = {
-        apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
-        authDomain: "useruser-5f5dc.firebaseapp.com",
-        databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
-        projectId: "useruser-5f5dc",
-        storageBucket: "useruser-5f5dc.appspot.com",
-        messagingSenderId: "294580009654",
-        appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
-        measurementId: "G-BZTH9RR80E"
-        };
+        document.addEventListener('DOMContentLoaded', function() {
 
-  // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+        var modals = document.querySelectorAll('.modal');
+        M.Modal.init(modals);
 
-// Reference your database
-var database = firebase.database();
+        var items = document.querySelectorAll('.collapsible');
+        M.Collapsible.init(items);
 
-document.getElementById("signupForm").addEventListener("submit", submitForm);
+        });
+    </script>
+    <script type="module" src="./mail.js"></script>
 
-function submitForm(e) {
-    e.preventDefault();
-
-    var name = document.getElementById("name").value;
-    var emailid = document.getElementById("emailid").value;
-    var password = document.getElementById("password").value;
-    var repassword = document.getElementById("repassword").value;
-
-    if (password !== repassword) {
-        alert("Passwords do not match. Please re-enter.");
-        document.getElementById("password").value = "";
-        document.getElementById("repassword").value = "";
-        return;
-    }
-
-    var userid = generateUserId();
-    saveMessages(name, emailid, password, userid);
-
-    // Reset the form
-    document.getElementById("signupForm").reset();
-}
-
-function saveMessages(name, emailid, password, userid) {
-    database.ref("users/" + userid).set({
-        name: name,
-        userid: userid,
-        emailid: emailid,
-        password: password,
-    });
-};
-
-function generateUserId() {
-    // Generate a random 3-digit user ID
-    var min = 100;
-    var max = 999;
-    var userId = Math.floor(Math.random() * (max - min + 1)) + min;
-    return userId.toString();
-}
-</script>
 
 </body>
 
