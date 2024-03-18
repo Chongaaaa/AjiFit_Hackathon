@@ -91,7 +91,7 @@
 
             <div id="profile-name">
                 <h6 id="nameBox" class="display-6 fw-bold text-light mt-3 mb-3 mx-4 py-1 px-2">
-                     
+                    -
                 </h6>
             </div>
 
@@ -342,7 +342,8 @@
 
             // retrieve user information
             console.log(userID);
-            db.ref(userID).on('value', function(snapshot) { 
+            db.on('value', function(snapshot) { 
+
 
                 var data = snapshot.val();
 
@@ -350,7 +351,7 @@
                 nameD.textContent = userName;
 
                 localStorage.setItem('userName', userName);
-                console.log(data.name);
+                console.log('name: ', data);
 
             });
 
