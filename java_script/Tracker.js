@@ -238,7 +238,7 @@ function showRecord(userID, count) {
         timeColumn.classList.add('col-3', 'py-2', 'text-end');
         const timeSpan = document.createElement('span');
         timeSpan.classList.add('fs-5');
-        timeSpan.textContent = time;
+        timeSpan.textContent = "Time: " + time;
         timeColumn.appendChild(timeSpan);
         mealRow.appendChild(timeColumn);
         const caloriesColumn = document.createElement('div');
