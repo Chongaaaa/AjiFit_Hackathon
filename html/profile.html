@@ -85,13 +85,13 @@
         <div id="profile-left">
 
             <div id="profile-img">
-                <img id="editProfile-btn" class="mt-5 mb-2 mx-4" src="../image/profile_img.webp" alt="Emma">
+                <img id="editProfile-btn" class="mt-5 mb-2 mx-4" src="../image/avatar.jpg" alt="Avatar">
                 <input type="file" accept="image/*" id="imageUploadInput" style="display: none;">
             </div>
 
-            <div id="profile-name" >
-                <h6 class="display-6 fw-bold text-light mt-3 mb-3 mx-4 py-1 px-2">
-                    Emma Watson
+            <div id="profile-name">
+                <h6 id="nameBox" class="display-6 fw-bold text-light mt-3 mb-3 mx-4 py-1 px-2">
+                     
                 </h6>
             </div>
 
@@ -158,7 +158,7 @@
                         </div>
 
                         <div class="col-8">
-                            <h2 id="signBox">Enjoy Life</h2>
+                            <h2 id="signBox"> </h2>
                         </div>
 
                     </div>
@@ -179,7 +179,7 @@
                                         <h2 class="fw-bold">Height: </h2>
                                     </div>
                                     <div class="col-4">
-                                        <h2 id="heightBox">168</h2>
+                                        <h2 id="heightBox">0</h2>
                                     </div>
                                     <div class="col-1">
                                         <h2>cm</h2>
@@ -191,7 +191,7 @@
                                         <h2 class="fw-bold">Weight: </h2>
                                     </div>
                                     <div class="col-4">
-                                        <h2 id="weightBox">47</h2>
+                                        <h2 id="weightBox">0</h2>
                                     </div>
                                     <div class="col-1">
                                         <h2>kg</h2>
@@ -296,10 +296,32 @@
         </div>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
     <script>
 
         // Add event listeners when the document is fully loaded
         document.addEventListener('DOMContentLoaded', function() {
+
+            //----- FIREBASE -----
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
+                authDomain: "useruser-5f5dc.firebaseapp.com",
+                databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
+                projectId: "useruser-5f5dc",
+                storageBucket: "useruser-5f5dc.appspot.com",
+                messagingSenderId: "294580009654",
+                appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
+                measurementId: "G-BZTH9RR80E"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+
+            const db = firebase.database();
+
+            //connect to local storage
+            const userID = localStorage.getItem('userId');
             
             // Get buttons and elements
             const editProfile = document.getElementById('editProfile-btn');
@@ -310,6 +332,25 @@
 
             const editBtn = document.getElementById('profile-editBtn');
             const saveBtn = document.getElementById('profile-saveBtn');
+
+            const nameD = document.getElementById('nameBox');
+            const ageD = document.getElementById('ageBox');
+            const genderD = document.getElementById('genderBox');
+            const signD = document.getElementById('signBox');
+            const heightD = document.getElementById('heightBox');
+            const weightD = document.getElementById('weightBox');
+
+            // retrieve user information
+            db.ref(userID).on('value', function(snapshot) { 
+
+                var data = snapshot.val();
+
+                // var userName = data.name;
+                // nameD.textContent = userName;
+
+                console.log(data.name);
+
+            })
 
             // the bmi calculate
             updateBMI();

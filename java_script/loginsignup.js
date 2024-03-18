@@ -63,7 +63,12 @@ function saveUserData(userId, name, email, password, loginCount) {
     email: email,
     password: password,
     loginCount: loginCount, // Save the login count
-    membership : 'none'
+    membership : 'none',
+    age : 0,
+    height : 0,
+    weight : 0,
+    gender : 'Male/Female',
+    signature : ' '
   });
 }
 
