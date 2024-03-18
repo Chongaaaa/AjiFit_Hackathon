@@ -68,7 +68,8 @@ function saveUserData(userId, name, email, password, loginCount) {
     height : 0,
     weight : 0,
     gender : 'Male/Female',
-    signature : ' '
+    signature : ' ',
+    drink: 0
   });
 }
 
