@@ -12,10 +12,10 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-// Reference your database
+// Reference 
 const database = firebase.database();
 
-// Function to handle form submission for sign-up
+// sign-up
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("signupForm").addEventListener("submit", submitForm);
 });
@@ -39,13 +39,13 @@ function submitForm(e) {
   auth.createUserWithEmailAndPassword(email, password)
     .then(cred => {
       // Save user data to the database
-      var userid = generateUserId();
-
-      saveUserData(userid, name, email, password, 0); // Initialize login count to 0
+      const userId = cred.user.uid; // Use Firebase UID
+      
+      saveUserData(userId, name, email, password, 0); // Initialize login count to 0
 
       // Alert success message
       alert("Sign up successful!");
-      
+
       // Close the signup modal & reset form
       document.getElementById("signupForm").reset();
       window.location.href = "login.html";
@@ -56,15 +56,7 @@ function submitForm(e) {
 }
 
 
-// Function to generate a random user ID
-function generateUserId() {
-  var min = 100;
-  var max = 999;
-  var userId = Math.floor(Math.random() * (max - min + 1)) + min;
-  return userId.toString();
-}
-
-// Function to save user data to the database
+//save user data to the database
 function saveUserData(userId, name, email, password, loginCount) {
   database.ref(userId).set({
     name: name,
@@ -75,7 +67,8 @@ function saveUserData(userId, name, email, password, loginCount) {
   });
 }
 
-// Auth state change listener
+
+
 auth.onAuthStateChanged(user => {
   if (user) {
     // Get the user ID
@@ -103,8 +96,7 @@ auth.onAuthStateChanged(user => {
   }
 });
 
-// Function to handle form submission for login
-// Function to handle form submission for login
+// login
 document.addEventListener("DOMContentLoaded", function() {
   const loginForm = document.querySelector('#loginForm');
   loginForm.addEventListener('submit', (e) => {
@@ -148,3 +140,4 @@ logout.addEventListener('click', (e) => {
   e.preventDefault();
   auth.signOut();
 });
+
