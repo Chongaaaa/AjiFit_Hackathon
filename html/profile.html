@@ -341,16 +341,18 @@
             const weightD = document.getElementById('weightBox');
 
             // retrieve user information
+            console.log(userID);
             db.ref(userID).on('value', function(snapshot) { 
 
                 var data = snapshot.val();
 
-                // var userName = data.name;
-                // nameD.textContent = userName;
+                var userName = data.name;
+                nameD.textContent = userName;
 
+                localStorage.setItem('userName', userName);
                 console.log(data.name);
 
-            })
+            });
 
             // the bmi calculate
             updateBMI();
