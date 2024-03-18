@@ -1,24 +1,26 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
-    authDomain: "useruser-5f5dc.firebaseapp.com",
-    databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
-    projectId: "useruser-5f5dc",
-    storageBucket: "useruser-5f5dc.appspot.com",
-    messagingSenderId: "294580009654",
-    appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
-    measurementId: "G-BZTH9RR80E"
-  };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  // Reference 
-  const database = firebase.database();
-
 document.addEventListener("DOMContentLoaded", function() {
+
+    //----- FIREBASE -----
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
+                authDomain: "useruser-5f5dc.firebaseapp.com",
+                databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
+                projectId: "useruser-5f5dc",
+                storageBucket: "useruser-5f5dc.appspot.com",
+                messagingSenderId: "294580009654",
+                appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
+                measurementId: "G-BZTH9RR80E"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+
+            const db = firebase.database();
+
     var caloriesPDay = document.getElementById("cpd-bar");
     var alertShown = false; // Variable to track whether alert has been shown
     var caloriesSum = 0;
+    var count = 1;
   
     // Add event listener for the blur event
     caloriesPDay.addEventListener("blur", handleInput);
@@ -114,22 +116,29 @@ document.addEventListener("DOMContentLoaded", function() {
               document.getElementById('prt-out').value = proteinSum;
               document.getElementById('fat-out').value = fatSum;
           }
-  
-          // Display values in console
-          console.log("Meal Type: " + mealType);
-          console.log("Date: " + date);
-          console.log("Time: " + time);
-          console.log("Calories: " + caloriesValue + " kCal");
-          console.log("Carbohydrate: " + carbValue + " g");
-          console.log("Protein: " + proteinValue + " g");
-          console.log("Fat: " + fatValue + " g");
-          console.log("Food Description: " + foodDesc.value);
-  
+          
           // Close the modal
           var modal = document.getElementById('tracker');
           var modalInstance = bootstrap.Modal.getInstance(modal);
           handleInput();
           modalInstance.hide();
+
+          const userID = localStorage.getItem('userId');
+            
+          db.ref(userID  + '/Record/' + count ).set({
+            mealType: mealType,
+            Date: date,
+            Time: time,
+            Calories: caloriesValue,
+            carborhydrate: carbValue,
+            protein: proteinValue,
+            fat: fatValue,
+            foodDesc: foodDesc.value
+
+            });
+
+            showRecord(userID, count);
+            count++;
       }
   });
   function handleInput() {
@@ -169,4 +178,87 @@ document.addEventListener("DOMContentLoaded", function() {
         caloriesPDay.focus(); // Focus back on the input field
     }
 }
+function showRecord(userID, count) {
+    const recordContainer = document.getElementById('record-container');
+
+    db.ref(userID + '/Record/' + count).on('value', function(snapshot) {
+        const data = snapshot.val();
+        const date = data.Date;
+        const mealType = data.mealType;
+        const foodDesc = data.foodDesc;
+        const time = data.Time;
+        const calories = data.Calories;
+
+        // Check if a record with the same date exists
+        let existingRecord = document.getElementById(`record-${date}`);
+        if (!existingRecord) {
+            // If no record with the same date exists, create a new one
+            existingRecord = document.createElement('div');
+            existingRecord.id = `record-${date}`;
+            existingRecord.classList.add('col-12', 'justify-content-start', 'mb-1');
+
+            // Add date section
+            const dateSection = document.createElement('div');
+            dateSection.classList.add('d-flex', 'w-100', 'justify-content-start', 'mt-1', 'ms-1');
+            const dateHeading = document.createElement('h5');
+            dateHeading.classList.add('mb-1');
+            dateHeading.textContent = date;
+            dateSection.appendChild(dateHeading);
+            const calendarIcon = document.createElement('span');
+            calendarIcon.classList.add('ms-3');
+            calendarIcon.innerHTML = '<i class="bi bi-calendar"></i>';
+            dateSection.appendChild(calendarIcon);
+            existingRecord.appendChild(dateSection);
+
+            recordContainer.prepend(existingRecord); // Insert the new record on top
+        }
+
+        // Add meal details to the existing record
+        const mealContainer = document.createElement('div');
+        mealContainer.classList.add('container', 'mb-2');
+        mealContainer.style.backgroundColor = '#B2C5D3';
+        const mealRow = document.createElement('div');
+        mealRow.classList.add('row', 'justify-content-start', 'my-1');
+        mealContainer.appendChild(mealRow);
+        const mealIcon = document.createElement('i');
+        mealIcon.classList.add('col-1', 'bi', 'bi-calendar', 'pt-4');
+        mealRow.appendChild(mealIcon);
+        const mealTextContainer = document.createElement('div');
+        mealTextContainer.classList.add('col-5', 'text-start', 'py-2', 'ps-4');
+        const mealTypeSpan = document.createElement('span');
+        mealTypeSpan.classList.add('fs-5');
+        mealTypeSpan.textContent = mealType;
+        mealTextContainer.appendChild(mealTypeSpan);
+        const foodDescHeading = document.createElement('h6');
+        foodDescHeading.classList.add('text-muted');
+        foodDescHeading.textContent = foodDesc;
+        mealTextContainer.appendChild(foodDescHeading);
+        mealRow.appendChild(mealTextContainer);
+        const timeColumn = document.createElement('div');
+        timeColumn.classList.add('col-3', 'py-2', 'text-end');
+        const timeSpan = document.createElement('span');
+        timeSpan.classList.add('fs-5');
+        timeSpan.textContent = time;
+        timeColumn.appendChild(timeSpan);
+        mealRow.appendChild(timeColumn);
+        const caloriesColumn = document.createElement('div');
+        caloriesColumn.classList.add('col-3', 'py-2', 'text-end');
+        const caloriesSpan = document.createElement('span');
+        caloriesSpan.classList.add('fs-5');
+        caloriesSpan.textContent = `${calories} kCal`;
+        caloriesColumn.appendChild(caloriesSpan);
+        mealRow.appendChild(caloriesColumn);
+
+        existingRecord.appendChild(mealContainer);
+
+
+        existingRecord.appendChild(exerciseContainer);
+    });
+}
+
+
+
+
+
+
 });
