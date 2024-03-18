@@ -93,6 +93,8 @@ auth.onAuthStateChanged(user => {
     });
     
     // Redirect to menu.html after successful login
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('userEmail', user.email);
     
     console.log('User logged in:', user);
   } else {
@@ -118,7 +120,9 @@ document.addEventListener("DOMContentLoaded", function() {
         loginForm.reset();
         // Alert success message
         alert("Login successful!");
-        window.location.href = "menu.html";
+
+        // localStorage.setItem('userEmail', user.email);
+        window.location.href = "index.html";
       })
       .catch(error => {
         // Handle authentication errors
@@ -128,7 +132,9 @@ document.addEventListener("DOMContentLoaded", function() {
           alert("Incorrect password. Please try again.");
         } else {
           alert("Redirecting you to the menu page...");
-          window.location.href = "menu.html";
+          
+          localStorage.setItem('userEmail', user.email);
+          window.location.href = "index.html";
         }
       });
   });
