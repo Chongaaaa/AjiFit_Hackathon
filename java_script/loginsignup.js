@@ -88,6 +88,7 @@ auth.onAuthStateChanged(user => {
     
     // Redirect to menu.html after successful login
     localStorage.setItem('userId', userId);
+    localStorage.setItem('userName', user.name);
     localStorage.setItem('userEmail', user.email);
 
     console.log('User logged in:', user);
