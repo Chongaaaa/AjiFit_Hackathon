@@ -1,44 +1,24 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
+    authDomain: "useruser-5f5dc.firebaseapp.com",
+    databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
+    projectId: "useruser-5f5dc",
+    storageBucket: "useruser-5f5dc.appspot.com",
+    messagingSenderId: "294580009654",
+    appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
+    measurementId: "G-BZTH9RR80E"
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  // Reference 
+  const database = firebase.database();
+
 document.addEventListener("DOMContentLoaded", function() {
     var caloriesPDay = document.getElementById("cpd-bar");
     var alertShown = false; // Variable to track whether alert has been shown
-  
-    function handleInput() {
-        // Get the value entered by the user
-        var userInput = caloriesPDay.value.trim();
-        
-        // Check if the input is a valid number
-        if (!isNaN(userInput) && userInput !== "") {
-            // Input is a valid number
-            console.log("Valid numeric input: " + userInput);
-            
-            // Set CSS variable with the value of CaloriesPDay
-            document.documentElement.style.setProperty('--caloriesPDay', userInput);
-  
-            if (userInput < 1500) {
-                // If smaller than 1500, fully fill the path
-                document.querySelector("path.purple").style.strokeDashoffset = "0";
-                document.querySelector("path.purple").style.stroke = "red";
-            } else {
-                document.querySelector("path.purple").style.stroke = "#8DB4B9";
-                // If greater than or equal to 1500, calculate the dash offset
-                document.querySelector("path.purple").style.strokeDashoffset = `calc(40 * 3.142 * 1.85 - (1500 / var(--caloriesPDay)) * (40 * 3.142 * 1.85))`;
-            }
-  
-            document.getElementById("clr-text").textContent = `1500 / ${userInput} kCal`;
-  
-            // Reset alertShown variable
-            alertShown = false;
-        } else {
-            // Input is not a valid number
-            if (!alertShown) {
-                // If alert has not been shown yet, show the alert
-                alert("Please enter a valid numeric value.");
-                alertShown = true; // Set alertShown to true
-            }
-            caloriesPDay.value = ""; // Clear the input field
-            caloriesPDay.focus(); // Focus back on the input field
-        }
-    }
+    var caloriesSum = 0;
   
     // Add event listener for the blur event
     caloriesPDay.addEventListener("blur", handleInput);
@@ -69,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
       var carbValue = parseFloat(carbInput.value);
       var proteinValue = parseFloat(proteinInput.value);
       var fatValue = parseFloat(fatInput.value);
+      caloriesSum += caloriesValue;
   
       // Flag to track if any input is invalid or empty
       var invalidInput = false;
@@ -128,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
               fatSum += fatValue;
   
               // Update the totals
+              document.getElementById("clr-text").textContent = `${caloriesSum} / ${caloriesPDay.value} kCal`; // Here we should use userInput instead of undefined userInput variable
               document.getElementById('carb-out').value = carbSum;
               document.getElementById('prt-out').value = proteinSum;
               document.getElementById('fat-out').value = fatSum;
@@ -146,7 +128,45 @@ document.addEventListener("DOMContentLoaded", function() {
           // Close the modal
           var modal = document.getElementById('tracker');
           var modalInstance = bootstrap.Modal.getInstance(modal);
+          handleInput();
           modalInstance.hide();
       }
   });
+  function handleInput() {
+    // Get the value entered by the user
+    var userInput = caloriesPDay.value.trim();
+    
+    // Check if the input is a valid number
+    if (!isNaN(userInput) && userInput !== "") {
+        // Input is a valid number
+        console.log("Valid numeric input: " + userInput);
+        
+        // Set CSS variable with the value of CaloriesPDay
+        document.documentElement.style.setProperty('--caloriesPDay', userInput);
+        document.documentElement.style.setProperty('--Sum', caloriesSum);
+
+        if (caloriesSum < userInput) {
+            document.querySelector("path.purple").style.stroke = "#8DB4B9";
+            // If greater than or equal to 1500, calculate the dash offset
+            document.querySelector("path.purple").style.strokeDashoffset = `calc(40 * 3.142 * 1.85 - (var(--Sum) / var(--caloriesPDay)) * (40 * 3.142 * 1.85))`;
+            document.getElementById("clr-text").textContent = `${caloriesSum} / ${caloriesPDay.value} kCal`;
+        } else {
+            // If smaller than 1500, fully fill the path
+            document.querySelector("path.purple").style.strokeDashoffset = "0";
+            document.querySelector("path.purple").style.stroke = "red";
+        }
+
+        // Reset alertShown variable
+        alertShown = false;
+    } else {
+        // Input is not a valid number
+        if (!alertShown) {
+            // If alert has not been shown yet, show the alert
+            alert("Please enter a valid numeric value.");
+            alertShown = true; // Set alertShown to true
+        }
+        caloriesPDay.value = ""; // Clear the input field
+        caloriesPDay.focus(); // Focus back on the input field
+    }
+}
 });
