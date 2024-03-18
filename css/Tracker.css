@@ -18,7 +18,7 @@ path.grey {
 path.purple {
     stroke: #8DB4B9;
     stroke-dasharray: calc(40 * 3.142 * 1.85);
-    stroke-dashoffset: calc(40 * 3.142 * 1.85 - (1500 / var(--caloriesPDay)) * (40 * 3.142 * 1.85));
+    stroke-dashoffset: calc(40 * 3.142 * 1.85 - (var(--Sum) / var(--caloriesPDay)) * (40 * 3.142 * 1.85));
     /* Replace YourPercentage with the desired progress percentage */
 }
 
@@ -38,8 +38,8 @@ path.purple {
 
 #add-btn {
   position: absolute;
-  top: 90%;
-  left: 44.5%;
+  top: 63%;
+  left: 43.9%;
   z-index: 1000;
   background-color: #29515D; 
   border: 3px solid white;
