@@ -236,9 +236,35 @@
 
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
     <script>
         //when the page is reload
         document.addEventListener('DOMContentLoaded', function () {
+
+            //----- FIREBASE -----
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
+                authDomain: "useruser-5f5dc.firebaseapp.com",
+                databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
+                projectId: "useruser-5f5dc",
+                storageBucket: "useruser-5f5dc.appspot.com",
+                messagingSenderId: "294580009654",
+                appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
+                measurementId: "G-BZTH9RR80E"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+
+            const db = firebase.database();
+
+            //connect to local storage
+            const userID = localStorage.getItem('userId');
+            const userEmail = localStorage.getItem('userEmail');
+
+
+
             const nowDate = document.getElementById('nowDate');
             const displayPrice = document.getElementById('memberPrice'); // NEED RETRIEVE FROM DATABASE
             const displaySST = document.getElementById('sst');
@@ -402,7 +428,14 @@
                         event.preventDefault();
                     } else {
                         window.alert('Your payment had been processed successfully.');
-                        console.log("Redirecting to index.html"); // Add this line for debugging
+
+                        // Update member status in Firebase
+                        const membershipName = "Copper Membership";
+
+                        db.ref(userID).update({
+                            membership: membershipName
+                        });
+
                         window.location.href = "/../html/index.html#subscribe";
                     }
                 });
@@ -440,7 +473,15 @@
 
             qrDone.addEventListener('click', function() {
 
-                console.log('index page');
+                console.log(userID);
+
+                // Update member status in Firebase
+                const membershipName = "Copper Membership";
+
+                db.ref(userID).update({
+                    membership: membershipName
+                });
+                
                 window.location.href = "/../html/index.html#subscribe";
 
             });

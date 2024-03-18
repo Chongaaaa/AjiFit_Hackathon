@@ -88,7 +88,6 @@ auth.onAuthStateChanged(user => {
     
     // Redirect to menu.html after successful login
     localStorage.setItem('userId', userId);
-    localStorage.setItem('userName', user.name);
     localStorage.setItem('userEmail', user.email);
 
     console.log('User logged in:', user);
@@ -116,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
         alert("Login successful!");
 
         // localStorage.setItem('userEmail', user.email);
-        window.location.href = "index.html";
+        //window.location.href = "index.html";
       })
       .catch(error => {
         // Handle authentication errors
