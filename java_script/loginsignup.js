@@ -40,7 +40,7 @@ function submitForm(e) {
     .then(cred => {
       // Save user data to the database
       var userid = generateUserId();
-      
+
       saveUserData(userid, name, email, password, 0); // Initialize login count to 0
 
       // Alert success message
@@ -70,7 +70,8 @@ function saveUserData(userId, name, email, password, loginCount) {
     name: name,
     email: email,
     password: password,
-    loginCount: loginCount // Save the login count
+    loginCount: loginCount, // Save the login count
+    membership : 'none'
   });
 }
 
@@ -95,7 +96,7 @@ auth.onAuthStateChanged(user => {
     // Redirect to menu.html after successful login
     localStorage.setItem('userId', userId);
     localStorage.setItem('userEmail', user.email);
-    
+
     console.log('User logged in:', user);
   } else {
     console.log('User logged out');
@@ -143,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // Logout
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
+  localStorage.clear();
   e.preventDefault();
   auth.signOut();
 });

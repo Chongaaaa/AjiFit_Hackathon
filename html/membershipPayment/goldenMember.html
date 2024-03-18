@@ -236,6 +236,9 @@
 
     </div>
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
     <script>
         //when the page is reload
         document.addEventListener('DOMContentLoaded', function () {
@@ -254,6 +257,8 @@
             };
 
             firebase.initializeApp(firebaseConfig);
+
+            const db = firebase.database();
 
 
             const nowDate = document.getElementById('nowDate');
@@ -455,25 +460,24 @@
                 
             });
 
+            //connect to local storage
+            const userID = localStorage.getItem('userID');
+            const userEmail = localStorage.getItem('userEmail');
+
             qrDone.addEventListener('click', function() {
 
-                //----- FIREBASE -----
-                const memberEmail = sessionStorage.getItem('userEmail');
+                // Retrieve user ID from local storage
+                //const userID = localStorage.getItem('userID');
+
+                let userID = 277;
+                // Update member status in Firebase
                 const membershipName = "Golden Membership";
 
-                const db = firebase.database();
-
-                // Query the database to find the user by email and update the membership status
-                db.ref('/users').orderByChild('email').equalTo(memberEmail).once('value', function(snapshot) {
-                    snapshot.forEach(function(childSnapshot) {
-                        const userId = childSnapshot.key; // Get the unique user ID from Firebase
-                        db.ref('/users/' + userId).update({ membership: membershipName }).then(() => {
-                            console.log('Membership status updated successfully in Firebase!');
-                        }).catch((error) => {
-                            console.error('Error updating membership status:', error);
-                        });
-                    });
+                db.ref(userID).update({
+                    membership: membershipName
                 });
+                
+                console.log('run');
 
                 window.location.href = "/../html/index.html#subscribe";
 
@@ -488,10 +492,6 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous">
     </script>
-
-    <!-- Add Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 
 </body>
 
