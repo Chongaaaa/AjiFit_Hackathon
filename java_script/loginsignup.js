@@ -68,7 +68,7 @@ function saveUserData(userId, name, email, password, loginCount) {
     height : 0,
     weight : 0,
     gender : 'Male/Female',
-    signature : ' '
+    profileImg : "none"
   });
 }
 
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
         alert("Login successful!");
 
         // localStorage.setItem('userEmail', user.email);
-        //window.location.href = "index.html";
+        window.location.href = "index.html";
       })
       .catch(error => {
         // Handle authentication errors

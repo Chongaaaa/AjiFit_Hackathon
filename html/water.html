@@ -61,7 +61,7 @@
                   <a href="../html/ck.html" class="nav-link text-dark">Community</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">Q & A</a>
+                  <a href="#" class="nav-link text-dark">FAQS</a>
                 </li>
               </ul>
             </div>
@@ -301,7 +301,7 @@
                                 <h4><a href="../html/ck.html">Community</a></h4>
                             </li>
                             <li>
-                                <h4><a href="">Q & A</a></h4>
+                                <h4><a href="">FAQS</a></h4>
                             </li>
                         </ul>
                     </div>
@@ -329,6 +329,8 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
     <script>
         
         // Initialize Bootstrap tooltips
@@ -338,53 +340,95 @@
 
         document.addEventListener('DOMContentLoaded', function() {
 
+            //----- FIREBASE -----
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
+                authDomain: "useruser-5f5dc.firebaseapp.com",
+                databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
+                projectId: "useruser-5f5dc",
+                storageBucket: "useruser-5f5dc.appspot.com",
+                messagingSenderId: "294580009654",
+                appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
+                measurementId: "G-BZTH9RR80E"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+
+            const db = firebase.database();
+
+            //connect to local storage
+            const userID = localStorage.getItem('userId');
+            const userEmail = localStorage.getItem('userEmail');
+
             // open and close reminder
             const openR = document.getElementById('openReminder');
             const closeR = document.getElementById('closeReminder');
 
+            db.ref(userID + '/waterReminder/').on('value', function(snapshot){
+                var data = snapshot.val();
+
+                // If waterReminder path exists
+                if (data) {
+                    // Retrieve the drink value
+                    var drinkValue = data.water;
+
+                    openR.disabled = true;
+                    closeR.disabled = false;
+
+                    console.log("Drink value:", drinkValue);
+                    
+                    updateWaterLevel(drinkValue);
+                    waterDrinkDisplay.textContent = ( drinkValue + " ml");
+                } else {
+                    console.log("No waterReminder path found in Firebase.");
+                }
+            });
+
             const waterDrinkDisplay = document.getElementById('waterDrinkDisplay');
-            let waterDrink = 0;
 
             // update water level
             const waterBottleInner = document.getElementById('waterBottleInner');
-            function updateWaterLevel() {
+            function updateWaterLevel(waterDrink) {
                 const percentageFilled = (waterDrink / parseInt(waterNeedDisplay.textContent)) * 100;
                 waterBottleInner.style.height = percentageFilled + '%';
             }
 
             openR.addEventListener('click', function() {
 
+                let waterDrink = 0;
                 if(confirm("We wil get access to your email now! You will get your reminder every 1 hour! Thanks for opening our water reminder!")){
                     openR.disabled = true;
                     closeR.disabled = false;
 
-                    updateWaterLevel();
+                    updateWaterLevel(waterDrink);
 
                 } else {
                     openR.disabled = true;
                     closeR.disabled = false;
                 }
-                
-                console.log("Water Reminder: Open"); //update database status
 
                 sendEmailReminder();
 
                 setInterval(function() {
                     sendEmailReminder();
+
                 }, 1000 * 60 * 60); // 1000ms * 60s * 60min = 1hr
 
             });
 
             function sendEmailReminder() {
-                // You need to implement the logic to send an email here.
-                // This could be done using an API or a server-side script.
-                // For demonstration purposes, we'll just log a message to the console.
                 console.log("Time to drink water! Don't forget to hydrate.");
 
                 if(confirm("Time to drink water! Don't forget to hydrate.")){
                     waterDrink += 100;
 
-                    updateWaterLevel();
+                    updateWaterLevel(waterDrink);
+                
+                    db.ref(userID + '/waterReminder').set({
+                        water: waterDrink
+                    });
+
                 }
 
                 console.log(waterDrink);
@@ -403,17 +447,25 @@
                 }
 
                 waterDrink = 0;
-                updateWaterLevel();
+                updateWaterLevel(waterDrink);
                 waterDrinkDisplay.textContent = ( waterDrink + " ml");
+
+                // update in firebase
+                db.ref(userID + '/waterReminder').remove()
             });
 
             // ----- BREAK LINE ------
             const weightDisplay = document.getElementById('bodyWeightInput');
             const waterNeedDisplay = document.getElementById('waterNeededResult');
-            const weight = 50 // retrieve weight and display
 
-            weightDisplay.value = weight;
-            calcWater(weight);
+            db.ref(userID).on('value', function(snapshot){
+                var data = snapshot.val();
+
+                var weight = data.weight
+
+                weightDisplay.value = weight;
+                calcWater(weight);
+            });
             
             function calcWater(w) {
                 var water_need = parseInt(w * 30);
@@ -450,7 +502,7 @@
                 } else {
                     calcWater(value);
                     
-                    updateWaterLevel();
+                    updateWaterLevel(waterDrink);
                     waterDrinkDisplay.textContent = ( waterDrink + " ml");
                 }
             });
