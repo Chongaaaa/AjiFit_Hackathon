@@ -21,6 +21,30 @@ document.addEventListener("DOMContentLoaded", function() {
     var alertShown = false; // Variable to track whether alert has been shown
     var caloriesSum = 0;
     var count = 1;
+
+    const userID = localStorage.getItem('userId');
+    db.ref(userID).on('value', function(snapshot){
+        const data = snapshot.val();
+        const name1 = data.name;
+        const pfpImg = data.profileImg;
+        
+        
+        setPfInfo(name1, pfpImg);
+
+    });
+
+    db.ref(userID + '/Record/' + count).on('value', function(snapshot){
+        const data = snapshot.val();
+        const clrPD = data.caloriesPDay;
+        document.getElementById("cpd-bar").value = parseInt(clrPD);
+        document.getElementById("clr-text").textContent = `${caloriesSum} / ${caloriesPDay.value} kCal`;
+    });
+
+    function setPfInfo(name, pfpImg) {
+        document.getElementById('name1').textContent = name;
+        document.getElementById('pfpImg').src = pfpImg;
+    }
+    
   
     // Add event listener for the blur event
     caloriesPDay.addEventListener("blur", handleInput);
@@ -37,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add an event listener to the "Save" button
     document.getElementById('new-record').addEventListener('click', function() {
       // Get input values
+      var caloriesPDay = document.getElementById("cpd-bar");
       var caloriesInput = document.getElementById('clr-in');
       var carbInput = document.getElementById('carb-in');
       var proteinInput = document.getElementById('prt-in');
@@ -120,12 +145,13 @@ document.addEventListener("DOMContentLoaded", function() {
           // Close the modal
           var modal = document.getElementById('tracker');
           var modalInstance = bootstrap.Modal.getInstance(modal);
-          handleInput();
+          caloriesPDay = handleInput();
           modalInstance.hide();
 
           const userID = localStorage.getItem('userId');
             
           db.ref(userID  + '/Record/' + count ).set({
+            caloriesPDay:caloriesPDay,
             mealType: mealType,
             Date: date,
             Time: time,
@@ -167,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Reset alertShown variable
         alertShown = false;
+        return userInput;
     } else {
         // Input is not a valid number
         if (!alertShown) {
