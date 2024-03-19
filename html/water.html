@@ -361,28 +361,47 @@
             const userID = localStorage.getItem('userId');
             const userEmail = localStorage.getItem('userEmail');
 
-
             // open and close reminder
             const openR = document.getElementById('openReminder');
             const closeR = document.getElementById('closeReminder');
 
+            db.ref(userID + '/waterReminder/').on('value', function(snapshot){
+                var data = snapshot.val();
+
+                // If waterReminder path exists
+                if (data) {
+                    // Retrieve the drink value
+                    var drinkValue = data.water;
+
+                    openR.disabled = true;
+                    closeR.disabled = false;
+
+                    console.log("Drink value:", drinkValue);
+                    
+                    updateWaterLevel(drinkValue);
+                    waterDrinkDisplay.textContent = ( drinkValue + " ml");
+                } else {
+                    console.log("No waterReminder path found in Firebase.");
+                }
+            });
+
             const waterDrinkDisplay = document.getElementById('waterDrinkDisplay');
-            let waterDrink = 0;
 
             // update water level
             const waterBottleInner = document.getElementById('waterBottleInner');
-            function updateWaterLevel() {
+            function updateWaterLevel(waterDrink) {
                 const percentageFilled = (waterDrink / parseInt(waterNeedDisplay.textContent)) * 100;
                 waterBottleInner.style.height = percentageFilled + '%';
             }
 
             openR.addEventListener('click', function() {
 
+                let waterDrink = 0;
                 if(confirm("We wil get access to your email now! You will get your reminder every 1 hour! Thanks for opening our water reminder!")){
                     openR.disabled = true;
                     closeR.disabled = false;
 
-                    updateWaterLevel();
+                    updateWaterLevel(waterDrink);
 
                 } else {
                     openR.disabled = true;
@@ -404,7 +423,7 @@
                 if(confirm("Time to drink water! Don't forget to hydrate.")){
                     waterDrink += 100;
 
-                    updateWaterLevel();
+                    updateWaterLevel(waterDrink);
                 
                     db.ref(userID + '/waterReminder').set({
                         water: waterDrink
@@ -428,7 +447,7 @@
                 }
 
                 waterDrink = 0;
-                updateWaterLevel();
+                updateWaterLevel(waterDrink);
                 waterDrinkDisplay.textContent = ( waterDrink + " ml");
 
                 // update in firebase
@@ -483,7 +502,7 @@
                 } else {
                     calcWater(value);
                     
-                    updateWaterLevel();
+                    updateWaterLevel(waterDrink);
                     waterDrinkDisplay.textContent = ( waterDrink + " ml");
                 }
             });

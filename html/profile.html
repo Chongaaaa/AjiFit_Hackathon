@@ -85,7 +85,7 @@
         <div id="profile-left">
 
             <div id="profile-img">
-                <img id="editProfile-btn" class="mt-5 mb-2 mx-4" src="../image/avatar.jpg" alt="Avatar">
+                <img id="editProfile-btn" class="mt-5 mb-2 mx-4" src="" alt="Avatar">
                 <input type="file" accept="image/*" id="imageUploadInput" style="display: none;">
             </div>
 
@@ -421,6 +421,8 @@
                 memberD.textContent = userMember;
                 heightD.textContent = userHeight;
                 weightD.textContent = userWeight;
+
+                console.log('imageURL: ', userImg);
 
                 if (userImg === "none") {
                     editProfile.src = '../image/avatar.jpg';
