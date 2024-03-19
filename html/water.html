@@ -388,29 +388,28 @@
                     openR.disabled = true;
                     closeR.disabled = false;
                 }
-                
-                console.log("Water Reminder: Open"); //update database status
 
                 sendEmailReminder();
 
                 setInterval(function() {
                     sendEmailReminder();
-                    sendMail( "Our general user", "hengpl-wp22@student.tarc.edu.my", "Water Reminder", "Time to drink water! Don't forget to hydrate."  );
 
                 }, 1000 * 60 * 60); // 1000ms * 60s * 60min = 1hr
 
             });
 
             function sendEmailReminder() {
-                // You need to implement the logic to send an email here.
-                // This could be done using an API or a server-side script.
-                // For demonstration purposes, we'll just log a message to the console.
                 console.log("Time to drink water! Don't forget to hydrate.");
 
                 if(confirm("Time to drink water! Don't forget to hydrate.")){
                     waterDrink += 100;
 
                     updateWaterLevel();
+                
+                    db.ref(userID + '/waterReminder').set({
+                        water: waterDrink
+                    });
+
                 }
 
                 console.log(waterDrink);
@@ -431,15 +430,23 @@
                 waterDrink = 0;
                 updateWaterLevel();
                 waterDrinkDisplay.textContent = ( waterDrink + " ml");
+
+                // update in firebase
+                db.ref(userID + '/waterReminder').remove()
             });
 
             // ----- BREAK LINE ------
             const weightDisplay = document.getElementById('bodyWeightInput');
             const waterNeedDisplay = document.getElementById('waterNeededResult');
-            const weight = 50 // retrieve weight and display
 
-            weightDisplay.value = weight;
-            calcWater(weight);
+            db.ref(userID).on('value', function(snapshot){
+                var data = snapshot.val();
+
+                var weight = data.weight
+
+                weightDisplay.value = weight;
+                calcWater(weight);
+            });
             
             function calcWater(w) {
                 var water_need = parseInt(w * 30);
@@ -480,35 +487,6 @@
                     waterDrinkDisplay.textContent = ( waterDrink + " ml");
                 }
             });
-
-            //sending email
-            function sendMail(name, email, subject, message) {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.set('Authorization', 'Basic ' + btoa('<API Key>'+":" +'<Secret Key>'));
-
-            const data = JSON.stringify({
-                "Messages": [{
-                "From": {"Email": "ajifit@gmail.com", "Name": "AjiFit"},
-                "To": [{"Email": email, "Name": name}],
-                "Subject": subject,
-                "TextPart": message
-                }]
-            });
-
-            const requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: data,
-            };
-
-            fetch("https://api.mailjet.com/v3.1/send", requestOptions)
-                .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-            }
-
-            sendMail('Test Name',"hengpl-wp22@student.tarc.edu.my",'Test Subject','Test Message')
 
         });
         
