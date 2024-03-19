@@ -255,10 +255,12 @@ function showRecord(userID, count) {
         existingRecord.appendChild(exerciseContainer);
     });
 }
+});
 
-
-
-
-
-
+// Logout
+const logout = document.querySelector('#logout');
+logout.addEventListener('click', (e) => {
+  localStorage.clear();
+  e.preventDefault();
+  auth.signOut();
 });
