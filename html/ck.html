@@ -55,8 +55,8 @@
       <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
         <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
           <div>
-            <span class="fs-5 text-warning mt-3">User_name</span>
-            <a href="../html/profile.html"><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
+            <span class="fs-5 text-warning mt-3" id="name1">User_name</span>
+            <a href="../html/profile.html"><img src="..." class="rounded-circle fs-1 border border-1" alt="..." id="pfpImg"></a>
           </div>
         </li>
       </div>
@@ -90,38 +90,38 @@
             </div>
           </li>
           <div id="l_board">
-            <li class="list-group-item border-0" style="background-color: #84989D;">
+            <li class="list-group-item border-0" id="board" style="background-color: #84989D;">
               <div class="row d-flex justify-content-between border-0 px-2" id="item1" style="border-radius: 10px;">
                 <span class="col-2 fs-5 text-white fw-bold" >1</span>
-                <span class="col-7 fs-5 text-white fw-bold" id="user-name">The weeknd</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">Jason</span>
                 <span class="col-3 fs-5 text-white fw-bold" id="streak">23</span>
               </div>
             </li>
             <li class="list-group-item border-0" id="board" style="background-color: #8DA1A5;">
               <div class="row d-flex justify-content-between border-0 px-2" id="item2" style="border-radius: 10px;">
                 <span class="col-2 fs-5 text-white fw-bold" >2</span>
-                <span class="col-7 fs-5 text-white fw-bold" id="user-name">The weeknd</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">Abel</span>
                 <span class="col-3 fs-5 text-white fw-bold" id="streak">63</span>
               </div>
             </li>
             <li class="list-group-item border-0" id="board" style="background-color: #96A8AD;">
               <div class="row d-flex justify-content-between border-0 px-2" id="item3" style="border-radius: 10px;">
                 <span class="col-2 fs-5 text-white fw-bold" >3</span>
-                <span class="col-7 fs-5 text-white fw-bold" id="user-name">The weeknd</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">Andrew</span>
                 <span class="col-3 fs-5 text-white fw-bold" id="streak">69</span>
               </div>
             </li>
             <li class="list-group-item border-0" id="board" style="background-color: #9FB0B5;">
               <div class="row d-flex justify-content-between border-0 px-2" id="item4" style="border-radius: 10px;">
                 <span class="col-2 fs-5 text-white fw-bold" >4</span>
-                <span class="col-7 fs-5 text-white fw-bold" id="user-name">The weeknd</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">Amenda</span>
                 <span class="col-3 fs-5 text-white fw-bold" id="streak">5</span>
               </div>
             </li>
             <li class="list-group-item border-0" id="board" style="background-color: #A8B7BD;">
               <div class="row d-flex justify-content-between border-0 px-2" id="item5" style="border-radius: 10px;">
                 <span class="col-2 fs-5 text-white fw-bold" >5</span>
-                <span class="col-7 fs-5 text-white fw-bold" id="user-name">Chyi keat</span>
+                <span class="col-7 fs-5 text-white fw-bold" id="user-name">Pei Lin</span>
                 <span class="col-3 fs-5 text-white fw-bold" id="streak">30</span>
               </div>
             </li>
@@ -140,7 +140,7 @@
         <div class="containermb-4">
           <div class="card my-3">
             <div class="card-body justify-content-start align-items-center">
-              <h4 class="card-title">Hello, user_name</h4>
+              <h4 class="card-title" id="name2">Hello user_name</h4>
               <div class="card-body">
                 <div class="row">
                   <h5 class="col-3">Create post</h5>
@@ -156,7 +156,7 @@
                 
                 <div class="card-body" style="background-color: #728790; border-radius: 10px 0 10px 10px;">
                   <div class="card-title text-white" style="height: 8vh;" id="pfp">
-                    <img src="..."class="rounded-circle border border-1 fs-3" alt="...">
+                    <img src="..."class="rounded-circle border border-1 fs-3" alt="..." id="pfpImg">
                     <input type="text" class="fs-5 ps-1 text-white align-items-start" id="post-content" style="width: 60%; height: 100%; background-color: #728790; border: none;" placeholder="How was your day, do you have something to share?">
                     <div class="ms-5 pb-2 mb-2" id="post-media"></div>
                   </div>
@@ -291,7 +291,8 @@
         </div>
     </div>
   </footer>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

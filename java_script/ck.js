@@ -1,4 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+    //----- FIREBASE -----
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
+                authDomain: "useruser-5f5dc.firebaseapp.com",
+                databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
+                projectId: "useruser-5f5dc",
+                storageBucket: "useruser-5f5dc.appspot.com",
+                messagingSenderId: "294580009654",
+                appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
+                measurementId: "G-BZTH9RR80E"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+
+            const db = firebase.database();
+    
     // Function to handle file selection
     function handleFileSelect(event) {
         console.log("File selected");
@@ -18,16 +36,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to create a new card body for activity
     // Function to create a new card body for activity
     // Function to create a new card body for activity
-    function createActivityCardBody(profileImgSrc, textContent, photoContentSrc) {
+    function createActivityCardBody(profileImgSrc, name, textContent, photoContentSrc) {
         const activityCardBody = document.createElement('div');
         activityCardBody.classList.add('card-body');
 
         const profileInfo = document.createElement('div');
-        profileInfo.classList.add('card-title', 'text-white', 'd-flex', 'align-items-center');
+        profileInfo.classList.add('card-title', 'text-white');
         profileInfo.setAttribute('id', 'pfp');
         profileInfo.innerHTML = `
-            <img src="${profileImgSrc}" id="pf_img" class="rounded-circle border border-1 fs-3" alt="...">
-            <span class="fs-5 ms-2">Username | Public | <span style="font-size: 15px;">x hours ago</span></span>
+            <img src="${profileImgSrc}" class="rounded-circle border border-1 fs-3" alt="...">
+            <span class="fs-5"> ${name} | Public | <span style="font-size: 15px;">1 min ago</span></span>
         `;
         activityCardBody.appendChild(profileInfo);
 
@@ -44,30 +62,56 @@ document.addEventListener("DOMContentLoaded", function() {
         actionContent.innerHTML = `
             <i class="bi bi-hand-thumbs-up-fill ms-3 fs-4" id="like-icon"></i>  
             <i class="bi bi-chat-fill ms-2 fs-4" id="cmt-icon"></i>
-            <span class="ms-2 fs-4">${textContent}</span>
+            <span class="ms-2 fs-4" id="text-content">${textContent}</span>
         `;
         activityCardBody.appendChild(actionContent);
 
         return activityCardBody;
     }
+    
+    const userID = localStorage.getItem('userId');
+    db.ref(userID).on('value', function(snapshot){
+        const data = snapshot.val();
+        const loginCount = data.loginCount;
+        const name1 = data.name;
+        const pfpImg = data.profileImg;
 
+        setUserInfo(name1, pfpImg)
+        setPfInfo(name1, pfpImg);
+        updateStreakForUser(name1, loginCount);
+        rearrangeItems(name1, pfpImg);
+        publishPost(pfpImg, name1); // Pass name1 to publishPost function
+        newName(name1);
 
+    });
 
+    function setUserInfo(name, pfpImg) {
+        document.getElementById('name2').textContent = 'Hello, ' + name;
+        document.getElementById('pfpImg').src = pfpImg;
+
+    }
+    
+    function setPfInfo(name, pfpImg) {
+        document.getElementById('name1').textContent = name;
+        document.getElementById('pfpImg').src = pfpImg;
+    }
+    
     // Function to handle publishing a new post
-    function publishPost() {
+    function publishPost(pfpImg, name1) {
+        
         console.log("Publish button clicked");
         // Get the entered text and selected photo
         const textContent = document.getElementById('post-content').value.trim();
         const photoUpload = document.getElementById('photo-upload');
-        
         // Check if both text and photo are provided
         if (textContent || (photoUpload.files.length > 0 && textContent)) {
+            alert(name1);
             // Get the photo file
             const photoFile = photoUpload.files[0];
-            
             // Create a new card body for the activity
-            const activityCardBody = createActivityCardBody("/image/profile_img.webp", textContent, photoFile ? URL.createObjectURL(photoFile) : null);
             
+            const activityCardBody = createActivityCardBody(pfpImg, name1, textContent, photoFile ? URL.createObjectURL(photoFile) : null);
+
             // Get the Activity section
             const activitySection = document.getElementById('Activity');
             
@@ -106,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Call the updateProgressBars function initially
     updateProgressBars();
 
-    function rearrangeItems() {
+    function rearrangeItems(name1, pfpImg) {
         // Get the parent div containing all the items
         const lBoard = document.getElementById('l_board');
 
@@ -138,13 +182,13 @@ document.addEventListener("DOMContentLoaded", function() {
         const userName1 = document.querySelector('#item1 [id="user-name"]').textContent.trim();
         const userName2 = document.querySelector('#item2 [id="user-name"]').textContent.trim();
         const userName3 = document.querySelector('#item3 [id="user-name"]').textContent.trim();
-        if(userName1 === "Chyi keat"){
+        if(userName1 === name1){
             chyiKeatRank = 1;
         } 
-        else if(userName2 === "Chyi keat"){
+        else if(userName2 === name1){
             chyiKeatRank = 2;
         }
-        else if(userName3 === "Chyi keat"){
+        else if(userName3 === name1){
             chyiKeatRank = 3;
         }
         else{
@@ -155,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (chyiKeatRank === 1) {
             // Change the profile picture source to the default source
             var profilePic = document.querySelector('#item1-pfp');
-            profilePic.src = '/image/profile_img.webp';
+            profilePic.src = pfpImg;
             var profilePic = document.querySelector('#item2-pfp');
             profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
             var profilePic = document.querySelector('#item3-pfp');
@@ -166,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var profilePic = document.querySelector('#item1-pfp');
             profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
             var profilePic = document.querySelector('#item2-pfp');
-            profilePic.src = '/image/profile_img.webp';
+            profilePic.src = pfpImg;
             var profilePic = document.querySelector('#item3-pfp');
             profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
         }
@@ -177,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var profilePic = document.querySelector('#item2-pfp');
             profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
             var profilePic = document.querySelector('#item3-pfp');
-            profilePic.src = '/image/profile_img.webp';
+            profilePic.src = pfpImg;
         }
         else{
             // Change the profile picture source to /image/baked-avocado-eggs-1.jpeg
@@ -216,10 +260,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Example usage: Update the streak value for "Chyi keat" to 40
-    updateStreakForUser("Chyi keat", 70);
+    
 
     // Call the function to initially arrange the items
-    rearrangeItems();
+    
 
 
 }); 
