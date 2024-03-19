@@ -49,6 +49,15 @@
     border-radius: 0px 0px 50px 50px;
 }
 
+/* #waterBottleInner {
+    position: absolute;
+    bottom: 0;
+    width: 85%;
+    margin-bottom: 10px;
+    border-radius: 0px 0px 50px 50px;
+    background-color: #8DB4B9;
+} */
+
 #waterBottleInner {
     position: absolute;
     bottom: 0;
@@ -56,7 +65,9 @@
     margin-bottom: 10px;
     border-radius: 0px 0px 50px 50px;
     background-color: #8DB4B9;
+    height: var(--waterPercentage); /* Use the CSS variable to set the height */
 }
+
 
 #water-reminder-right > h4 {
 color: #29515D;

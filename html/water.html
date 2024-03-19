@@ -152,7 +152,7 @@
                         <!-- water-circle -->
                         <div class="px-3 py-2">
                             <div id="water-circle">
-                                <h6 class="lead"><span id="waterNeededResult" class="fs-2">0</span> ml</h6>
+                                <h6 class="lead"><span id="waterNeededResult" class="fs-2">1500</span> ml</h6>
                             </div>
                         </div>
 
@@ -365,6 +365,24 @@
             const openR = document.getElementById('openReminder');
             const closeR = document.getElementById('closeReminder');
 
+            const weightDisplay = document.getElementById('bodyWeightInput');
+            const waterNeedDisplay = document.getElementById('waterNeededResult');
+
+            db.ref(userID).on('value', function(snapshot){
+                var data = snapshot.val();
+
+                var weight = data.weight
+
+                weightDisplay.value = weight;
+                calcWater(weight);
+            });
+            
+            function calcWater(w) {
+                var water_need = parseInt(w * 30);
+                //console.log(water_need);
+                waterNeedDisplay.textContent = water_need;
+            }
+
             db.ref(userID + '/waterReminder/').on('value', function(snapshot){
                 var data = snapshot.val();
 
@@ -388,9 +406,10 @@
             const waterDrinkDisplay = document.getElementById('waterDrinkDisplay');
 
             // update water level
-            const waterBottleInner = document.getElementById('waterBottleInner');
             function updateWaterLevel(waterDrink) {
+                const waterBottleInner = document.getElementById('waterBottleInner');
                 const percentageFilled = (waterDrink / parseInt(waterNeedDisplay.textContent)) * 100;
+                console.log(parseInt(waterNeedDisplay.textContent));
                 waterBottleInner.style.height = percentageFilled + '%';
             }
 
@@ -455,24 +474,6 @@
             });
 
             // ----- BREAK LINE ------
-            const weightDisplay = document.getElementById('bodyWeightInput');
-            const waterNeedDisplay = document.getElementById('waterNeededResult');
-
-            db.ref(userID).on('value', function(snapshot){
-                var data = snapshot.val();
-
-                var weight = data.weight
-
-                weightDisplay.value = weight;
-                calcWater(weight);
-            });
-            
-            function calcWater(w) {
-                var water_need = parseInt(w * 30);
-                //console.log(water_need);
-                waterNeedDisplay.textContent = water_need;
-            }
-
             // weight input
             weightDisplay.addEventListener('input', function () {
                 const value = weightDisplay.value.trim();
@@ -503,7 +504,6 @@
                     calcWater(value);
                     
                     updateWaterLevel(waterDrink);
-                    waterDrinkDisplay.textContent = ( waterDrink + " ml");
                 }
             });
 

@@ -145,4 +145,3 @@ logout.addEventListener('click', (e) => {
   e.preventDefault();
   auth.signOut();
 });
-
