@@ -10,7 +10,13 @@
             <link rel="stylesheet" href="css/common.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>SignIn</title>
+    <style>
+        .userline{
+            padding-left: 17vw;
+        }
+    </style>
 </head>
+
 
 <body style="background-color: #DAE1E7;" class="justify-content-between">
     <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -48,7 +54,7 @@
                   <a href="#" class="nav-link text-dark">Community</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">FAQS</a>
+                  <a href="#" class="nav-link text-dark">Q & A</a>
                 </li>
                 <li class="logged-in nav-item">
                     <a href="./itworks.html" class="nav-link text-dark" id="logout">Logout</a>
@@ -74,7 +80,7 @@
             <h3 class="md-4 mt-5 pt-5">Track Your Progress & More!</h3>
             <div class="d-flex">
                 <p class="me-5 pe-5 ">Satrt your fitness journey!</p>
-                <a href="login.html" class="text-dark text-end ms-5 ps-4 ">Exiting user?</a>
+                <a href="login.html" class="text-dark text-end userline">Exiting user?</a>
             </div>
             <form action="" id="signupForm">
 
@@ -100,7 +106,7 @@
                 </div>
             </div>
             <div class="col-12 text-center">
-                <button class="btn btn-secondary" type="submit" >Submit form</button>
+                <button class="btn btn-secondary" type="submit" >Sign Up</button>
             </div>
             </form>
 
@@ -114,7 +120,7 @@
                             <p>Enjoy your daily workouts and your progress on your fitness journey.</p>
                         </div>
                         <div class="col-md-4  align-items-center justify-content-end">
-                            <img src="image/exercise.jpeg" alt="a" class="img-fluid" width="200px" height="50px">
+                            <img src="../image/exercise.jpeg" alt="a" class="img-fluid" width="200px" height="50px">
                         </div>
                     </div>
                 </div>
@@ -127,7 +133,7 @@
                                 one another and work out together.</p>
                         </div>
                         <div class="col-md-4  align-items-center justify-content-end">
-                            <img src="image/commuity.jpeg" alt="a" class="img-fluid" width="200px" height="150px">
+                            <img src="../image/commuity.jpeg" alt="a" class="img-fluid" width="200px" height="150px">
                         </div>
                     </div>
                 </div>
@@ -139,7 +145,7 @@
                                 consume!</p>
                         </div>
                         <div class="col-md-4  align-items-center justify-content-end">
-                            <img src="image/cal.jpeg" alt="a" class="img-fluid" width="300px" height="200px">
+                            <img src="../image/cal.jpeg" alt="a" class="img-fluid" width="300px" height="200px">
                         </div>
                     </div>
                 </div>
@@ -152,7 +158,7 @@
                                 recipes!</p>
                         </div>
                         <div class="col-md-4  align-items-center justify-content-end">
-                            <img src="image/healthymenu.jpeg" alt="a" class="img-fluid" width="200px" height="50px">
+                            <img src="../image/healthymenu.jpeg" alt="a" class="img-fluid" width="200px" height="50px">
                         </div>
                     </div>
                 </div>
@@ -195,7 +201,7 @@
                                 <h4><a href="">Community</a></h4>
                             </li>
                             <li>
-                                <h4><a href="">FAQS</a></h4>
+                                <h4><a href="">Q & A</a></h4>
                             </li>
                         </ul>
                     </div>
@@ -230,6 +236,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
     <script>
+        
         document.addEventListener('DOMContentLoaded', function() {
 
         var modals = document.querySelectorAll('.modal');
@@ -246,3 +253,4 @@
 </body>
 
 </html>
+
