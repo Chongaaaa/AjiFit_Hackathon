@@ -154,11 +154,11 @@
                     <div class="row">
 
                         <div class="col-4">
-                            <h2 class="fw-bold">Signature: </h2>
+                            <h2 class="fw-bold">Membership: </h2>
                         </div>
 
                         <div class="col-8">
-                            <h2 id="signBox"> </h2>
+                            <h2 id="memberBox">None</h2>
                         </div>
 
                     </div>
@@ -179,7 +179,7 @@
                                         <h2 class="fw-bold">Height: </h2>
                                     </div>
                                     <div class="col-4">
-                                        <h2 id="heightBox">0</h2>
+                                        <h2 id="heightBox"></h2>
                                     </div>
                                     <div class="col-1">
                                         <h2>cm</h2>
@@ -191,7 +191,7 @@
                                         <h2 class="fw-bold">Weight: </h2>
                                     </div>
                                     <div class="col-4">
-                                        <h2 id="weightBox">0</h2>
+                                        <h2 id="weightBox"></h2>
                                     </div>
                                     <div class="col-1">
                                         <h2>kg</h2>
@@ -205,7 +205,7 @@
                             <div id="bmi">
                                 <div id="bmi-circle">
                                     <h3>BMI</h3>
-                                    <h2></h2>
+                                    <h2 id="bmi-display"></h2>
                                 </div>
                                 <div class="text-center pt-3">
                                     <h2 id="bmi-result"></h2>
@@ -295,272 +295,8 @@
             </button>
         </div>
     </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
 
-    <script>
-
-        // Add event listeners when the document is fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-
-            //----- FIREBASE -----
-            // Initialize Firebase
-            const firebaseConfig = {
-                apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
-                authDomain: "useruser-5f5dc.firebaseapp.com",
-                databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
-                projectId: "useruser-5f5dc",
-                storageBucket: "useruser-5f5dc.appspot.com",
-                messagingSenderId: "294580009654",
-                appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
-                measurementId: "G-BZTH9RR80E"
-            };
-
-            firebase.initializeApp(firebaseConfig);
-
-            const db = firebase.database();
-
-            //connect to local storage
-            const userID = localStorage.getItem('userId');
-            
-            // Get buttons and elements
-            const editProfile = document.getElementById('editProfile-btn');
-            const changeImgDialog = document.getElementById('imgChange');
-            const editProfileNo = document.getElementById('changeNo'); 
-            const editProfileYes = document.getElementById('changeYes');
-            const imageUploadInput = document.getElementById('imageUploadInput');
-
-            const editBtn = document.getElementById('profile-editBtn');
-            const saveBtn = document.getElementById('profile-saveBtn');
-
-            const nameD = document.getElementById('nameBox');
-            const ageD = document.getElementById('ageBox');
-            const genderD = document.getElementById('genderBox');
-            const signD = document.getElementById('signBox');
-            const heightD = document.getElementById('heightBox');
-            const weightD = document.getElementById('weightBox');
-
-            // retrieve user information
-            console.log(userID);
-            db.on('value', function(snapshot) { 
-
-
-                var data = snapshot.val();
-
-                var userName = data.name;
-                nameD.textContent = userName;
-
-                localStorage.setItem('userName', userName);
-                console.log('name: ', userName);
-
-            });
-
-            // the bmi calculate
-            updateBMI();
-
-            // profile image change
-            editProfile.addEventListener('click', function() {
-
-                document.body.classList.add("stop-scrolling");
-                changeImgDialog.style.display = "block";
-
-            });
-
-            // exit profile image change dialog
-            editProfileNo.addEventListener('click', function() {
-
-                document.body.classList.remove("stop-scrolling");
-                changeImgDialog.style.display = "none";
-
-            });
-
-            // save image
-            editProfileYes.addEventListener('click', function() {
-                imageUploadInput.click();
-            });
-
-            // Add event listener for file input change (when a file is selected)
-            imageUploadInput.addEventListener('change', function(event) {
-
-                const file = event.target.files[0]; // Get the selected file
-                const imgUrl = URL.createObjectURL(file); // Create a URL for the selected image file
-
-                // Update the src attribute of the profile image to display the newly uploaded image
-                editProfile.src = imgUrl;
-
-                document.body.classList.remove("stop-scrolling");
-                changeImgDialog.style.display = "none";
-
-            });
-
-            // ------BREAK LINE-----
-            // edit button
-            // edit button
-            editBtn.addEventListener('click', function() {
-                // Only save button is clickable after clicking on edit button
-                editBtn.disabled = true;
-                saveBtn.disabled = false;
-
-                // Enable input fields for editing
-                enableEditing('signBox', isValidSignature);
-                enableEditing('heightBox', isNumber);
-                enableEditing('weightBox', isNumber);
-                enableEditing('ageBox', isNumber); // Include this line to enable editing for the age field
-
-                // If genderBox content is 'Male/Female', show the select box
-                if (genderBox.textContent === 'Male/Female') {
-                    genderBox.classList.add('visually-hidden'); // Hide the <h2> element
-                    genderSelectBox.classList.remove('visually-hidden'); // Show the <select> element
-                    genderSelectBox.disabled = false; // Enable the dropdown
-                } else {
-                    genderBox.classList.remove('visually-hidden');
-                    genderSelectBox.classList.add('visually-hidden');
-                    genderSelectBox.disabled = true; // Disable the dropdown
-                }
-
-                if (ageBox.textContent === '0') {
-                    enableEditing('ageBox', isNumber); 
-                } else {
-                    disableEditing('ageBox');
-                }
-
-            });
-
-            // Event listener for gender select box
-            const genderSelectBox = document.getElementById('genderSelectBox');
-            genderSelectBox.addEventListener('change', function() {
-                genderBox.textContent = genderSelectBox.value; // Update genderBox with selected value
-                genderBox.classList.remove('visually-hidden'); // Show the <h2> element
-                genderSelectBox.classList.add('visually-hidden'); // Hide the <select> element
-                genderSelectBox.disabled = true; // Disable the dropdown after selection
-            });
-
-            // save button
-            saveBtn.addEventListener('click', function() {
-                if (checkEmptyFields()) {
-                    window.alert('Please fill in all the field.');
-                    return;
-                }
-
-                editBtn.disabled = false;
-                saveBtn.disabled = true;
-                genderBox.classList.remove('visually-hidden'); // Show the <h2> element
-                genderSelectBox.classList.add('visually-hidden'); // Hide the <select> element
-                genderSelectBox.disabled = true; // Disable the dropdown
-
-                // Disable input fields
-                disableEditing('ageBox');
-                disableEditing('signBox');
-                disableEditing('heightBox');
-                disableEditing('weightBox');
-
-                // Update BMI display
-                updateBMI();
-
-                //Bring to database
-                consoleValue()
-            });
-
-            // open edit field
-            function enableEditing(elementId, validationFunction) {
-                const field = document.getElementById(elementId);
-                field.setAttribute('contenteditable', true);
-                field.addEventListener('input', function() {
-                    if (!validationFunction(field.textContent.trim())) {
-                        //window.alert('Invalid input! Please enter a valid value.');
-                        field.textContent = ''; // Clear the invalid input
-                    }
-                });
-            }
-
-            // close edit field
-            function disableEditing(elementId) {
-                const field = document.getElementById(elementId);
-                field.setAttribute('contenteditable', false);
-            }
-
-            // validation
-            function isNumber(value) {
-
-                if (value.trim() === '') {
-                    return true; // Allow empty value
-                }
-
-                if ( !( /^\d+$/.test(value) ) ) {
-                    window.alert('Invalid input! Please enter a digit.');
-                } else if (value.length > 3 ) {
-                    window.alert('Invalid input! Please enter properly.');
-                } else{
-                    return /^\d+$/.test(value);
-                }
-
-            }
-
-            function isValidSignature(value) {
-
-                if (value.trim() === '') {
-                    return true; // Allow empty value
-                }
-
-                if ( !( value.length <= 25 ) ) {
-                    window.alert('Invalid input! Please enter not more than 25 words.');
-                } else{
-                    return value.length <= 25;
-                }
-
-            }
-
-            function checkEmptyFields() {
-
-                if ( ageBox.textContent.trim() === '' || signBox.textContent.trim() === '' || heightBox.textContent.trim() === '' || weightBox.textContent.trim() === '' ) {
-                    return true;
-                } else {
-                    return false;
-                }
-
-            }
-
-            function updateBMI() {
-                const displayBMI = document.querySelector('#bmi-circle h2');
-                const height = parseFloat(document.getElementById('heightBox').textContent) / 100; // Convert height to meters
-                const weight = parseFloat(document.getElementById('weightBox').textContent); // Weight in kg
-
-                const bmiResult = document.getElementById('bmi-result');
-                var result = "";
-
-                const bmi = weight / (height * height);
-                displayBMI.textContent = bmi.toFixed(1);
-
-                // Fix typo here: change 'value' to 'bmi'
-                if (bmi < 18.5) {
-                    result = "Underweight";
-                } else if (bmi < 24.9){
-                    result = "Normal";
-                } else if (bmi < 29.9) {
-                    result = "Overweight";
-                } else if (bmi < 34.9) {
-                    result = "Obese";
-                } else {
-                    result = "Extremely Obese";
-                }
-
-                bmiResult.textContent = result;
-            }
-
-            // need save to database
-            function consoleValue() {
-                console.log("Age: " + document.getElementById('ageBox').textContent);
-                console.log("Gender: " + document.getElementById('genderBox').textContent);
-                console.log("Signature: " + document.getElementById('signBox').textContent);
-                console.log("Height: " + document.getElementById('heightBox').textContent);
-                console.log("Weight: " + document.getElementById('weightBox').textContent);
-            }
-        });
-
-    </script>
-
-    <!-- footer -->
-    <footer>
+<footer>
         <div class="container-fluid justify-content-center text-center py-5">
             <div class="row footer-padding">
                 <!-- All link -->
@@ -620,6 +356,287 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
+    <script>
+
+        // Add event listeners when the document is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+
+            //----- FIREBASE -----
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
+                authDomain: "useruser-5f5dc.firebaseapp.com",
+                databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
+                projectId: "useruser-5f5dc",
+                storageBucket: "useruser-5f5dc.appspot.com",
+                messagingSenderId: "294580009654",
+                appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
+                measurementId: "G-BZTH9RR80E"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+
+            const db = firebase.database();
+
+            //connect to local storage
+            const userID = localStorage.getItem('userId');
+            
+            // Get buttons and elements
+            const editProfile = document.getElementById('editProfile-btn');
+            const changeImgDialog = document.getElementById('imgChange');
+            const editProfileNo = document.getElementById('changeNo'); 
+            const editProfileYes = document.getElementById('changeYes');
+            const imageUploadInput = document.getElementById('imageUploadInput');
+
+            const editBtn = document.getElementById('profile-editBtn');
+            const saveBtn = document.getElementById('profile-saveBtn');
+
+            const nameD = document.getElementById('nameBox');
+            const ageD = document.getElementById('ageBox');
+            const genderD = document.getElementById('genderBox');
+            const memberD = document.getElementById('memberBox');
+            const heightD = document.getElementById('heightBox');
+            const weightD = document.getElementById('weightBox');
+
+            // retrieve user information
+            console.log(userID);
+            db.ref(userID).on('value', function(snapshot) { 
+
+                var data = snapshot.val();
+
+                var userName = data.name;
+                var userAge = data.age;
+                var userGender = data.gender;
+                var userMember = data.membership;
+                var userHeight = data.height;
+                var userWeight = data.weight;
+                var userImg = data.profileImg;
+
+                nameD.textContent = userName;
+                ageD.textContent = userAge;
+                genderD.textContent = userGender;
+                memberD.textContent = userMember;
+                heightD.textContent = userHeight;
+                weightD.textContent = userWeight;
+
+                if (userImg === "none") {
+                    editProfile.src = '../image/avatar.jpg';
+                } else {
+                    editProfile.src = userImg;
+                }
+
+                // the bmi calculate
+                updateBMI();
+
+                localStorage.setItem('userName', userName);
+                console.log('name: ', userName);
+            });
+
+            // load profile image if there is image inside
+            
+            // profile image change
+            editProfile.addEventListener('click', function() {
+
+                document.body.classList.add("stop-scrolling");
+                changeImgDialog.style.display = "block";
+
+            });
+
+            // exit profile image change dialog
+            editProfileNo.addEventListener('click', function() {
+
+                document.body.classList.remove("stop-scrolling");
+                changeImgDialog.style.display = "none";
+
+            });
+
+            // save image
+            editProfileYes.addEventListener('click', function() {
+                imageUploadInput.click();
+            });
+
+            // Add event listener for file input change (when a file is selected)
+            imageUploadInput.addEventListener('change', function(event) {
+
+                const file = event.target.files[0]; // Get the selected file
+                const imgUrl = URL.createObjectURL(file); // Create a URL for the selected image file
+
+                // Update the src attribute of the profile image to display the newly uploaded image
+                editProfile.src = imgUrl;
+                
+                // update to firebase
+                db.ref(userID).update ({
+                    profileImg: imgUrl
+                });
+
+                document.body.classList.remove("stop-scrolling");
+                changeImgDialog.style.display = "none";
+
+            });
+
+            // ------BREAK LINE-----
+            // edit button
+            editBtn.addEventListener('click', function() {
+                // Only save button is clickable after clicking on edit button
+                editBtn.disabled = true;
+                saveBtn.disabled = false;
+
+                // Enable input fields for editing
+                enableEditing('heightBox', isNumber);
+                enableEditing('weightBox', isNumber);
+                enableEditing('ageBox', isNumber); // Include this line to enable editing for the age field
+
+                // If genderBox content is 'Male/Female', show the select box
+                if (genderBox.textContent === 'Male/Female') {
+                    genderBox.classList.add('visually-hidden'); // Hide the <h2> element
+                    genderSelectBox.classList.remove('visually-hidden'); // Show the <select> element
+                    genderSelectBox.disabled = false; // Enable the dropdown
+                } else {
+                    genderBox.classList.remove('visually-hidden');
+                    genderSelectBox.classList.add('visually-hidden');
+                    genderSelectBox.disabled = true; // Disable the dropdown
+                }
+
+                if (ageBox.textContent === '0') {
+                    enableEditing('ageBox', isNumber); 
+                } else {
+                    disableEditing('ageBox');
+                }
+
+            });
+
+            // Event listener for gender select box
+            const genderSelectBox = document.getElementById('genderSelectBox');
+            genderSelectBox.addEventListener('change', function() {
+                genderBox.textContent = genderSelectBox.value; // Update genderBox with selected value
+                genderBox.classList.remove('visually-hidden'); // Show the <h2> element
+                genderSelectBox.classList.add('visually-hidden'); // Hide the <select> element
+                genderSelectBox.disabled = true; // Disable the dropdown after selection
+            });
+
+            // save button
+            saveBtn.addEventListener('click', function() {
+                if (checkEmptyFields()) {
+                    window.alert('Please fill in all the field.');
+                    return;
+                }
+
+                editBtn.disabled = false;
+                saveBtn.disabled = true;
+                genderBox.classList.remove('visually-hidden'); // Show the <h2> element
+                genderSelectBox.classList.add('visually-hidden'); // Hide the <select> element
+                genderSelectBox.disabled = true; // Disable the dropdown
+
+                // Disable input fields
+                disableEditing('ageBox');
+                disableEditing('heightBox');
+                disableEditing('weightBox');
+
+                // Update BMI display
+                updateBMI();
+
+                //Bring to database
+                saveValue()
+            });
+
+            // open edit field
+            function enableEditing(elementId, validationFunction) {
+                const field = document.getElementById(elementId);
+                field.setAttribute('contenteditable', true);
+                field.addEventListener('input', function() {
+                    if (!validationFunction(field.textContent.trim())) {
+                        //window.alert('Invalid input! Please enter a valid value.');
+                        field.textContent = ''; // Clear the invalid input
+                    }
+                });
+            }
+
+            // close edit field
+            function disableEditing(elementId) {
+                const field = document.getElementById(elementId);
+                field.setAttribute('contenteditable', false);
+            }
+
+            // validation
+            function isNumber(value) {
+
+                if (value.trim() === '') {
+                    return true; // Allow empty value
+                }
+
+                if ( !( /^\d+$/.test(value) ) ) {
+                    window.alert('Invalid input! Please enter a digit.');
+                } else if (value.length > 3 ) {
+                    window.alert('Invalid input! Please enter properly.');
+                } else{
+                    return /^\d+$/.test(value);
+                }
+
+            }
+
+            function checkEmptyFields() {
+
+                if ( ageBox.textContent.trim() === '' || heightBox.textContent.trim() === '' || weightBox.textContent.trim() === '' ) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+
+            function updateBMI() {
+                const displayBMI = document.getElementById('bmi-display');
+                const height = parseFloat(heightD.textContent) / 100; // Convert height to meters
+                const weight = parseFloat(weightD.textContent); // Weight in kg
+
+                const bmi = weight / (height * height);
+                displayBMI.textContent = bmi.toFixed(1);
+
+                const bmiResult = document.getElementById('bmi-result');
+                var result = "";
+
+                if (bmi < 18.5) {
+                    result = "Underweight";
+                } else if (bmi < 24.9){
+                    result = "Normal";
+                } else if (bmi < 29.9) {
+                    result = "Overweight";
+                } else if (bmi < 34.9) {
+                    result = "Obese";
+                } else {
+                    result = "Extremely Obese";
+                }
+
+                bmiResult.textContent = result;
+            }
+
+            // need save to database
+            function saveValue() {
+
+                var age = ageD.textContent;
+                var gender = genderD.textContent;
+                var height = heightD.textContent;
+                var weight = weightD.textContent;
+
+                console.log("Age: " + age);
+                console.log("Gender: " + gender);
+                console.log("Height: " + height);
+                console.log("Weight: " + weight);
+
+                db.ref(userID).update({
+                    age: age,
+                    gender: gender,
+                    height: height,
+                    weight: weight
+                });
+
+            }
+        });
+
+    </script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
