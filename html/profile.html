@@ -512,10 +512,12 @@
                 if (selectedImage) {
                     // update to firebase
                     db.ref(userID).update ({
-                        profileImage: selectedImage.src
+                        profileImg: selectedImage.src
                     });
 
+                    editProfile.src = selectedImage.src;
                     console.log('Selected image:', selectedImage.src);
+
                 } else {
                     alert('Please select an image before confirming.');
                 }
