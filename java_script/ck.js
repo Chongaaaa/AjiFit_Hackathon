@@ -16,6 +16,20 @@ document.addEventListener("DOMContentLoaded", function() {
             firebase.initializeApp(firebaseConfig);
 
             const db = firebase.database();
+
+    const userID = localStorage.getItem('userId');
+    db.ref(userID).on('value', function(snapshot){
+        const data = snapshot.val();
+        const loginCount = data.loginCount;
+        const name1 = data.name;
+        const pfpImg = data.profileImg;
+
+        setUserInfo(name1, pfpImg)
+        setPfInfo(name1, pfpImg);
+        updateStreakForUser(name1, loginCount);
+        rearrangeItems(name1, pfpImg);
+
+    });
     
     // Function to handle file selection
     function handleFileSelect(event) {
@@ -68,22 +82,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         return activityCardBody;
     }
-    
-    const userID = localStorage.getItem('userId');
-    db.ref(userID).on('value', function(snapshot){
-        const data = snapshot.val();
-        const loginCount = data.loginCount;
-        const name1 = data.name;
-        const pfpImg = data.profileImg;
-
-        setUserInfo(name1, pfpImg)
-        setPfInfo(name1, pfpImg);
-        updateStreakForUser(name1, loginCount);
-        rearrangeItems(name1, pfpImg);
-        publishPost(pfpImg, name1); // Pass name1 to publishPost function
-        newName(name1);
-
-    });
 
     function setUserInfo(name, pfpImg) {
         document.getElementById('name2').textContent = 'Hello, ' + name;
@@ -97,33 +95,44 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     // Function to handle publishing a new post
-    function publishPost(pfpImg, name1) {
-        
-        console.log("Publish button clicked");
-        // Get the entered text and selected photo
-        const textContent = document.getElementById('post-content').value.trim();
-        const photoUpload = document.getElementById('photo-upload');
-        // Check if both text and photo are provided
-        if (textContent || (photoUpload.files.length > 0 && textContent)) {
-            alert(name1);
-            // Get the photo file
-            const photoFile = photoUpload.files[0];
-            // Create a new card body for the activity
-            
-            const activityCardBody = createActivityCardBody(pfpImg, name1, textContent, photoFile ? URL.createObjectURL(photoFile) : null);
+    function publishPost() {
+        const userID = localStorage.getItem('userId');
+        db.ref(userID).on('value', function(snapshot){
+            const data = snapshot.val();
+            const name1 = data.name;
+            const pfpImg = data.profileImg;
 
-            // Get the Activity section
-            const activitySection = document.getElementById('Activity');
-            
-            // Insert the new card body at the top of the Activity section
-            activitySection.insertBefore(activityCardBody, activitySection.firstChild);
-            
-            // Clear the post-content input and photo-upload input
-            document.getElementById('post-content').value = '';
-            photoUpload.value = null;
-        } else {
-            alert('Please enter text content and/or select a photo before publishing.');
-        }
+            console.log("Publish button clicked");
+            // Get the entered text and selected photo
+            const textContent = document.getElementById('post-content').value.trim();
+            const photoUpload = document.getElementById('photo-upload');
+            // Check if both text and photo are provided
+            alert(name1);
+            if (textContent || (photoUpload.files.length > 0 && textContent)) {
+                alert(name1);
+                // Get the photo file
+                const photoFile = photoUpload.files[0];
+                // Create a new card body for the activity
+                
+                const activityCardBody = createActivityCardBody(pfpImg, name1, textContent, photoFile ? URL.createObjectURL(photoFile) : null);
+
+                // Get the Activity section
+                const activitySection = document.getElementById('Activity');
+                
+                // Insert the new card body at the top of the Activity section
+                activitySection.insertBefore(activityCardBody, activitySection.firstChild);
+                
+                // Clear the post-content input and photo-upload input
+                document.getElementById('post-content').value = '';
+                document.getElementById('post-media').textContent = '';
+                photoUpload.value = null;
+            } else {
+                alert('Please enter text content and/or select a photo before publishing.');
+            }
+
+        });
+
+        
     }
 
     // Add event listener to the Publish button
