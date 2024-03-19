@@ -107,9 +107,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const textContent = document.getElementById('post-content').value.trim();
             const photoUpload = document.getElementById('photo-upload');
             // Check if both text and photo are provided
-            alert(name1);
+            
             if (textContent || (photoUpload.files.length > 0 && textContent)) {
-                alert(name1);
+                
                 // Get the photo file
                 const photoFile = photoUpload.files[0];
                 // Create a new card body for the activity
@@ -138,23 +138,31 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add event listener to the Publish button
     document.getElementById('pb-btn').addEventListener('click', publishPost);
 
-    // Define variables to store the values for each progress bar
-    let progressValue1 = 17;
-    let progressValue2 = 30-progressValue1;
-
     // Function to update the progress bars
     function updateProgressBars() {
-        // Calculate the width of each progress bar
-        const width1 = (progressValue1 / 30) * 100;
-        const width2 = (progressValue2 / 30) * 100;
-
-        // Update the style and aria attributes of each progress bar
-        document.querySelector('.progress-bar:first-of-type').style.width = `${width1}%`;
-        document.querySelector('.progress-bar:first-of-type').setAttribute('aria-valuenow', progressValue1);
-
-        document.querySelector('.progress-bar:last-of-type').style.width = `${width2}%`;
-        document.querySelector('.progress-bar:last-of-type').setAttribute('aria-valuenow', progressValue2);
+        const userID = localStorage.getItem('userId');
+        db.ref(userID).on('value', function(snapshot){
+            const data = snapshot.val();
+            const loginCount = data.loginCount;
+    
+            // Calculate the width of each progress bar
+            if (loginCount > 100) {
+                loginCount -= 100;
+            }
+            const width1 = (loginCount / 100) * 100;
+            const width2 = ((100 - loginCount) / 100) * 100;
+    
+            // Update the style and aria attributes of each progress bar
+            document.querySelector('.progress-bar:first-of-type').style.width = `${width1}%`;
+            document.querySelector('.progress-bar:last-of-type').style.width = `${width2}%`;
+    
+            // Update the value of the 'daysToHund' span
+            const days = loginCount > 0 ? loginCount : 0;
+            const daysText = `${days} days out of 100 days ! `;
+            document.getElementById('daysToHund').innerHTML = `${daysText} <i class="bi bi-fire text-warning fs-5"></i>`;
+        });
     }
+    
 
     // Call the updateProgressBars function initially
     updateProgressBars();
@@ -276,3 +284,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 }); 
+
+// Logout
+const logout = document.querySelector('#logout');
+logout.addEventListener('click', (e) => {
+  localStorage.clear();
+  e.preventDefault();
+  auth.signOut();
+});
