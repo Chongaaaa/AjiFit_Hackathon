@@ -16,7 +16,6 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!-- link with CSS -->
-        <link rel="stylesheet" href="../css/index.css">
         <link rel="stylesheet" href="../css/common.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
@@ -42,7 +41,8 @@
             font-size: 15px;
             margin-bottom: 5px;
         }
-        .card1{
+
+        /* .card1{
             padding-left: 3vw;
         }
         .card2{
@@ -50,7 +50,7 @@
         }
         .sc1{
             padding-left: 10px;
-        }
+        } */
 
         .img-fluid{
             padding-top: 1vh;
@@ -74,6 +74,10 @@
             width: 31vh;
         }
 
+        .card:hover {
+            transform: scale(1.1);
+        }
+
     </style>
     <title>Recipes</title>
 </head>
@@ -81,7 +85,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-xxl">
           <a href="#intro" class="navbar-brand">
-            <span class="fw-bold h1 fs-1 text-secondary">AjiFit</span>
+            <span class="fw-bold h1 fs-1 text-secondary mt-3">AjiFit</span>
           </a>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -161,34 +165,32 @@
                 </div>
             </div>
         </div>
-    </div>
     
+        <div class="row my-4 justify-content-center">
 
-        <div class="row ">
             <!-- Recipe Card 1 -->
-<!-- Recipe Card 1 -->
-        <div class="col-lg-5 ps-6 ms-5 card1">
-            <div class="card mb-3 recipe-card">
-                <div class="row g-0 " >
-                    <div class="col-md-6">
-                        <img src="../image/onepot1.webp" class="img-fluid rounded-start p-1" alt="Recipe 2 Image">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <h5 class="card-title">One Pot Rice Cooker Fried Rice</h5>
-                            <p class="card-text">It can be made in the rice cooker in under 30 minutes and there is no “frying” involved!  </p>
-                            <p class="card-text"><small class="text-muted">Prep Time: 15 minutes | Bake Time: 12 minutes</small></p>
-                            <a href="../html/onepotview.html" class="btn btn-secondary">View Recipe</a>
-                            <a href="" class="btn btn-secondary save-btn" >Save</a>
+            <div class="col-lg-5 ps-4 card1">
+                <div class="card mb-3 recipe-card">
+                    <div class="row g-0 " >
+                        <div class="col-md-6">
+                            <img src="../image/onepot1.webp" class="img-fluid rounded-start p-1" alt="Recipe 2 Image">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">One Pot Rice Cooker Fried Rice</h5>
+                                <p class="card-text">It can be made in the rice cooker in under 30 minutes and there is no “frying” involved!  </p>
+                                <p class="card-text"><small class="text-muted">Prep Time: 15 minutes | Bake Time: 12 minutes</small></p>
+                                <a href="../html/onepotview.html" class="btn btn-secondary">View Recipe</a>
+                                <a href="" class="btn btn-secondary save-btn" >Save</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
     
             <!-- Recipe Card 2 -->
-            <div class="col-lg-5 ps-4 ms-5 card2">
+            <div class="col-lg-5 ps-4 card2">
                 <div class="card mb-3 recipe-card">
                     <div class="row g-0">
                         <div class="col-md-6">
@@ -206,15 +208,18 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <br>
+
     <h3 class="fw-bold ms-3" id="go2">Popular Categories</h3>
-    <!--POpular recipe cards-->
-    <div class="row justify-content-center pb-3 ">
+    <!--Popular recipe cards-->
+    <div id="popular" class="row justify-content-center pt-3 pb-5 ">
+
         <!-- Card 1 -->
-        <div class="col-3 ">
-            <div class="card rounded-card smolcard">
+        <div class="col-3">
+            <div class="card rounded-card smolcard ms-4 me-3">
                 <div class="row g-0 sc1">
                     <div class="col-md-6">
                         <img src="../image/baked-avocado-eggs-1.jpeg" class="img-fluid" alt="Image 1">
@@ -233,7 +238,7 @@
 
         <!-- Card 2 -->
         <div class="col-3">
-            <div class="card rounded-card smolcard">
+            <div class="card rounded-card smolcard mx-3">
                 <div class="row g-0">
                     <div class="col-md-6">
                         <img src="../image/satay-tofu-power-bowl-1682465130524-1.jpeg" class="img-fluid" alt="Image 1">
@@ -249,9 +254,10 @@
                 </div>
             </div>
         </div>
-                <!-- Card 3 -->
+
+        <!-- Card 3 -->
         <div class="col-3">
-            <div class="card rounded-card smolcard3">
+            <div class="card rounded-card smolcard mx-3">
                 <div class="row g-0">
                     <div class="col-md-6">
                         <img src="../image/high-protein-creamy-garlic-chive-dip-1.webp" class="img-fluid" alt="Image 1">
@@ -267,8 +273,10 @@
                 </div>
             </div>
         </div>
+
+        <!-- Card 4 -->
         <div class="col-3">
-            <div class="card rounded-card smolcard">
+            <div class="card rounded-card smolcard ms-3 me-4">
                 <div class="row g-0">
                     <div class="col-md-6">
                         <img src="../image/roasted-squash-beetroot-salad-1.webp" class="img-fluid" alt="Image 1">

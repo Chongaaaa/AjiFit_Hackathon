@@ -52,9 +52,9 @@
   background-color: #f1f7f5;
   display: none;
 }
-.imgrec{
+/* .imgrec{
     margin-left: 50px;
-}
+} */
 .pannel p {
   color: rgba(0, 0, 0, 0.7);
   font-size: 1.2rem;
@@ -72,5 +72,11 @@
   padding: 10px;
   color: black;
   text-decoration: none;
+  border-radius: 5px;
+  font-size: 20px;
 }
 
+.viewbtn:hover {
+  font-weight: bold;
+  color: #29515D;
+}
