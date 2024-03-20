@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- link with CSS -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Exercise</title>
+    <style>
+        #exercisePic {
+            width: auto;
+            height: 500px;
+        }
+
+        .card {
+            height: 750px
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .card-link:hover {
+            color: inherit;
+        }
+    </style>
+</head>
+
+<body style="background-color: #E5E9EA;">
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-xxl">
+            <a href="#intro" class="navbar-brand">
+                <span class="fw-bold h1 fs-1 text-secondary">AjiFit</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon navbar-light"></span></button>
+
+            <div class="d-flex flex-column" id="main-nav">
+                <div class="justify-content-start  align-items-center pt-4">
+                    <span class="fs-5 text-warning">Where Flavor Meets Fitness, Naturally.</span>
+                </div>
+                <div class="collapse navbar-collapse justify-content- align-items-center ms-1" id="main-nav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="../html/index.html" class="nav-link text-dark">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">Receipe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">Exercise</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../html/ck.html" class="nav-link text-dark">Calories Tracker</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../html/water.html" class="nav-link text-dark">Water Reminder</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">Community</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">Q & A</a>
+                        </li>
+                        <li class="logged-in nav-item">
+                            <a href="./login.html" class="nav-link text-dark" id="logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
+                <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
+                    <div>
+                        <span class="fs-5 text-warning mt-3">User_name</span>
+                        <a href="../html/profile.html"><img src="..." class="rounded-circle fs-1 border border-1"
+                                alt="..."></a>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="fs-1 pt-3 text-center">AjiFit Exercise</h1>
+
+    <h3 class="fs-3 fw-bold mt-5 ms-5 ps-5">Trending Exercises</h3>
+    <p class="fs-4 ms-5 ps-5">Try out popular exercises chosen by most people</p>
+
+    <div class="row row-cols-1 row-cols-md-3 mt-0 pt-0 mx-5 px-5">
+        <div class="col">
+            <a href="../html/squat.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/squat-jumps-960x540.jpg" id="exercisePic" class="card-img-top" alt="Squat Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Squat</h5>
+                        <p class="card-text">The squat is a fundamental compound exercise that targets multiple muscle
+                            groups in the lower body, primarily the quadriceps, hamstrings, glutes, and lower back.
+                            It's often considered one of the most effective exercises for building lower body strength
+                            and
+                            functional fitness.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="../html/benchpress.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/bench press.jpg" id="exercisePic" class="card-img-top" alt="Bench Press Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Bench Press</h5>
+                        <p class="card-text">The bench press is a popular strength training exercise that primarily
+                            targets
+                            the muscles of the chest, shoulders, and triceps.
+                            It is typically performed lying on a flat bench, hence the name "bench press."</p><br>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="../html/latpulldown.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/lat pulldown.jpg" id="exercisePic" class="card-img-top" alt="Lat Pulldown Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Lat Pulldown</h5>
+                        <p class="card-text">The lat pulldown is a popular strength training exercise that targets the
+                            muscles of the upper back, particularly the latissimus dorsi, or "lats."
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <br>
+    <h3 class="fs-3 fw-bold mt-5 ms-5 ps-5">Core Exercises</h3>
+    <p class="fs-4 ms-5 ps-5">Exercise that prioritize core strength</p>
+
+    <div class="row row-cols-1 row-cols-md-3 mt-0 pt-0 mx-5 px-5">
+        <div class="col">
+            <a href="../html/plank.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/plank.png" id="exercisePic" class="card-img-top" alt="Plank Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Plank</h5>
+                        <p class="card-text">The plank is a core strengthening exercise that targets multiple muscles in
+                            the
+                            body, primarily focusing on the abdominals, obliques, lower back, shoulders, and chest.
+                            It's a static exercise, meaning you hold a specific position for a set amount of time rather
+                            than performing dynamic movements.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="../html/bicyclecrunch.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/bicycle crunch.jpg" id="exercisePic" class="card-img-top" alt="Bicycle Crunch Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Bicycle Crunches</h5>
+                        <p class="card-text">Bicycle crunches are a more dynamic variation of the traditional crunch,
+                            incorporating twisting and leg movement to engage both the upper and lower abdominal
+                            muscles, as
+                            well as the obliques. </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="../html/russiantwist.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/russian twist.jpeg" id="exercisePic" class="card-img-top" alt="Russian Twist Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Russian Twist</h5>
+                        <p class="card-text">The Russian twist is a core exercise that primarily targets the obliques,
+                            the
+                            muscles on the sides of your abdomen, as well as the rectus abdominis (front abdominal
+                            muscles)
+                            and the lower back.
+                            It's a rotational movement that engages the core muscles to stabilize the torso while
+                            twisting
+                            from side to side.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <br>
+    <h3 class="fs-3 fw-bold mt-5 ms-5 ps-5">Leg Exercises</h3>
+    <p class="fs-4 ms-5 ps-5">Leg strengthening circuits</p>
+
+    <div class="row row-cols-1 row-cols-md-3 mt-0 pt-0 mx-5 px-5">
+        <div class="col">
+            <a href="../html/lunges.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/lunges.jpg" id="exercisePic" class="card-img-top" alt="Lunges Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Lunges</h5>
+                        <p class="card-text">Lunges are a versatile lower body exercise that primarily target the
+                            quadriceps, hamstrings, and glutes, while also engaging the calves and core muscles for
+                            stabilization.
+                            Lunges involve stepping forward or backward into a split stance and lowering your body until
+                            both knees are bent at roughly 90-degree angles.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="../html/legpress.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/leg press.jpg" id="exercisePic" class="card-img-top" alt="Leg Press Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Leg Press</h5>
+                        <p class="card-text">The leg press is a resistance exercise performed on a leg press machine,
+                            primarily targeting the quadriceps, hamstrings, and glutes.
+                            It's an effective exercise for building lower body strength and muscle mass while minimizing
+                            stress on the lower back.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="../html/calfraise.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/calf raise.jpg" id="exercisePic" class="card-img-top" alt="Calf Raise Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Calf Raise</h5>
+                        <p class="card-text">Calf raises are a simple yet effective exercise for targeting the calf
+                            muscles,
+                            specifically the gastrocnemius and soleus. The primary function of the calf muscles is
+                            plantar
+                            flexion, which is the movement of pointing your toes downward, as in standing on your
+                            tiptoes.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <br>
+    <h3 class="fs-3 fw-bold mt-5 ms-5 ps-5">Arm Exercises</h3>
+    <p class="fs-4 ms-5 ps-5">Arm strengthening circuits</p>
+
+    <div class="row row-cols-1 row-cols-md-3 mt-0 pt-0 m-5 p-5">
+        <div class="col">
+            <a href="../html/bicepcurl.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/bicep curl.jpg" id="exercisePic" class="card-img-top" alt="Bicep Curl Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Bicep Curl</h5>
+                        <p class="card-text">The bicep curl is a fundamental exercise for targeting the biceps brachii
+                            muscle, located on the front of the upper arm.
+                            The bicep curl primarily works the biceps brachii muscle, along with assistance from the
+                            brachialis and brachioradialis muscles.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="../html/tricepdip.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/tricep dip.jpg" id="exercisePic" class="card-img-top img-fluid" alt="Tricep Dip Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Tricep Dip</h5>
+                        <p class="card-text">The tricep dip is an effective exercise for targeting the triceps brachii
+                            muscle, located on the back of the upper arm.
+                            Tricep dips primarily work the long head of the triceps muscle, along with assistance from
+                            the
+                            lateral and medial heads.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="lateralraise.html" class="card-link">
+                <div class="card mx-3">
+                    <img src="../image/exerciseImg/lateral raise.jpg" id="exercisePic" class="card-img-top img-fluid"
+                        alt="Lateral Raise Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Lateral Raise</h5>
+                        <p class="card-text">Lateral raises are an excellent exercise for targeting the deltoid muscle,
+                            specifically the lateral head, which is located on the side of the shoulder.
+                            Lateral raises primarily isolate the lateral deltoid, helping to improve shoulder width and
+                            definition.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container-fluid justify-content-center text-center py-5">
+            <div class="row footer-padding">
+                <!-- All link -->
+                <div class="col-sm-1 col-md-4 col-lg-4">
+                    <div id="footer-link">
+                        <ul>
+                            <li>
+                                <h4><a href="../html/index.html">Home</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="../html/menu.html">Receipe</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="">Exercise</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="../html/Tracker.html">Calories Tracker</a></h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-1 col-md-4 col-lg-3">
+                    <div id="footer-link">
+                        <ul>
+                            <li>
+                                <h4><a href="../html/water.html">Water Reminder</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="../html/ck.html">Community</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="">Q & A</a></h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-sm-2 col-md-4 col-lg-5">
+                    <h3 class="display-6 fw-bold">Contact Us</h3>
+
+                    <div class="contact-icon">
+                        <a href="https://www.instagram.com/accounts/login"><i class="bi bi-instagram fs-1 me-3"></i></a>
+                        <a href="https://web.facebook.com"><i class="bi bi-facebook fs-1 me-3"></i></a>
+                        <a href="https://twitter.com/i/flow/login"><i class="bi bi-twitter fs-1 me-3"></i></a>
+                    </div>
+
+                    <div class="star mt-3 mb-1">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill fs-3"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+
+                    <p>&copy; 2004 - 2024 AjiFit. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+
+
+</body>
+
+</html>
