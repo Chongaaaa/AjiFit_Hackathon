@@ -25,6 +25,14 @@
     <script src="../java_script/loginsignup.js"></script>
     
     <title>Profile</title>
+
+    <style>
+        #pfpImg{
+          width: 60px;
+          height: 75px;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -51,7 +59,7 @@
                   <a href="../html/menu.html" class="nav-link text-dark">Receipe</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">Exercise</a>
+                  <a href="../html/exercise.html" class="nav-link text-dark">Exercise</a>
                 </li>
                 <li class="nav-item">
                   <a href="../html/Tracker.html" class="nav-link text-dark">Calories Tracker</a>
@@ -63,11 +71,11 @@
                   <a href="../html/ck.html" class="nav-link text-dark">Community</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">FAQS</a>
+                  <a href="../html/faqs.html" class="nav-link text-dark">FAQS</a>
                 </li>
                 <li class="logged-in nav-item">
-                    <a href="./login.html" class="nav-link text-dark" id="logout">Logout</a>
-                </li>
+                  <a href="./login.html" class="nav-link text-dark" id="logout">Logout</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -75,13 +83,13 @@
           <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
             <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
               <div>
-                <span class="fs-5 text-warning mt-3">User_name</span>
-                <a href="../html/profile.html"><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
+                <span class="fs-5 text-warning mt-3" id="name1">User_name</span>
+                <a href="../html/profile.html"><img src="..." id="pfpImg" class="rounded-circle fs-1 border border-1" alt="..."></a>
               </div>
             </li>
           </div>
         </div>
-    </nav>
+      </nav>
 
     <!-- profile -->
     <div id="profile" class="container-lg">
@@ -440,6 +448,12 @@
 
                 var data = snapshot.val();
 
+                const name1 = data.name;
+                const pfpImg = data.profileImg;
+
+                setPfInfo(name1, pfpImg);
+
+
                 var userName = data.name;
                 var userAge = data.age;
                 var userGender = data.gender;
@@ -469,6 +483,11 @@
                 localStorage.setItem('userName', userName);
                 console.log('name: ', userName);
             });
+
+            function setPfInfo(name, pfpImg) {
+                document.getElementById('name1').textContent = name;
+                document.getElementById('pfpImg').src = pfpImg;
+            }
 
             // load profile image if there is image inside
             // profile image change
