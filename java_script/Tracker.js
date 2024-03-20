@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const name1 = data.name;
         const pfpImg = data.profileImg;
         setPfInfo(name1, pfpImg);
-
+    
     });
     db.ref(userID).on('value', function(snapshot){
         const data = snapshot.val();
@@ -172,8 +172,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 fat: fatValue,
                 foodDesc: foodDesc.value
                 });
-                showRecord(userID, count);
-                count++;
+            showAllRecord();
+            count++
+            
                 
         }
   });
@@ -205,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector("path.purple").style.strokeDashoffset = "0";
             document.querySelector("path.purple").style.stroke = "red";
         }
+        showAllRecord();
 
         // Reset alertShown variable
         alertShown = false;
@@ -220,127 +222,55 @@ document.addEventListener("DOMContentLoaded", function() {
         caloriesPDay.focus(); // Focus back on the input field
     }
 }
-function showAllRecord(){
+function showAllRecord() {
     const userID = localStorage.getItem('userId');
     const recordContainer = document.getElementById('record-container');
 
-    db.ref(userID + '/RecordCount').on('value', function(snapshot){
-        const data = snapshot.val();
-        const rCount = data.recordCount;
+    recordContainer.innerHTML = '';
+    
+    // Initialize sums
+    let caloriesSum = 0;
+    let carbSum = 0;
+    let proteinSum = 0;
+    let fatSum = 0;
 
-        for(let count = 1; count <= rCount; count++){
-            db.ref(userID + '/Record/' + count).on('value', function(snapshot) {
+    // Reference to the records of the user
+    db.ref(userID + '/Record').once('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            const data = childSnapshot.val();
+            const date = data.Date;
+            const mealType = data.mealType;
+            const foodDesc = data.foodDesc;
+            const time = data.Time;
+            const calories = data.Calories;
+            const carbValue = data.carborhydrate;
+            const proteinValue = data.protein;
+            const fatValue = data.fat;
+            const cpd = data.caloriesPDay;
 
-                const data = snapshot.val();
-                const date = data.Date;
-                const mealType = data.mealType;
-                const foodDesc = data.foodDesc;
-                const time = data.Time;
-                const calories = data.Calories;
-        
-                
+            // Create a new record div
+            let existingRecord = document.getElementById(`record-${date}`);
+            if (!existingRecord) {
+                // If no record with the same date exists, create a new one
+                existingRecord = document.createElement('div');
+                existingRecord.id = `record-${date}`;
+                existingRecord.classList.add('col-12', 'justify-content-start', 'mb-1');
 
-                // Check if a record with the same date exists
-                let existingRecord = document.getElementById(`record-${date}`);
-                if (!existingRecord) {
+                // Add date section
+                const dateSection = document.createElement('div');
+                dateSection.classList.add('d-flex', 'w-100', 'justify-content-start', 'mt-1', 'ms-1');
+                const dateHeading = document.createElement('h5');
+                dateHeading.classList.add('mb-1');
+                dateHeading.textContent = date;
+                dateSection.appendChild(dateHeading);
+                const calendarIcon = document.createElement('span');
+                calendarIcon.classList.add('ms-3');
+                calendarIcon.innerHTML = '<i class="bi bi-calendar"></i>';
+                dateSection.appendChild(calendarIcon);
+                existingRecord.appendChild(dateSection);
 
-                    // If no record with the same date exists, create a new one
-                    existingRecord = document.createElement('div');
-                    existingRecord.id = `record-${date}`;
-                    existingRecord.classList.add('col-12', 'justify-content-start', 'mb-1');
-        
-                    // Add date section
-                    const dateSection = document.createElement('div');
-                    dateSection.classList.add('d-flex', 'w-100', 'justify-content-start', 'mt-1', 'ms-1');
-                    const dateHeading = document.createElement('h5');
-                    dateHeading.classList.add('mb-1');
-                    dateHeading.textContent = date;
-                    dateSection.appendChild(dateHeading);
-                    const calendarIcon = document.createElement('span');
-                    calendarIcon.classList.add('ms-3');
-                    calendarIcon.innerHTML = '<i class="bi bi-calendar"></i>';
-                    dateSection.appendChild(calendarIcon);
-                    existingRecord.appendChild(dateSection);
-        
-                    recordContainer.prepend(existingRecord); // Insert the new record on top
-                }
-        
-                // Add meal details to the existing record
-                const mealContainer = document.createElement('div');
-                mealContainer.classList.add('container', 'mb-2');
-                mealContainer.style.backgroundColor = '#B2C5D3';
-                const mealRow = document.createElement('div');
-                mealRow.classList.add('row', 'justify-content-start', 'my-1');
-                mealContainer.appendChild(mealRow);
-                const mealIcon = document.createElement('i');
-                mealIcon.classList.add('col-1', 'bi', 'bi-calendar', 'pt-4');
-                mealRow.appendChild(mealIcon);
-                const mealTextContainer = document.createElement('div');
-                mealTextContainer.classList.add('col-5', 'text-start', 'py-2', 'ps-4');
-                const mealTypeSpan = document.createElement('span');
-                mealTypeSpan.classList.add('fs-5');
-                mealTypeSpan.textContent = mealType;
-                mealTextContainer.appendChild(mealTypeSpan);
-                const foodDescHeading = document.createElement('h6');
-                foodDescHeading.classList.add('text-muted');
-                foodDescHeading.textContent = foodDesc;
-                mealTextContainer.appendChild(foodDescHeading);
-                mealRow.appendChild(mealTextContainer);
-                const timeColumn = document.createElement('div');
-                timeColumn.classList.add('col-3', 'py-2', 'text-end');
-                const timeSpan = document.createElement('span');
-                timeSpan.classList.add('fs-5');
-                timeSpan.textContent = "Time: " + time;
-                timeColumn.appendChild(timeSpan);
-                mealRow.appendChild(timeColumn);
-                const caloriesColumn = document.createElement('div');
-                caloriesColumn.classList.add('col-3', 'py-2', 'text-end');
-                const caloriesSpan = document.createElement('span');
-                caloriesSpan.classList.add('fs-5');
-                caloriesSpan.textContent = `${calories} kCal`;
-                caloriesColumn.appendChild(caloriesSpan);
-                mealRow.appendChild(caloriesColumn);
-        
-                existingRecord.appendChild(mealContainer);
-                existingRecord.appendChild(exerciseContainer);
-            });
-        }
-    });
-}
-
-function showRecord(userID, count) {
-    const recordContainer = document.getElementById('record-container');
-
-    db.ref(userID + '/Record/' + count).on('value', function(snapshot) {
-        const data = snapshot.val();
-        const date = data.Date;
-        const mealType = data.mealType;
-        const foodDesc = data.foodDesc;
-        const time = data.Time;
-        const calories = data.Calories;
-
-        // Check if a record with the same date exists
-        let existingRecord = document.getElementById(`record-${date}`);
-        if (!existingRecord) {
-            // If no record with the same date exists, create a new one
-            existingRecord = document.createElement('div');
-            existingRecord.id = `record-${date}`;
-            existingRecord.classList.add('col-12', 'justify-content-start', 'mb-1');
-
-            // Add date section
-            const dateSection = document.createElement('div');
-            dateSection.classList.add('d-flex', 'w-100', 'justify-content-start', 'mt-1', 'ms-1');
-            const dateHeading = document.createElement('h5');
-            dateHeading.classList.add('mb-1');
-            dateHeading.textContent = date;
-            dateSection.appendChild(dateHeading);
-            const calendarIcon = document.createElement('span');
-            calendarIcon.classList.add('ms-3');
-            calendarIcon.innerHTML = '<i class="bi bi-calendar"></i>';
-            dateSection.appendChild(calendarIcon);
-            existingRecord.appendChild(dateSection);
-
-            recordContainer.prepend(existingRecord); // Insert the new record on top
+                recordContainer.prepend(existingRecord);
+            }
 
             // Add meal details to the existing record
             const mealContainer = document.createElement('div');
@@ -379,12 +309,124 @@ function showRecord(userID, count) {
             mealRow.appendChild(caloriesColumn);
 
             existingRecord.appendChild(mealContainer);
-            existingRecord.appendChild(exerciseContainer);
-        }
+            recordContainer.prepend(existingRecord);
 
+            // Check if the date matches today's date
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+            var yyyy = today.getFullYear();
+            var formattedToday = yyyy + '-' + mm + '-' + dd;
+
+            if (date === formattedToday) {
+                // If the date matches today's date, update sums
+                caloriesSum += calories;
+                carbSum += carbValue;
+                proteinSum += proteinValue;
+                fatSum += fatValue;
+            }
+        });
+
+        // Update the totals for today
         
+        document.getElementById("clr-text").textContent = `${caloriesSum} / ${caloriesPDay.value} kCal`;
+        document.getElementById('carb-out').value = carbSum;
+        document.getElementById('prt-out').value = proteinSum;
+        document.getElementById('fat-out').value = fatSum;
+
+        document.documentElement.style.setProperty('--caloriesPDay', caloriesPDay.value);
+        document.documentElement.style.setProperty('--Sum', caloriesSum);
+        if (caloriesSum < caloriesPDay.value) {
+            document.querySelector("path.purple").style.stroke = "#8DB4B9";
+            // If greater than or equal to 1500, calculate the dash offset
+            document.querySelector("path.purple").style.strokeDashoffset = `calc(40 * 3.142 * 1.85 - (var(--Sum) / var(--caloriesPDay)) * (40 * 3.142 * 1.85))`;
+            document.getElementById("clr-text").textContent = `${caloriesSum} / ${caloriesPDay.value} kCal`;
+        } else {
+            // If smaller than 1500, fully fill the path
+            document.querySelector("path.purple").style.strokeDashoffset = "0";
+            document.querySelector("path.purple").style.stroke = "red";
+        }
     });
 }
+
+
+// function showRecord(userID, count) {
+//     const recordContainer = document.getElementById('record-container');
+
+//     db.ref(userID + '/Record/' + count).on('value', function(snapshot) {
+//         const data = snapshot.val();
+//         const date = data.Date;
+//         const mealType = data.mealType;
+//         const foodDesc = data.foodDesc;
+//         const time = data.Time;
+//         const calories = data.Calories;
+
+//         // Check if a record with the same date exists
+//         let existingRecord = document.getElementById(`record-${date}`);
+//         if (!existingRecord) {
+//             // If no record with the same date exists, create a new one
+//             existingRecord = document.createElement('div');
+//             existingRecord.id = `record-${date}`;
+//             existingRecord.classList.add('col-12', 'justify-content-start', 'mb-1');
+
+//             // Add date section
+//             const dateSection = document.createElement('div');
+//             dateSection.classList.add('d-flex', 'w-100', 'justify-content-start', 'mt-1', 'ms-1');
+//             const dateHeading = document.createElement('h5');
+//             dateHeading.classList.add('mb-1');
+//             dateHeading.textContent = date;
+//             dateSection.appendChild(dateHeading);
+//             const calendarIcon = document.createElement('span');
+//             calendarIcon.classList.add('ms-3');
+//             calendarIcon.innerHTML = '<i class="bi bi-calendar"></i>';
+//             dateSection.appendChild(calendarIcon);
+//             existingRecord.appendChild(dateSection);
+
+//             recordContainer.prepend(existingRecord); // Insert the new record on top
+
+//             // Add meal details to the existing record
+//             const mealContainer = document.createElement('div');
+//             mealContainer.classList.add('container', 'mb-2');
+//             mealContainer.style.backgroundColor = '#B2C5D3';
+//             const mealRow = document.createElement('div');
+//             mealRow.classList.add('row', 'justify-content-start', 'my-1');
+//             mealContainer.appendChild(mealRow);
+//             const mealIcon = document.createElement('i');
+//             mealIcon.classList.add('col-1', 'bi', 'bi-calendar', 'pt-4');
+//             mealRow.appendChild(mealIcon);
+//             const mealTextContainer = document.createElement('div');
+//             mealTextContainer.classList.add('col-5', 'text-start', 'py-2', 'ps-4');
+//             const mealTypeSpan = document.createElement('span');
+//             mealTypeSpan.classList.add('fs-5');
+//             mealTypeSpan.textContent = mealType;
+//             mealTextContainer.appendChild(mealTypeSpan);
+//             const foodDescHeading = document.createElement('h6');
+//             foodDescHeading.classList.add('text-muted');
+//             foodDescHeading.textContent = foodDesc;
+//             mealTextContainer.appendChild(foodDescHeading);
+//             mealRow.appendChild(mealTextContainer);
+//             const timeColumn = document.createElement('div');
+//             timeColumn.classList.add('col-3', 'py-2', 'text-end');
+//             const timeSpan = document.createElement('span');
+//             timeSpan.classList.add('fs-5');
+//             timeSpan.textContent = "Time: " + time;
+//             timeColumn.appendChild(timeSpan);
+//             mealRow.appendChild(timeColumn);
+//             const caloriesColumn = document.createElement('div');
+//             caloriesColumn.classList.add('col-3', 'py-2', 'text-end');
+//             const caloriesSpan = document.createElement('span');
+//             caloriesSpan.classList.add('fs-5');
+//             caloriesSpan.textContent = `${calories} kCal`;
+//             caloriesColumn.appendChild(caloriesSpan);
+//             mealRow.appendChild(caloriesColumn);
+
+//             existingRecord.appendChild(mealContainer);
+//             existingRecord.appendChild(exerciseContainer);
+//         }
+
+        
+//     });
+// }
 });
 
 // Logout
