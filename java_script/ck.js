@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
             firebase.initializeApp(firebaseConfig);
 
             const db = firebase.database();
+    var count = 1;
+    
+    displayPosts();
 
     const userID = localStorage.getItem('userId');
     db.ref(userID).on('value', function(snapshot){
@@ -51,9 +54,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to create a new card body for activity
     // Function to create a new card body for activity
     function createActivityCardBody(profileImgSrc, name, textContent, photoContentSrc) {
+        
         const activityCardBody = document.createElement('div');
         activityCardBody.classList.add('card-body');
-
+    
         const profileInfo = document.createElement('div');
         profileInfo.classList.add('card-title', 'text-white');
         profileInfo.setAttribute('id', 'pfp');
@@ -62,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <span class="fs-5"> ${name} | Public | <span style="font-size: 15px;">1 min ago</span></span>
         `;
         activityCardBody.appendChild(profileInfo);
-
+    
         const postContent = document.createElement('div');
         postContent.classList.add('card-body');
         postContent.setAttribute('id', 'post');
@@ -70,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <img src="${photoContentSrc}" id="photo-content" alt="">
         `;
         activityCardBody.appendChild(postContent);
-
+    
         const actionContent = document.createElement('div');
         actionContent.classList.add('mt-1');
         actionContent.innerHTML = `
@@ -79,9 +83,14 @@ document.addEventListener("DOMContentLoaded", function() {
             <span class="ms-2 fs-4" id="text-content">${textContent}</span>
         `;
         activityCardBody.appendChild(actionContent);
-
+    
+        // Add a horizontal line at the end of the card body
+        const hr = document.createElement('hr');
+        activityCardBody.appendChild(hr);
+    
         return activityCardBody;
     }
+    
 
     function setUserInfo(name, pfpImg) {
         document.getElementById('name2').textContent = 'Hello, ' + name;
@@ -95,45 +104,61 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     // Function to handle publishing a new post
-    function publishPost() {
-        const userID = localStorage.getItem('userId');
-        db.ref(userID).on('value', function(snapshot){
-            const data = snapshot.val();
-            const name1 = data.name;
-            const pfpImg = data.profileImg;
+    // Define count outside of the functions
 
-            console.log("Publish button clicked");
-            // Get the entered text and selected photo
-            const textContent = document.getElementById('post-content').value.trim();
-            const photoUpload = document.getElementById('photo-upload');
-            // Check if both text and photo are provided
+function publishPost() {
+    const userID = localStorage.getItem('userId');
+    
+    db.ref(userID).once('value', function(snapshot){
+        const data = snapshot.val();
+        const name1 = data.name;
+        const pfpImg = data.profileImg;
+
+        console.log("Publish button clicked");
+        // Get the entered text and selected photo
+        const textContent = document.getElementById('post-content').value.trim();
+        const photoUpload = document.getElementById('photo-upload');
+        // Check if both text and photo are provided
+
+        if (textContent || (photoUpload.files.length > 0 && textContent)) {
             
-            if (textContent || (photoUpload.files.length > 0 && textContent)) {
-                
-                // Get the photo file
-                const photoFile = photoUpload.files[0];
-                // Create a new card body for the activity
-                
-                const activityCardBody = createActivityCardBody(pfpImg, name1, textContent, photoFile ? URL.createObjectURL(photoFile) : null);
+            // Get the photo file
+            const photoFile = photoUpload.files[0];
+            // Create a new card body for the activity
+            storePost(userID, textContent, URL.createObjectURL(photoFile));
+            const activityCardBody = createActivityCardBody(pfpImg, name1, textContent, photoFile ? URL.createObjectURL(photoFile) : null);
+            // Get the Activity section
+            
+            
+            const activitySection = document.getElementById('Activity');
+            
+            // Insert the new card body at the top of the Activity section
+            activitySection.insertBefore(activityCardBody, activitySection.firstChild);
+            
+            // Clear the post-content input and photo-upload input
+            document.getElementById('post-content').value = '';
+            document.getElementById('post-media').textContent = '';
+            photoUpload.value = null;
 
-                // Get the Activity section
-                const activitySection = document.getElementById('Activity');
-                
-                // Insert the new card body at the top of the Activity section
-                activitySection.insertBefore(activityCardBody, activitySection.firstChild);
-                
-                // Clear the post-content input and photo-upload input
-                document.getElementById('post-content').value = '';
-                document.getElementById('post-media').textContent = '';
-                photoUpload.value = null;
-            } else {
-                alert('Please enter text content and/or select a photo before publishing.');
-            }
+            // Store the post in the database
+            
+            
+        } else {
+            alert('Please enter text content and/or select a photo before publishing.');
+        }
+    });
+}
 
-        });
+function storePost(userID, textContent, photoContent) {
+    db.ref(userID  + '/Post/' + count ).set({
+        textContent: textContent,
+        photoContent: photoContent
+    });
+    count++;
+}
 
-        
-    }
+
+
 
     // Add event listener to the Publish button
     document.getElementById('pb-btn').addEventListener('click', publishPost);
@@ -282,8 +307,31 @@ document.addEventListener("DOMContentLoaded", function() {
     // Call the function to initially arrange the items
     
 
-
+    function displayPosts() {
+        const userID = localStorage.getItem('userId');
+        db.ref(userID + '/Post').once('value', function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                // Retrieve post data
+                const postData = childSnapshot.val();
+                const textContent = postData.textContent;
+                const photoContent = postData.photoContent;
+                db.ref(userID).once('value', function(snapshot){
+                    const data = snapshot.val();
+                    const name1 = data.name;
+                
+                    // Create card body for the post
+                    const activityCardBody = createActivityCardBody(data.profileImg, name1, textContent, photoContent);
+                    
+                    // Get the Activity section and insert the new card body
+                    const activitySection = document.getElementById('Activity');
+                    activitySection.insertBefore(activityCardBody, activitySection.firstChild);
+                });
+            });
+        });
+    }    
 }); 
+
+
 
 // Logout
 const logout = document.querySelector('#logout');
