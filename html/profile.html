@@ -510,13 +510,19 @@
             editProfileYes.addEventListener('click', function() {
                 const selectedImage = document.querySelector('.img-thumbnail.selected');
                 if (selectedImage) {
+
+                    const filename = selectedImage.src.split('/').pop(); // Get the last part of the URL which is the filename
+        
+                    // Construct the path with the filename
+                    const imagePath = `../image/avatar/${filename}`;
+
                     // update to firebase
                     db.ref(userID).update ({
-                        profileImg: selectedImage.src
+                        profileImg: imagePath
                     });
 
-                    editProfile.src = selectedImage.src;
-                    console.log('Selected image:', selectedImage.src);
+                    editProfile.src = imagePath;
+                    console.log('Selected image:', imagePath);
 
                 } else {
                     alert('Please select an image before confirming.');
