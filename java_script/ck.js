@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function setUserInfo(name, pfpImg) {
         document.getElementById('name2').textContent = 'Hello, ' + name;
         document.getElementById('pfpImg').src = pfpImg;
+        document.getElementById('pfpImgP').src = pfpImg;
 
     }
     
@@ -106,48 +107,52 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to handle publishing a new post
     // Define count outside of the functions
 
-function publishPost() {
-    const userID = localStorage.getItem('userId');
+    function publishPost() {
+        const userID = localStorage.getItem('userId');
+        
+        db.ref(userID).once('value', function(snapshot){
+            const data = snapshot.val();
+            const name1 = data.name;
+            const pfpImg = data.profileImg;
     
-    db.ref(userID).once('value', function(snapshot){
-        const data = snapshot.val();
-        const name1 = data.name;
-        const pfpImg = data.profileImg;
-
-        console.log("Publish button clicked");
-        // Get the entered text and selected photo
-        const textContent = document.getElementById('post-content').value.trim();
-        const photoUpload = document.getElementById('photo-upload');
-        // Check if both text and photo are provided
-
-        if (textContent || (photoUpload.files.length > 0 && textContent)) {
+            console.log("Publish button clicked");
+            // Get the entered text and selected photo
+            const textContent = document.getElementById('post-content').value.trim();
+            const photoUpload = document.getElementById('photo-upload');
             
-            // Get the photo file
-            const photoFile = photoUpload.files[0];
-            // Create a new card body for the activity
-            storePost(userID, textContent, URL.createObjectURL(photoFile));
-            const activityCardBody = createActivityCardBody(pfpImg, name1, textContent, photoFile ? URL.createObjectURL(photoFile) : null);
-            // Get the Activity section
-            
-            
-            const activitySection = document.getElementById('Activity');
-            
-            // Insert the new card body at the top of the Activity section
-            activitySection.insertBefore(activityCardBody, activitySection.firstChild);
-            
-            // Clear the post-content input and photo-upload input
-            document.getElementById('post-content').value = '';
-            document.getElementById('post-media').textContent = '';
-            photoUpload.value = null;
-
-            // Store the post in the database
-            
-            
-        } else {
-            alert('Please enter text content and/or select a photo before publishing.');
-        }
-    });
-}
+            // Check if both text and photo are provided
+            if (textContent || (photoUpload.files.length > 0 && textContent)) {
+                
+                // Get the photo file and its filename
+                const photoFile = photoUpload.files[0];
+                const filename = photoFile.name;
+                
+                // Construct the image path with the filename
+                const imagePath = `../image/${filename}`;
+                alert(imagePath);
+                
+                // Create a new card body for the activity
+                storePost(userID, textContent, imagePath);
+                const activityCardBody = createActivityCardBody(pfpImg, name1, textContent, imagePath);
+                
+                // Get the Activity section
+                const activitySection = document.getElementById('Activity');
+                
+                // Insert the new card body at the top of the Activity section
+                activitySection.insertBefore(activityCardBody, activitySection.firstChild);
+                
+                // Clear the post-content input and photo-upload input
+                document.getElementById('post-content').value = '';
+                document.getElementById('post-media').textContent = '';
+                photoUpload.value = null;
+    
+                // Store the post in the database
+            } else {
+                alert('Please enter text content and/or select a photo before publishing.');
+            }
+        });
+    }
+    
 
 function storePost(userID, textContent, photoContent) {
     db.ref(userID  + '/Post/' + count ).set({
@@ -243,25 +248,25 @@ function storePost(userID, textContent, photoContent) {
             var profilePic = document.querySelector('#item1-pfp');
             profilePic.src = pfpImg;
             var profilePic = document.querySelector('#item2-pfp');
-            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            profilePic.src = '/image/Amenda_pfp.jpg';
             var profilePic = document.querySelector('#item3-pfp');
-            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            profilePic.src = '/image/Kobe_pfp.jpg';
         } 
         else if(chyiKeatRank === 2) {
             // Change the profile picture source to /image/baked-avocado-eggs-1.jpeg
             var profilePic = document.querySelector('#item1-pfp');
-            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            profilePic.src = '/image/Amenda_pfp.jpg';
             var profilePic = document.querySelector('#item2-pfp');
             profilePic.src = pfpImg;
             var profilePic = document.querySelector('#item3-pfp');
-            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            profilePic.src = '/image/Kobe_pfp.jpg';
         }
         else if(chyiKeatRank === 3) {
             // Change the profile picture source to /image/baked-avocado-eggs-1.jpeg
             var profilePic = document.querySelector('#item1-pfp');
-            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            profilePic.src = '/image/Amenda_pfp.jpg';
             var profilePic = document.querySelector('#item2-pfp');
-            profilePic.src = '/image/baked-avocado-eggs-1.jpeg';
+            profilePic.src = '/image/Kobe_pfp.jpg';
             var profilePic = document.querySelector('#item3-pfp');
             profilePic.src = pfpImg;
         }

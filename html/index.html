@@ -25,6 +25,12 @@
     <script src="../java_script/loginsignup.js"></script>
 
     <title>Home</title>
+    <style>
+      #pfpImg{
+        width: 60px;
+        height: 75px;
+      }
+    </style>
 </head>
 <body>
 
@@ -75,8 +81,8 @@
       <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
         <li class="nav-item ms-2 d-none d-md-inline mt-0 pt-0">
           <div>
-            <span class="fs-5 text-warning mt-3">User_name</span>
-            <a href="../html/profile.html"><img src="..." class="rounded-circle fs-1 border border-1" alt="..."></a>
+            <span class="fs-5 text-warning mt-3" id="name1">User_name</span>
+            <a href="../html/profile.html"><img src="..." id="pfpImg" class="rounded-circle fs-1 border border-1" alt="..."></a>
           </div>
         </li>
       </div>
@@ -347,6 +353,41 @@
           </div>
       </div>
   </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      const firebaseConfig = {
+        apiKey: "AIzaSyBROf8x8AaOQmWY5z1vb0icjOkWoDha6zo",
+        authDomain: "useruser-5f5dc.firebaseapp.com",
+        databaseURL: "https://useruser-5f5dc-default-rtdb.firebaseio.com",
+        projectId: "useruser-5f5dc",
+        storageBucket: "useruser-5f5dc.appspot.com",
+        messagingSenderId: "294580009654",
+        appId: "1:294580009654:web:a0ca0ae3dbaedd53704417",
+        measurementId: "G-BZTH9RR80E"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.database();
+
+    const userID = localStorage.getItem('userId');
+    db.ref(userID).on('value', function(snapshot){
+        const data = snapshot.val();
+        const name1 = data.name;
+        const pfpImg = data.profileImg;
+
+        setPfInfo(name1, pfpImg);
+
+    });
+    function setPfInfo(name, pfpImg) {
+        document.getElementById('name1').textContent = name;
+        document.getElementById('pfpImg').src = pfpImg;
+    }
+    });
+    
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 

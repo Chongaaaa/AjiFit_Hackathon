@@ -111,7 +111,9 @@
   object-fit: contain;
 }
 
-#pfp img{
+#pfp img,
+#pfpImgP,
+#pfpImg{
   width: 60px;
   height: 75px;
 }
