@@ -21,14 +21,20 @@ document.addEventListener("DOMContentLoaded", function() {
     var alertShown = false; // Variable to track whether alert has been shown
     var caloriesSum = 0;
     var count = 1;
+    var show = 1;
 
     const userID = localStorage.getItem('userId');
     db.ref(userID).on('value', function(snapshot){
         const data = snapshot.val();
         const name1 = data.name;
         const pfpImg = data.profileImg;
-        
-        
+        setPfInfo(name1, pfpImg);
+
+    });
+    db.ref(userID).on('value', function(snapshot){
+        const data = snapshot.val();
+        const name1 = data.name;
+        const pfpImg = data.profileImg;
         setPfInfo(name1, pfpImg);
 
     });
@@ -39,6 +45,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("cpd-bar").value = parseInt(clrPD);
         document.getElementById("clr-text").textContent = `${caloriesSum} / ${caloriesPDay.value} kCal`;
     });
+
+    if(show ==1){
+        showAllRecord();
+        show = 0;
+    }
+    
 
     function setPfInfo(name, pfpImg) {
         document.getElementById('name1').textContent = name;
@@ -58,114 +70,112 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
     
-    // Add an event listener to the "Save" button
-    document.getElementById('new-record').addEventListener('click', function() {
-      // Get input values
-      var caloriesPDay = document.getElementById("cpd-bar");
-      var caloriesInput = document.getElementById('clr-in');
-      var carbInput = document.getElementById('carb-in');
-      var proteinInput = document.getElementById('prt-in');
-      var fatInput = document.getElementById('fat-in');
-      var mealTypeInput = document.querySelector('input[name="flexRadioDefault"]:checked');
-      var dateInput = document.getElementById('date-slt');
-      var timeInput = document.getElementById('time-slt');
-      var foodDesc = document.getElementById('food-desc');
-  
-      // Validate inputs (check if they are numeric)
-      var caloriesValue = parseFloat(caloriesInput.value);
-      var carbValue = parseFloat(carbInput.value);
-      var proteinValue = parseFloat(proteinInput.value);
-      var fatValue = parseFloat(fatInput.value);
-      caloriesSum += caloriesValue;
-  
-      // Flag to track if any input is invalid or empty
-      var invalidInput = false;
-  
-      // Check if inputs are numeric and not empty
-      if (isNaN(caloriesValue) || caloriesInput.value.trim() === '') {
-          caloriesInput.value = '';
-          caloriesInput.focus();
-          invalidInput = true;
-      } else if (isNaN(carbValue) || carbInput.value.trim() === '') {
-          carbInput.value = '';
-          carbInput.focus();
-          invalidInput = true;
-      } else if (isNaN(proteinValue) || proteinInput.value.trim() === '') {
-          proteinInput.value = '';
-          proteinInput.focus();
-          invalidInput = true;
-      } else if (isNaN(fatValue) || fatInput.value.trim() === '') {
-          fatInput.value = '';
-          fatInput.focus();
-          invalidInput = true;
-      } else if (!mealTypeInput) {
-          alert("Please select a meal type.");
-          invalidInput = true;
-      } else if (!dateInput.value) {
-          alert("Please select a date.");
-          invalidInput = true;
-      } else if (!timeInput.value) {
-          alert("Please select a time.");
-          invalidInput = true;
-      }
-  
-      // Display alert only if there are invalid inputs
-      if (invalidInput) {
-          alert("Please enter valid values for all fields.");
-      } else {
-          // If all inputs are valid, proceed with saving the record
-          var mealType = mealTypeInput.value;
-          var date = dateInput.value;
-          var time = timeInput.value;
-  
-          // Check if the date matches today's date
-          var today = new Date();
-          var dd = String(today.getDate()).padStart(2, '0');
-          var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-          var yyyy = today.getFullYear();
-          var formattedToday = yyyy + '-' + mm + '-' + dd;
-  
-          if (date === formattedToday) {
-              // If the date matches today's date, proceed with sum calculation
-              var carbSum = parseFloat(document.getElementById('carb-out').value);
-              var proteinSum = parseFloat(document.getElementById('prt-out').value);
-              var fatSum = parseFloat(document.getElementById('fat-out').value);
-  
-              carbSum += carbValue;
-              proteinSum += proteinValue;
-              fatSum += fatValue;
-  
-              // Update the totals
-              document.getElementById("clr-text").textContent = `${caloriesSum} / ${caloriesPDay.value} kCal`; // Here we should use userInput instead of undefined userInput variable
-              document.getElementById('carb-out').value = carbSum;
-              document.getElementById('prt-out').value = proteinSum;
-              document.getElementById('fat-out').value = fatSum;
-          }
-          
-          // Close the modal
-          var modal = document.getElementById('tracker');
-          var modalInstance = bootstrap.Modal.getInstance(modal);
-          caloriesPDay = handleInput();
-          modalInstance.hide();
-
-          const userID = localStorage.getItem('userId');
+        // Add an event listener to the "Save" button
+        document.getElementById('new-record').addEventListener('click', function() {
+        // Get input values
+        var caloriesPDay = document.getElementById("cpd-bar");
+        var caloriesInput = document.getElementById('clr-in');
+        var carbInput = document.getElementById('carb-in');
+        var proteinInput = document.getElementById('prt-in');
+        var fatInput = document.getElementById('fat-in');
+        var mealTypeInput = document.querySelector('input[name="flexRadioDefault"]:checked');
+        var dateInput = document.getElementById('date-slt');
+        var timeInput = document.getElementById('time-slt');
+        var foodDesc = document.getElementById('food-desc');
+    
+        // Validate inputs (check if they are numeric)
+        var caloriesValue = parseFloat(caloriesInput.value);
+        var carbValue = parseFloat(carbInput.value);
+        var proteinValue = parseFloat(proteinInput.value);
+        var fatValue = parseFloat(fatInput.value);
+    
+        // Flag to track if any input is invalid or empty
+        var invalidInput = false;
+    
+        // Check if inputs are numeric and not empty
+        if (isNaN(caloriesValue) || caloriesInput.value.trim() === '') {
+            caloriesInput.value = '';
+            caloriesInput.focus();
+            invalidInput = true;
+        } else if (isNaN(carbValue) || carbInput.value.trim() === '') {
+            carbInput.value = '';
+            carbInput.focus();
+            invalidInput = true;
+        } else if (isNaN(proteinValue) || proteinInput.value.trim() === '') {
+            proteinInput.value = '';
+            proteinInput.focus();
+            invalidInput = true;
+        } else if (isNaN(fatValue) || fatInput.value.trim() === '') {
+            fatInput.value = '';
+            fatInput.focus();
+            invalidInput = true;
+        } else if (!mealTypeInput) {
+            alert("Please select a meal type.");
+            invalidInput = true;
+        } else if (!dateInput.value) {
+            alert("Please select a date.");
+            invalidInput = true;
+        } else if (!timeInput.value) {
+            alert("Please select a time.");
+            invalidInput = true;
+        }
+    
+        // Display alert only if there are invalid inputs
+        if (invalidInput) {
+            alert("Please enter valid values for all fields.");
+        } else {
+            // If all inputs are valid, proceed with saving the record
+            var mealType = mealTypeInput.value;
+            var date = dateInput.value;
+            var time = timeInput.value;
+    
+            // Check if the date matches today's date
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+            var yyyy = today.getFullYear();
+            var formattedToday = yyyy + '-' + mm + '-' + dd;
+    
+            if (date === formattedToday) {
+                // If the date matches today's date, proceed with sum calculation
+                var carbSum = parseFloat(document.getElementById('carb-out').value);
+                var proteinSum = parseFloat(document.getElementById('prt-out').value);
+                var fatSum = parseFloat(document.getElementById('fat-out').value);
             
-          db.ref(userID  + '/Record/' + count ).set({
-            caloriesPDay:caloriesPDay,
-            mealType: mealType,
-            Date: date,
-            Time: time,
-            Calories: caloriesValue,
-            carborhydrate: carbValue,
-            protein: proteinValue,
-            fat: fatValue,
-            foodDesc: foodDesc.value
+                caloriesSum += caloriesValue;
+                carbSum += carbValue;
+                proteinSum += proteinValue;
+                fatSum += fatValue;
+            
+                // Update the totals
+                document.getElementById("clr-text").textContent = `${caloriesSum} / ${caloriesPDay.value} kCal`;
+                document.getElementById('carb-out').value = carbSum;
+                document.getElementById('prt-out').value = proteinSum;
+                document.getElementById('fat-out').value = fatSum;
+            }
+            // Close the modal
+            var modal = document.getElementById('tracker');
+            var modalInstance = bootstrap.Modal.getInstance(modal);
+            caloriesPDay = handleInput();
+            modalInstance.hide();
 
-            });
+            const userID = localStorage.getItem('userId');
 
-            showRecord(userID, count);
-            count++;
-      }
+            db.ref(userID  + '/Record/' + count ).set({
+                caloriesPDay:caloriesPDay,
+                mealType: mealType,
+                Date: date,
+                Time: time,
+                Calories: caloriesValue,
+                carborhydrate: carbValue,
+                protein: proteinValue,
+                fat: fatValue,
+                foodDesc: foodDesc.value
+                });
+                showRecord(userID, count);
+                count++;
+                
+        }
   });
   function handleInput() {
     // Get the value entered by the user
@@ -175,6 +185,11 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!isNaN(userInput) && userInput !== "") {
         // Input is a valid number
         console.log("Valid numeric input: " + userInput);
+
+        const userID = localStorage.getItem('userId');
+        db.ref(userID + '/Record/' + count).update ({
+            caloriesPDay: userInput
+        });
         
         // Set CSS variable with the value of CaloriesPDay
         document.documentElement.style.setProperty('--caloriesPDay', userInput);
@@ -205,6 +220,94 @@ document.addEventListener("DOMContentLoaded", function() {
         caloriesPDay.focus(); // Focus back on the input field
     }
 }
+function showAllRecord(){
+    const userID = localStorage.getItem('userId');
+    const recordContainer = document.getElementById('record-container');
+
+    db.ref(userID + '/RecordCount').on('value', function(snapshot){
+        const data = snapshot.val();
+        const rCount = data.recordCount;
+
+        for(let count = 1; count <= rCount; count++){
+            db.ref(userID + '/Record/' + count).on('value', function(snapshot) {
+
+                const data = snapshot.val();
+                const date = data.Date;
+                const mealType = data.mealType;
+                const foodDesc = data.foodDesc;
+                const time = data.Time;
+                const calories = data.Calories;
+        
+                
+
+                // Check if a record with the same date exists
+                let existingRecord = document.getElementById(`record-${date}`);
+                if (!existingRecord) {
+
+                    // If no record with the same date exists, create a new one
+                    existingRecord = document.createElement('div');
+                    existingRecord.id = `record-${date}`;
+                    existingRecord.classList.add('col-12', 'justify-content-start', 'mb-1');
+        
+                    // Add date section
+                    const dateSection = document.createElement('div');
+                    dateSection.classList.add('d-flex', 'w-100', 'justify-content-start', 'mt-1', 'ms-1');
+                    const dateHeading = document.createElement('h5');
+                    dateHeading.classList.add('mb-1');
+                    dateHeading.textContent = date;
+                    dateSection.appendChild(dateHeading);
+                    const calendarIcon = document.createElement('span');
+                    calendarIcon.classList.add('ms-3');
+                    calendarIcon.innerHTML = '<i class="bi bi-calendar"></i>';
+                    dateSection.appendChild(calendarIcon);
+                    existingRecord.appendChild(dateSection);
+        
+                    recordContainer.prepend(existingRecord); // Insert the new record on top
+                }
+        
+                // Add meal details to the existing record
+                const mealContainer = document.createElement('div');
+                mealContainer.classList.add('container', 'mb-2');
+                mealContainer.style.backgroundColor = '#B2C5D3';
+                const mealRow = document.createElement('div');
+                mealRow.classList.add('row', 'justify-content-start', 'my-1');
+                mealContainer.appendChild(mealRow);
+                const mealIcon = document.createElement('i');
+                mealIcon.classList.add('col-1', 'bi', 'bi-calendar', 'pt-4');
+                mealRow.appendChild(mealIcon);
+                const mealTextContainer = document.createElement('div');
+                mealTextContainer.classList.add('col-5', 'text-start', 'py-2', 'ps-4');
+                const mealTypeSpan = document.createElement('span');
+                mealTypeSpan.classList.add('fs-5');
+                mealTypeSpan.textContent = mealType;
+                mealTextContainer.appendChild(mealTypeSpan);
+                const foodDescHeading = document.createElement('h6');
+                foodDescHeading.classList.add('text-muted');
+                foodDescHeading.textContent = foodDesc;
+                mealTextContainer.appendChild(foodDescHeading);
+                mealRow.appendChild(mealTextContainer);
+                const timeColumn = document.createElement('div');
+                timeColumn.classList.add('col-3', 'py-2', 'text-end');
+                const timeSpan = document.createElement('span');
+                timeSpan.classList.add('fs-5');
+                timeSpan.textContent = "Time: " + time;
+                timeColumn.appendChild(timeSpan);
+                mealRow.appendChild(timeColumn);
+                const caloriesColumn = document.createElement('div');
+                caloriesColumn.classList.add('col-3', 'py-2', 'text-end');
+                const caloriesSpan = document.createElement('span');
+                caloriesSpan.classList.add('fs-5');
+                caloriesSpan.textContent = `${calories} kCal`;
+                caloriesColumn.appendChild(caloriesSpan);
+                mealRow.appendChild(caloriesColumn);
+        
+                existingRecord.appendChild(mealContainer);
+                existingRecord.appendChild(exerciseContainer);
+            });
+        }
+    });
+}
+
 function showRecord(userID, count) {
     const recordContainer = document.getElementById('record-container');
 
@@ -238,48 +341,48 @@ function showRecord(userID, count) {
             existingRecord.appendChild(dateSection);
 
             recordContainer.prepend(existingRecord); // Insert the new record on top
+
+            // Add meal details to the existing record
+            const mealContainer = document.createElement('div');
+            mealContainer.classList.add('container', 'mb-2');
+            mealContainer.style.backgroundColor = '#B2C5D3';
+            const mealRow = document.createElement('div');
+            mealRow.classList.add('row', 'justify-content-start', 'my-1');
+            mealContainer.appendChild(mealRow);
+            const mealIcon = document.createElement('i');
+            mealIcon.classList.add('col-1', 'bi', 'bi-calendar', 'pt-4');
+            mealRow.appendChild(mealIcon);
+            const mealTextContainer = document.createElement('div');
+            mealTextContainer.classList.add('col-5', 'text-start', 'py-2', 'ps-4');
+            const mealTypeSpan = document.createElement('span');
+            mealTypeSpan.classList.add('fs-5');
+            mealTypeSpan.textContent = mealType;
+            mealTextContainer.appendChild(mealTypeSpan);
+            const foodDescHeading = document.createElement('h6');
+            foodDescHeading.classList.add('text-muted');
+            foodDescHeading.textContent = foodDesc;
+            mealTextContainer.appendChild(foodDescHeading);
+            mealRow.appendChild(mealTextContainer);
+            const timeColumn = document.createElement('div');
+            timeColumn.classList.add('col-3', 'py-2', 'text-end');
+            const timeSpan = document.createElement('span');
+            timeSpan.classList.add('fs-5');
+            timeSpan.textContent = "Time: " + time;
+            timeColumn.appendChild(timeSpan);
+            mealRow.appendChild(timeColumn);
+            const caloriesColumn = document.createElement('div');
+            caloriesColumn.classList.add('col-3', 'py-2', 'text-end');
+            const caloriesSpan = document.createElement('span');
+            caloriesSpan.classList.add('fs-5');
+            caloriesSpan.textContent = `${calories} kCal`;
+            caloriesColumn.appendChild(caloriesSpan);
+            mealRow.appendChild(caloriesColumn);
+
+            existingRecord.appendChild(mealContainer);
+            existingRecord.appendChild(exerciseContainer);
         }
 
-        // Add meal details to the existing record
-        const mealContainer = document.createElement('div');
-        mealContainer.classList.add('container', 'mb-2');
-        mealContainer.style.backgroundColor = '#B2C5D3';
-        const mealRow = document.createElement('div');
-        mealRow.classList.add('row', 'justify-content-start', 'my-1');
-        mealContainer.appendChild(mealRow);
-        const mealIcon = document.createElement('i');
-        mealIcon.classList.add('col-1', 'bi', 'bi-calendar', 'pt-4');
-        mealRow.appendChild(mealIcon);
-        const mealTextContainer = document.createElement('div');
-        mealTextContainer.classList.add('col-5', 'text-start', 'py-2', 'ps-4');
-        const mealTypeSpan = document.createElement('span');
-        mealTypeSpan.classList.add('fs-5');
-        mealTypeSpan.textContent = mealType;
-        mealTextContainer.appendChild(mealTypeSpan);
-        const foodDescHeading = document.createElement('h6');
-        foodDescHeading.classList.add('text-muted');
-        foodDescHeading.textContent = foodDesc;
-        mealTextContainer.appendChild(foodDescHeading);
-        mealRow.appendChild(mealTextContainer);
-        const timeColumn = document.createElement('div');
-        timeColumn.classList.add('col-3', 'py-2', 'text-end');
-        const timeSpan = document.createElement('span');
-        timeSpan.classList.add('fs-5');
-        timeSpan.textContent = "Time: " + time;
-        timeColumn.appendChild(timeSpan);
-        mealRow.appendChild(timeColumn);
-        const caloriesColumn = document.createElement('div');
-        caloriesColumn.classList.add('col-3', 'py-2', 'text-end');
-        const caloriesSpan = document.createElement('span');
-        caloriesSpan.classList.add('fs-5');
-        caloriesSpan.textContent = `${calories} kCal`;
-        caloriesColumn.appendChild(caloriesSpan);
-        mealRow.appendChild(caloriesColumn);
-
-        existingRecord.appendChild(mealContainer);
-
-
-        existingRecord.appendChild(exerciseContainer);
+        
     });
 }
 });
