@@ -112,3 +112,21 @@
 #imgChange-btn button:hover {
     background-color: #192939;
 }
+
+.img-thumbnail {
+    height: 200px;
+    width: 200px;
+    transition: 5ms ease-in ;
+}
+
+    /* Hover effect */
+    .img-thumbnail:hover {
+        border: 2px solid #192939;
+    }
+
+    /* Selected effect */
+    .img-thumbnail.selected {
+        border: 5px double #29515D;
+        height: 190px;
+        width: 190px;
+    }

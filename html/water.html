@@ -21,6 +21,8 @@
     <!-- link with CSS -->
     <link rel="stylesheet" href="../css/water.css">
     <link rel="stylesheet" href="../css/common.css">
+
+    <script src="../java_script/loginsignup.js"></script>
     
     <title>Water Reminder</title>
 </head>
@@ -28,7 +30,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-xxl">
-          <a href="#intro" class="navbar-brand">
+          <a href="../html/index.html" class="navbar-brand">
             <span class="fw-bold h1 fs-1 text-secondary">AjiFit</span>
           </a>
           
@@ -62,6 +64,9 @@
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link text-dark">FAQS</a>
+                </li>
+                <li class="logged-in nav-item">
+                    <a href="./login.html" class="nav-link text-dark" id="logout">Logout</a>
                 </li>
               </ul>
             </div>
@@ -98,7 +103,7 @@
                     <!-- icon - more infor -->
                     <div class="col-4">
 
-                        <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Click on the open button to get water reminder from your phone!">
+                        <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Click on the open button to get water reminder from this website!">
                             <i class="bi bi-info-circle-fill fs-2"></i>
                         </button>
                         
@@ -152,7 +157,7 @@
                         <!-- water-circle -->
                         <div class="px-3 py-2">
                             <div id="water-circle">
-                                <h6 class="lead"><span id="waterNeededResult" class="fs-2">1500</span> ml</h6>
+                                <h6 class="lead"><span id="waterNeededResult" class="fs-2"></span> ml</h6>
                             </div>
                         </div>
 
@@ -375,20 +380,8 @@
 
                 weightDisplay.value = weight;
                 calcWater(weight);
-            });
-            
-            function calcWater(w) {
-                var water_need = parseInt(w * 30);
-                //console.log(water_need);
-                waterNeedDisplay.textContent = water_need;
-            }
 
-            db.ref(userID + '/waterReminder/').on('value', function(snapshot){
-                var data = snapshot.val();
-
-                // If waterReminder path exists
-                if (data) {
-                    // Retrieve the drink value
+                if (!(data.water === 0)){
                     var drinkValue = data.water;
 
                     openR.disabled = true;
@@ -398,10 +391,16 @@
                     
                     updateWaterLevel(drinkValue);
                     waterDrinkDisplay.textContent = ( drinkValue + " ml");
-                } else {
-                    console.log("No waterReminder path found in Firebase.");
+                }else {
+                    waterDrinkDisplay.textContent = ( "0 ml");
                 }
             });
+            
+            function calcWater(w) {
+                var water_need = parseInt(w * 30);
+                //console.log(water_need);
+                waterNeedDisplay.textContent = water_need;
+            }
 
             const waterDrinkDisplay = document.getElementById('waterDrinkDisplay');
 
@@ -409,14 +408,15 @@
             function updateWaterLevel(waterDrink) {
                 const waterBottleInner = document.getElementById('waterBottleInner');
                 const percentageFilled = (waterDrink / parseInt(waterNeedDisplay.textContent)) * 100;
-                console.log(parseInt(waterNeedDisplay.textContent));
+                console.log('water drink:',waterDrink);
+                console.log('water need:',parseInt(waterNeedDisplay.textContent));
                 waterBottleInner.style.height = percentageFilled + '%';
             }
 
             openR.addEventListener('click', function() {
 
                 let waterDrink = 0;
-                if(confirm("We wil get access to your email now! You will get your reminder every 1 hour! Thanks for opening our water reminder!")){
+                if(confirm("You will get your reminder every 1 hour! Thanks for opening our water reminder!")){
                     openR.disabled = true;
                     closeR.disabled = false;
 
@@ -444,7 +444,7 @@
 
                     updateWaterLevel(waterDrink);
                 
-                    db.ref(userID + '/waterReminder').set({
+                    db.ref(userID).update({
                         water: waterDrink
                     });
 
@@ -470,7 +470,9 @@
                 waterDrinkDisplay.textContent = ( waterDrink + " ml");
 
                 // update in firebase
-                db.ref(userID + '/waterReminder').remove()
+                db.ref(userID).update({
+                    water: 0
+                });
             });
 
             // ----- BREAK LINE ------
@@ -502,8 +504,12 @@
                     return false;
                 } else {
                     calcWater(value);
+
+                    var waterNeedText = waterDrinkDisplay.textContent;
+                    var waterNeed = parseInt(waterNeedText.substring(0, waterNeedText.indexOf(' ml')));
                     
-                    updateWaterLevel(waterDrink);
+                    updateWaterLevel(waterNeed);
+                    console.log('waterNeed:', waterNeed);
                 }
             });
 

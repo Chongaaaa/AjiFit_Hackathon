@@ -21,6 +21,8 @@
     <!-- link with CSS -->
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/common.css">
+
+    <script src="../java_script/loginsignup.js"></script>
     
     <title>Profile</title>
 </head>
@@ -28,7 +30,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-xxl">
-          <a href="#intro" class="navbar-brand">
+          <a href="../html/index.html" class="navbar-brand">
             <span class="fw-bold h1 fs-1 text-secondary">AjiFit</span>
           </a>
           
@@ -63,6 +65,9 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link text-dark">FAQS</a>
                 </li>
+                <li class="logged-in nav-item">
+                    <a href="./login.html" class="nav-link text-dark" id="logout">Logout</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -86,7 +91,7 @@
 
             <div id="profile-img">
                 <img id="editProfile-btn" class="mt-5 mb-2 mx-4" src="" alt="Avatar">
-                <input type="file" accept="image/*" id="imageUploadInput" style="display: none;">
+                <input type="file" accept="image/avatar/*" id="imageUploadInput" style="display: none;">
             </div>
 
             <div id="profile-name">
@@ -232,44 +237,46 @@
 
                     <!-- video -->
                     <div class="my-3 mx-3">
-                        <div class="row my-5">
+                        <h3 class="fs-3">Exercise</h3>
+                        <div class="row mb-5">
                             
                             <div class="col-sm-2 col-md-4">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/TbrF84r4J1E?si=vMewu0LgME2h4pAX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/eMjyvIQbn9M?si=o-OLiZjP2taO0JtA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
                 
                             <div class="col-sm-2 col-md-4">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/TbrF84r4J1E?si=vMewu0LgME2h4pAX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Im5wJLdudDg?si=6WMDjXh49AG5zlQU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
 
                             <div class="col-sm-2 col-md-4">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/TbrF84r4J1E?si=vMewu0LgME2h4pAX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/yWnacRo2VbA?si=-KtEdcDwvjgpleEB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row my-5">
+                        <h3 class="fs-3">Receipe</h3>
+                        <div class="row mb-5">
                             
                             <div class="col-sm-2 col-md-4">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/TbrF84r4J1E?si=vMewu0LgME2h4pAX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/skBf_JkYTaI?si=yH6Q23HHiyoSRF4l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
                 
                             <div class="col-sm-2 col-md-4">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/TbrF84r4J1E?si=vMewu0LgME2h4pAX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/GZo06HY96ew?si=VpqLSNqhNO_1Rvc-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
 
                             <div class="col-sm-2 col-md-4">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/TbrF84r4J1E?si=vMewu0LgME2h4pAX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/AYXfaVD5o40?si=G3DTMQbiccCZitem" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -283,18 +290,44 @@
     <div id="imgChange" class="container-sm text-center py-5 px-1">
         <div id="imgChange-text">
             <h5 class="fs-1">
-                Do you want to change your image?
+                Please select the image you would like to change?
             </h5>
         </div>
+
+        <div class="row mt-5">
+            <div class="col-4">
+                <img src="../image/avatar/cinderella.webp" class="img-thumbnail" alt="cinderella" id="avatar1">
+            </div>
+            <div class="col-4">
+                <img src="../image/avatar/emma.webp" class="img-thumbnail" alt="emma" id="avatar2">
+            </div>
+            <div class="col-4">
+                <img src="../image/avatar/wu ming.jpg" class="img-thumbnail" alt="wu_ming" id="avatar3">
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-4">
+                <img src="../image/avatar/mao li.jpg" class="img-thumbnail" alt="mao_li" id="avatar4">
+            </div>
+            <div class="col-4">
+                <img src="../image/avatar/totoro.webp" class="img-thumbnail" alt="totoro" id="avatar5">
+            </div>
+            <div class="col-4">
+                <img src="../image/avatar/zoro.webp" class="img-thumbnail" alt="zoro" id="avatar6">
+            </div>
+        </div>
+
         <div id="imgChange-btn" class="mt-5">
             <button class="btn fs-2" id="changeYes">
-                Yes
+                Confirm
             </button>
             <button class="btn fs-2" id="changeNo">
-                No
+                Cancel
             </button>
         </div>
     </div>
+
 
 <footer>
         <div class="container-fluid justify-content-center text-center py-5">
@@ -425,7 +458,7 @@
                 console.log('imageURL: ', userImg);
 
                 if (userImg === "none") {
-                    editProfile.src = '../image/avatar.jpg';
+                    editProfile.src = '../image/avatar/avatar.jpg';
                 } else {
                     editProfile.src = userImg;
                 }
@@ -438,12 +471,30 @@
             });
 
             // load profile image if there is image inside
-            
             // profile image change
             editProfile.addEventListener('click', function() {
 
                 document.body.classList.add("stop-scrolling");
                 changeImgDialog.style.display = "block";
+
+                // Get all the thumbnail images
+                const thumbnails = document.querySelectorAll('.img-thumbnail');
+
+                // Add event listeners for hover effect and click to select
+                thumbnails.forEach(thumbnail => {
+
+                    // Click to select
+                    thumbnail.addEventListener('click', function() {
+                        
+                        // Remove 'selected' class from all thumbnails
+                        thumbnails.forEach(thumbnail => {
+                            thumbnail.classList.remove('selected');
+                        });
+
+                        // Add 'selected' class to the clicked thumbnail
+                        this.classList.add('selected');
+                    });
+                });
 
             });
 
@@ -457,26 +508,23 @@
 
             // save image
             editProfileYes.addEventListener('click', function() {
-                imageUploadInput.click();
-            });
+                const selectedImage = document.querySelector('.img-thumbnail.selected');
+                if (selectedImage) {
+                    // update to firebase
+                    db.ref(userID).update ({
+                        profileImg: selectedImage.src
+                    });
 
-            // Add event listener for file input change (when a file is selected)
-            imageUploadInput.addEventListener('change', function(event) {
+                    editProfile.src = selectedImage.src;
+                    console.log('Selected image:', selectedImage.src);
 
-                const file = event.target.files[0]; // Get the selected file
-                const imgUrl = URL.createObjectURL(file); // Create a URL for the selected image file
-
-                // Update the src attribute of the profile image to display the newly uploaded image
-                editProfile.src = imgUrl;
-                
-                // update to firebase
-                db.ref(userID).update ({
-                    profileImg: imgUrl
-                });
+                } else {
+                    alert('Please select an image before confirming.');
+                }
 
                 document.body.classList.remove("stop-scrolling");
                 changeImgDialog.style.display = "none";
-
+                
             });
 
             // ------BREAK LINE-----
