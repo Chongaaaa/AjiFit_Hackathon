@@ -80,3 +80,10 @@ input[type=radio]:checked{
 #food-desc:focus{
   outline: none;
 }
+
+#pfp img,
+#pfpImgP,
+#pfpImg{
+  width: 60px;
+  height: 75px;
+}
