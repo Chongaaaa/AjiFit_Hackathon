@@ -103,7 +103,7 @@
                     <!-- icon - more infor -->
                     <div class="col-4">
 
-                        <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Click on the open button to get water reminder from your phone!">
+                        <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Click on the open button to get water reminder from this website!">
                             <i class="bi bi-info-circle-fill fs-2"></i>
                         </button>
                         
@@ -416,7 +416,7 @@
             openR.addEventListener('click', function() {
 
                 let waterDrink = 0;
-                if(confirm("We wil get access to your email now! You will get your reminder every 1 hour! Thanks for opening our water reminder!")){
+                if(confirm("You will get your reminder every 1 hour! Thanks for opening our water reminder!")){
                     openR.disabled = true;
                     closeR.disabled = false;
 
@@ -504,8 +504,12 @@
                     return false;
                 } else {
                     calcWater(value);
+
+                    var waterNeedText = waterDrinkDisplay.textContent;
+                    var waterNeed = parseInt(waterNeedText.substring(0, waterNeedText.indexOf(' ml')));
                     
-                    updateWaterLevel(waterDrink);
+                    updateWaterLevel(waterNeed);
+                    console.log('waterNeed:', waterNeed);
                 }
             });
 
