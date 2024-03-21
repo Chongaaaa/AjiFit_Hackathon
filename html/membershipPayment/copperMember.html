@@ -123,8 +123,10 @@
             <div class="front mx-5 mt-2 mb-4">
 
                 <div class="card-image mb-4">
-                    <img src="../../image/chip.png" alt="Credit Card Chip" style="height: 60px; width: 90px; display: inline-block;">
-                    <img src="../../image/visa.png" alt="Visa" style="height: 60px; width: 100px; display: inline-block; ">
+                    <img src="../../image/chip.png" alt="Credit Card Chip"
+                        style="height: 60px; width: 90px; display: inline-block;">
+                    <img src="../../image/visa.png" alt="Visa"
+                        style="height: 60px; width: 100px; display: inline-block; ">
                 </div>
 
                 <div class="card-number-box py-2 px-3 fs-1">################</div>
@@ -225,9 +227,10 @@
         <div class="container-fluid text-end xBtn">
             <button id="xQRBtn" class="btn mt-2"> <i class="bi bi-x-square-fill fs-1"></i> </button>
         </div>
-        
+
         <div id="qr-img" class="container-sm mt-3 justify-content-center text-center">
-            <img src="../../image/qrPayment.jpg" alt="my QR code" style="height: 350px; width: 300px; border-radius: 20px;">
+            <img src="../../image/qrPayment.jpg" alt="my QR code"
+                style="height: 350px; width: 300px; border-radius: 20px;">
         </div>
 
         <div class="container-sm text-center justify-content-center mt-4 mb-5">
@@ -308,17 +311,17 @@
             const cardDialog = document.getElementById('cardDialog');
             const closeCard = document.getElementById('xCardBtn');
             cardBtn.addEventListener('click', function () {
-                
+
                 cardDialog.style.display = 'block';
 
                 //cardAction();
             });
 
-            closeCard.addEventListener('click', function() {
+            closeCard.addEventListener('click', function () {
                 cardDialog.style.display = 'none';
             });
 
- 
+
             const cardNumberInput = document.querySelector('.card-number-input');
             const cardNumberBox = document.querySelector('.card-number-box');
             const cardHolderInput = document.querySelector('.card-holder-input');
@@ -385,7 +388,7 @@
                     const inputValue = cvvInput.value.trim();
                     if (!/^\d+$/.test(inputValue)) {
                         cvvInput.value = "";
-                        cvvBox.textContent = "";   
+                        cvvBox.textContent = "";
                         alert("Please digits only numeric characters for CVV.");
                     }
                 });
@@ -416,7 +419,7 @@
                 }
 
                 // submit btn
-                document.getElementById('card-submit').addEventListener('click', function(event) {
+                document.getElementById('card-submit').addEventListener('click', function (event) {
                     if (checkEmptyFields()) {
                         window.alert('Please fill in all the fields.');
                         event.preventDefault();
@@ -464,14 +467,14 @@
 
             });
 
-            closeQR.addEventListener('click', function() {
+            closeQR.addEventListener('click', function () {
 
                 document.body.classList.remove("stop-scrolling");
                 qrDialog.style.display = 'none';
-                
+
             });
 
-            qrDone.addEventListener('click', function() {
+            qrDone.addEventListener('click', function () {
 
                 console.log(userID);
 
@@ -481,7 +484,7 @@
                 db.ref(userID).update({
                     membership: membershipName
                 });
-                
+
                 window.location.href = "/../html/index.html#subscribe";
 
             });
@@ -492,6 +495,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/11306846-2603-4e9d-9a67-11c3565d0784/webchat/config.js" defer></script>
+
 </body>
 
 </html>
