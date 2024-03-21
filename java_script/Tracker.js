@@ -204,7 +204,6 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector("path.purple").style.stroke = "red";
         }
 
-
         // Reset alertShown variable
         alertShown = false;
         return userInput;
