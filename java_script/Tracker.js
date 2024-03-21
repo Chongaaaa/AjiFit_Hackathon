@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const name1 = data.name;
         const pfpImg = data.profileImg;
         setPfInfo(name1, pfpImg);
-    
     });
     db.ref(userID).on('value', function(snapshot){
         const data = snapshot.val();
@@ -159,8 +158,6 @@ document.addEventListener("DOMContentLoaded", function() {
             caloriesPDay = handleInput();
             modalInstance.hide();
 
-            const userID = localStorage.getItem('userId');
-
             db.ref(userID  + '/Record/' + count ).set({
                 caloriesPDay:caloriesPDay,
                 mealType: mealType,
@@ -173,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 foodDesc: foodDesc.value
                 });
             showAllRecord();
-            count++
+            count++;
             
                 
         }
@@ -206,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector("path.purple").style.strokeDashoffset = "0";
             document.querySelector("path.purple").style.stroke = "red";
         }
-        showAllRecord();
+
 
         // Reset alertShown variable
         alertShown = false;

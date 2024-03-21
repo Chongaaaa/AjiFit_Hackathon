@@ -45,21 +45,15 @@ path.purple {
   border: 3px solid white;
   border-radius: 5px;
   box-shadow: none;
+  color: white;
+  font-weight: 700;
   
 }
-#add-btn span{
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
-  color: white;
-}
+
 #add-btn:hover {
   background-color: white;
   color: #29515D;
   border: 3px solid #29515D;
-}
-#add-btn span:hover {
-  color: #29515D;
 }
 
 input[type=radio]{
